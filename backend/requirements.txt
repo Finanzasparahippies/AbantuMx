@@ -4,3 +4,4 @@ django-phonenumber-field==7.1.0
 phonenumbers==8.13.19
 sqlparse==0.4.4
 typing_extensions==4.7.1
+rest_framework_simplejwt
