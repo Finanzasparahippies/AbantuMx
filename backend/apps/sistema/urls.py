@@ -4,4 +4,5 @@ from .views import *
 
 urlpatterns = [
     path('donaciones-enviadas/<int:id>/', DonacionesEnviadas.as_view()),
+    path('donaciones-recibidas/<int:id>/', DonacionesRecibidas.as_view()),
 ]

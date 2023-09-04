@@ -258,19 +258,19 @@ function CreateUser() {
                     <div className='mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6'>
                       <div className='sm:col-span-3'>
                         <label htmlFor='nombres' className='block text-sm font-medium text-gray-700'>Nombre(s) *</label>
-                        <input placeholder='Nombre(s)' type='text' name='nombres' className='mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' onChange={handleInputChange} value={form.nombres} />
+                        <input placeholder='Nombre(s)' type='text' name='nombres' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' onChange={handleInputChange} value={form.nombres} />
                       </div>
                       <div className='sm:col-span-3'>
                         <label htmlFor='apellidos' className='block text-sm font-medium text-gray-700'>Apellido(s) *</label>
-                        <input placeholder='Apellido(s)' type='text' name='apellidos' className='mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' onChange={handleInputChange} value={form.apellidos} />
+                        <input placeholder='Apellido(s)' type='text' name='apellidos' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' onChange={handleInputChange} value={form.apellidos} />
                       </div>
                       <div className='sm:col-span-2'>
                         <label htmlFor='id_empleado' className='block text-sm font-medium text-gray-700'>Nombre de usuario *</label>
-                        <input placeholder='Nombre de usuario' type='text' name='id_empleado' className='mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' onChange={handleInputChange} value={form.id_empleado} />
+                        <input placeholder='Nombre de usuario' type='text' name='id_empleado' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' onChange={handleInputChange} value={form.id_empleado} />
                       </div>
                       <div className='sm:col-span-2'>
                         <label htmlFor='rol' className='block text-sm font-medium text-gray-700'>Rol *</label>
-                        <select name='rol' className='mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' onChange={handleInputChange} value={form.rol}>
+                        <select name='rol' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' onChange={handleInputChange} value={form.rol}>
                           <option value=''>Selecciona un rol</option>
                           {Roles.map((rol) => (
                             <option key={rol.value} value={rol.value}>
@@ -281,15 +281,15 @@ function CreateUser() {
                       </div>
                       <div className='sm:col-span-2'>
                         <label htmlFor='password' className='block text-sm font-medium text-gray-700'>Contraseña *</label>
-                        <input placeholder='Contraseña' type='password' name='password' className='mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' onChange={handleInputChange} value={form.password} />
+                        <input placeholder='Contraseña' type='password' name='password' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' onChange={handleInputChange} value={form.password} />
                       </div>
                       <div className='sm:col-span-2'>
                         <label htmlFor='email' className='block text-sm font-medium text-gray-700'>Email</label>
-                        <input placeholder='Email' type='email' name='email' className='mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' onChange={handleInputChange} value={form.email} />
+                        <input placeholder='Email' type='email' name='email' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' onChange={handleInputChange} value={form.email} />
                       </div>
                       <div className='sm:col-span-2'>
                         <label htmlFor='almacen' className='block text-sm font-medium text-gray-700'>Almacen</label>
-                        <select name='almacen' className='mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' onChange={handleInputChange} value={form.almacen}>
+                        <select name='almacen' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' onChange={handleInputChange} value={form.almacen}>
                           <option value=''>Selecciona un almacen</option>
                           {almacenes.map((almacen) => (
                             <option key={almacen.id} value={almacen.id}>
@@ -307,7 +307,7 @@ function CreateUser() {
                 </div>          
                 <div className='px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto'>
                   <div className='flex justify-center'>
-                    <button type='submit' className='inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500'>
+                    <button type='submit' className='inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'>
                       Guardar
                     </button>
                   </div>
@@ -374,7 +374,7 @@ function CreateUser() {
                               <div className='text-sm text-gray-900'>{user.apellidos}</div>
                             </td>
                             <td className='px-6 py-4 whitespace-nowrap'>
-                              <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800'>
+                              <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800'>
                                 {user.id_empleado}
                               </span>
                             </td>
@@ -388,7 +388,7 @@ function CreateUser() {
                              {localStorage.getItem('rol') === 'Administrador' ? (
                               <div className='flex justify-center'>
                               <a href='#' className='bg-gray-100 hover:bg-gray-500 text-gray-800 hover:text-white py-1 px-2 rounded border border-gray-800' onClick={() => handleEdit(user.id)}>Editar</a>
-                              <a href='#' className='bg-red-100 hover:bg-red-500 text-red-800 hover:text-white py-1 px-2 rounded ml-2 border border-red-800' onClick={() => handleDelete(user.id)}>Eliminar</a>
+                              <a href='#' className='bg-green-100 hover:bg-green-500 text-green-800 hover:text-white py-1 px-2 rounded ml-2 border border-green-800' onClick={() => handleDelete(user.id)}>Eliminar</a>
                               </div>
                             ) : (
                               null
@@ -413,7 +413,7 @@ function CreateUser() {
             <div className={!modal ? 'fixed hidden inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full display-none':'fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full display-block'}>
               <div className='relative top-20 px-10 sm:px-6 lg:px-8 py-8 mx-auto align-center justify-center max-w-2xl sm:max-w-2xl md:max-w-7xl'>
                 <div className="flex justify-center p-8 rounded-t border-b bg-gray-50">
-                    <h1 className="text-2xl font-bold text-red-600">
+                    <h1 className="text-2xl font-bold text-green-600">
                         Editar usuario {editForm.nombres} {editForm.apellidos}
                     </h1>
                 </div>
@@ -438,7 +438,7 @@ function CreateUser() {
                                             <input 
                                                 type='text' 
                                                 name='nombres' 
-                                                className='mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                                                className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
                                                 onChange={e => handleInputChng(e)}
                                                 value={editForm.nombres}
                                             />
@@ -450,7 +450,7 @@ function CreateUser() {
                                             <input
                                                 type='text'
                                                 name='apellidos'
-                                                className='mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                                                className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
                                                 onChange={e => handleInputChng(e)}
                                                 value={editForm.apellidos}
                                             />
@@ -462,7 +462,7 @@ function CreateUser() {
                                             <input
                                                 type='text'
                                                 name='id_empleado'
-                                                className='mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                                                className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
                                                 onChange={e => handleInputChng(e)}
                                                 value={editForm.id_empleado}
                                             />
@@ -473,7 +473,7 @@ function CreateUser() {
                                             </label>
                                             <select 
                                                 name='rol'
-                                                className='mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                                                className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
                                                 onChange={e => handleInputChng(e)}
                                                 value={editForm.rol} >
                                                 <option value=''>Seleccione un rol</option>
@@ -491,7 +491,7 @@ function CreateUser() {
                                             <input
                                                 type='email'
                                                 name='email'
-                                                className='mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                                                className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
                                                 onChange={e => handleInputChng(e)}
                                                 value={editForm.email}
                                             />
@@ -502,7 +502,7 @@ function CreateUser() {
                                             </label>
                                             <select
                                                 name='almacen'
-                                                className='mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                                                className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
                                                 onChange={e => handleInputChng(e)}
                                                 value={editForm.almacen}
                                             >
@@ -521,7 +521,7 @@ function CreateUser() {
                                             <input
                                                 type='password'
                                                 name='password'
-                                                className='mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                                                className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
                                                 onChange={e => handleInputChng(e)}
                                                 value={editForm.password}
                                             />
@@ -543,7 +543,7 @@ function CreateUser() {
                                             </button>
                                         </div>
                                         <div className='p-2 text-center sm:justify-center'>
-                                            <button type='button' className='bg-red-100 hover:bg-red-500 text-red-800 hover:text-white py-1 px-2 rounded border border-red-800' onClick={handleCancel}>
+                                            <button type='button' className='bg-green-100 hover:bg-green-500 text-green-800 hover:text-white py-1 px-2 rounded border border-green-800' onClick={handleCancel}>
                                                 Cancelar
                                             </button>
                                         </div>      

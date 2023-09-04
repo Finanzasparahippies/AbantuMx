@@ -24,7 +24,6 @@ __pycache__/
 node_modules/
 npm-debug.log
 frontend/package-lock.json
-frontend/dist/
 
 # Webpack
 /frontend/bundles/*
