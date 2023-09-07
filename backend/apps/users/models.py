@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from .managers import UserManager
+import uuid
 from phonenumber_field.modelfields import PhoneNumberField
 
 ROLES = [
@@ -21,9 +22,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=100, unique=True)
     date_joined = models.DateTimeField(auto_now_add=True)
     role = models.CharField(max_length=100, choices=ROLES, default='Usuario')
+    codigo = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
 
     def _str_(self):
         return f'{self.email}'
