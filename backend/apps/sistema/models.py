@@ -1,8 +1,13 @@
 from django.db import models
 
+TIPOS = [
+    ('A', 'A'),
+    ('B', 'B')
+]
+
 class Redes(models.Model):
-    nombre = models.CharField(max_length=50) #red100
-    monto = models.DecimalField(max_digits=10, decimal_places=2) #$100
+    nombre = models.CharField(max_length=50)
+    monto = models.DecimalField(max_digits=10, decimal_places=2)
 
     class Meta:
         verbose_name = 'Red'
@@ -42,4 +47,23 @@ class DonacionRevision(models.Model):
 
     def __str__(self):
         return self.id
+    
+class Suscripcion(models.Model):
+    red = models.ForeignKey(Redes, on_delete=models.CASCADE, to_field='id')
+    donador = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='donador_suscripcion')
+    beneficiario = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='beneficiario_suscripcion')
+    fecha = models.DateTimeField(auto_now_add=True)
+    activo = models.BooleanField(default=True)
+    tipo = models.CharField(max_length=50, choices=TIPOS, default='A')
+    propietario = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='propietario_suscripcion', blank=True, null=True)
+
+
+    class Meta:
+        verbose_name = 'Suscripcion'
+        verbose_name_plural = 'Suscripciones'
+        ordering = ['id']
+
+    def __str__(self):
+        return f'{self.red} - {self.donador} - {self.beneficiario}'
+
 
