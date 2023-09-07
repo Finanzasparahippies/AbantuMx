@@ -21,3 +21,21 @@ class DonacionesEnviadas(APIView):
             })
 
         return Response(list, status=status.HTTP_200_OK)
+    
+
+class DonacionesRecibidas(APIView):
+    def get(self, request, id, format=None):
+        usuario = User.objects.get(id=id)
+        donaciones = Donaciones.objects.filter(beneficiario=usuario)
+        list = []
+
+        for donacion in donaciones:
+            list.append({
+                'id': donacion.id,
+                'red': donacion.red.nombre,
+                'donador': donacion.donador.first_name + ' ' + donacion.donador.last_name,
+                'fecha': donacion.fecha,
+                'evidencia': request.build_absolute_uri(donacion.evidencia.url) if donacion.evidencia else None,
+            })
+
+        return Response(list, status=status.HTTP_200_OK)

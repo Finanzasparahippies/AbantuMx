@@ -15,7 +15,6 @@ function DonacionesEnviadas() {
 
 
   return (
-    console.log(donaciones),
     <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200">
       <header className="px-5 py-4 border-b border-slate-100">
         <h2 className="font-semibold text-slate-800">Mis Donaciones Enviadas</h2>
@@ -73,6 +72,15 @@ function DonacionesEnviadas() {
               </tr>
               ))}
             </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="4" className="text-center text-xs text-green-500 py-3">
+                  <button className="bg-green-50 hover:bg-green-100 text-green-400 hover:text-green-500 px-3 py-1 rounded-sm">
+                    Ver todas
+                  </button>
+                </td>
+              </tr>
+            </tfoot>
           </table>
 
         </div>

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-9bh)=4-85$&qv9od4x6vr--tldxc-%o%210od0c5iph0lli*mv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -82,10 +83,15 @@ WSGI_APPLICATION = 'abantu.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': 'localhost',
+        'PORT': '5432',
+        'NAME': 'abantu',
+        'USER': 'abantu',
+        'PASSWORD': 'abantu123',
     }
 }
+
 
 
 # Password validation
@@ -151,8 +157,10 @@ CORS_ALLOW_CREDENTIALS = True
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:5173',
+    'http://146.190.120.119',
 ]
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
+    'http://146.190.120.119',
 ]
