@@ -4,7 +4,9 @@ import './css/style.css';
 import './charts/ChartjsConfig';
 import AppLogout from './utils/AppLogout';
 import Login from './pages/Login';
-import API from './utils/API';
+import Registro from './pages/Registro';
+import { Route, Routes, useLocation } from 'react-router-dom';
+
 
 function App() {
 
@@ -14,21 +16,6 @@ function App() {
     document.querySelector('html').style.scrollBehavior = '';
   }, [location.pathname]);
 
-  if (!localStorage.getItem('token')) {
-    return <Login />;
-  } else {
-    const checkToken = async () => {
-      await API.post('/api/users/check-token/', {
-        token: localStorage.getItem('token')
-      }).then(res => {
-        console.log(res.data.message);
-      }).catch(err => {
-          localStorage.clear();
-          window.location.href = '/';
-      });
-  }   
-  checkToken();
-  }
 
   return (
       <AppLogout>
