@@ -15,6 +15,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     phone = PhoneNumberField()
     profile_img = models.ImageField(upload_to="photos", null=True, blank=True)
     rfc = models.CharField(max_length=100)
+    bank = models.CharField(max_length=100)
     bank_card = models.CharField(max_length=100)
     bank_account = models.CharField(max_length=100)
     bank_clabe = models.CharField(max_length=100)
