@@ -44,6 +44,9 @@ const BANKS = [
 function Registro() {
 
   const [signup, setSignup] = useState(true);
+  const [emailError, setEmailError] = useState(false);
+
+  
 
   const [form, setForm] = useState({
         first_name: '',
@@ -66,6 +69,20 @@ function Registro() {
         setForm({
             ...form,
             [e.target.name]: e.target.value
+        });
+    }
+
+    const handleEmail = (e) => {
+        const regex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+        const email = e.target.value;
+        if (!regex.test(email) && email.length > 0) {
+          setEmailError(true);
+        } else {
+          setEmailError(false);
+        }
+        setForm({
+          ...form,
+          [e.target.name]: e.target.value.toLowerCase()
         });
     }
 
@@ -124,7 +141,8 @@ function Registro() {
                       </div>
                       <div className='sm:col-span-3'>
                         <label htmlFor='email' className='block text-sm font-medium text-gray-700'>Correo Electrónico</label>
-                        <input placeholder='Correo Electrónico' type='text' name='email' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' value={form.email} onChange={handleChange} />
+                        <input placeholder='Correo Electrónico' type='text' name='email' className={emailError === false ? 'mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' : 'mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.email} onChange={handleEmail} />
+                        {emailError === true ? <p className='mt-2 text-sm text-red-600' id='email-error'>Correo electrónico inválido</p> : null}
                       </div>
                       <div className='sm:col-span-3'>
                         <label htmlFor='first_name' className='block text-sm font-medium text-gray-700'>Teléfono</label>
