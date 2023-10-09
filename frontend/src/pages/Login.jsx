@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import '../css/login.css';
 import Swal from 'sweetalert2';
 import Images from '../images/images';
+import { Link } from 'react-router-dom';
+import Registro from './Registro';
 
 
 async function loginUser(credentials) {
@@ -22,8 +24,14 @@ async function loginUser(credentials) {
 
 function Login() {
 
+  const [signup, setSignup] = useState(false);
+
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+
+  if (signup) {
+    return <Registro />;
+  }
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -95,6 +103,11 @@ function Login() {
                 </button>
               </div>
             </form>
+          </div>
+          <div className="w-full text-center text-gray-500">
+            <Link className="text-sm underline" onClick={() => setSignup(true)}>
+              ¿No tienes cuenta? Regístrate
+            </Link>
           </div>
         </div>
       </div>

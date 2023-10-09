@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import User
 from apps.sistema.models import *
-
+from datetime import datetime
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)
@@ -36,6 +36,7 @@ class CreateUser(APIView):
 
     def post(self, request, format=None):
         data = request.data
+        bank = data['bank']
         email = data['email']
         password = data['password']
         first_name = data['first_name']
@@ -46,12 +47,13 @@ class CreateUser(APIView):
         bank_account = data['bank_account']
         bank_clabe = data['bank_clabe']
         terms = data['terms']
-        role = data['role']
+        role = 'User'
+        date_joined = datetime.now()
 
         if User.objects.filter(email=email).exists():
             return Response({'message': 'El correo ya existe'}, status=status.HTTP_400_BAD_REQUEST)
         else:
-            user = User.objects.create_user(email=email, password=password, first_name=first_name, last_name=last_name, phone=phone, rfc=rfc, bank_card=bank_card, bank_account=bank_account, bank_clabe=bank_clabe, terms=terms, role=role)
+            user = User.objects.create_user(email=email, password=password, first_name=first_name, last_name=last_name, phone=phone, rfc=rfc, bank_card=bank_card, bank_account=bank_account, bank_clabe=bank_clabe, terms=terms, role=role, bank=bank, date_joined=date_joined)
             user.save()
 
             return Response({'message': 'Usuario creado correctamente'}, status=status.HTTP_201_CREATED)

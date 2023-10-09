@@ -158,9 +158,11 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:5173',
     'http://146.190.120.119',
+    'http://comunidad.abantu.mx',
 ]
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'http://146.190.120.119',
+    'http://comunidad.abantu.mx',
 ]
