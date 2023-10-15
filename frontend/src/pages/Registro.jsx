@@ -44,7 +44,7 @@ const BANKS = [
 function Registro() {
 
   const [signup, setSignup] = useState(true);
-  const [emailError, setEmailError] = useState(false);
+  const [emailError, setEmailError, setCLABEError, setTarjetaError] = useState(false);
 
   
 
@@ -84,6 +84,26 @@ function Registro() {
           ...form,
           [e.target.name]: e.target.value.toLowerCase()
         });
+    }
+
+    const handleCLABE = (e) => {
+        const regexCLABE = /^\d{18}$/;
+        const bank_clabe = e.target.value;
+        if (!regexCLABE.test(bank_clabe)) {
+          setCLABEError(true);
+        } else {
+          setCLABEError(false);
+        };
+    }
+
+    const handleTarjeta = (e) => {
+        const regexTarjeta = /^\d{16}$/;
+        const bank_card = e.target.value;
+        if (!regexTarjeta.test(bank_card)) {
+          setTarjetaError(true);
+        } else {
+          setTarjetaError(false);
+        };
     }
 
     const handleCheck = (e) => {
@@ -171,11 +191,11 @@ function Registro() {
                       </div>
                       <div className='sm:col-span-3'>
                         <label htmlFor='bank_clabe' className='block text-sm font-medium text-gray-700'>CLABE interbancaria</label>
-                        <input placeholder='18 Dígitos de la Clabe interbancaria' type='text' name='bank_clabe' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' value={form.bank_clabe} onChange={handleChange} />
+                        <input placeholder='Solo para recibir depósitos o transferencias' type='text' name='bank_clabe' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' value={form.bank_clabe} onChange={handleCLABE} />
                       </div>
                       <div className='sm:col-span-3'>
                         <label htmlFor='password' className='block text-sm font-medium text-gray-700'>Password</label>
-                        <input placeholder='Ingrese su contraseña' type='password' name='password' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' value={form.password} onChange={handleChange} />
+                        <input placeholder='Ingrese su contraseña' type='password' name='password' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' value={form.password} onChange={handleTarjeta} />
                       </div>
                       <div className='sm:col-span-2'>
                         <label htmlFor='terms' className='block text-sm font-medium text-gray-700'>Terminos y Condiciones</label>
