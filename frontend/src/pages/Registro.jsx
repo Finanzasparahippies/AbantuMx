@@ -44,7 +44,10 @@ const BANKS = [
 function Registro() {
 
   const [signup, setSignup] = useState(true);
-  const [emailError, setEmailError, setCLABEError, setTarjetaError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [CLABEError, setCLABEError] = useState(false);
+  const [tarjetaError, setTarjetaError] = useState(false);
+  const [bankAccountError, setBankAccountError] = useState(false);
 
   
 
@@ -94,6 +97,11 @@ function Registro() {
         } else {
           setCLABEError(false);
         };
+
+        setForm({
+          ...form,
+          [e.target.name]: e.target.value
+        });
     }
 
     const handleTarjeta = (e) => {
@@ -104,6 +112,26 @@ function Registro() {
         } else {
           setTarjetaError(false);
         };
+
+        setForm({
+          ...form,
+          [e.target.name]: e.target.value
+        });
+    }
+
+    const handleBankAccount = (e) => {
+        const regexBankAccount = /^\d{10}$/;
+        const bank_account = e.target.value;
+        if (!regexBankAccount.test(bank_account)) {
+          setBankAccountError(true);
+        } else {
+          setBankAccountError(false);
+        };
+
+        setForm({
+          ...form,
+          [e.target.name]: e.target.value
+        });
     }
 
     const handleCheck = (e) => {
@@ -183,15 +211,18 @@ function Registro() {
                       </div>
                       <div className='sm:col-span-3'>
                         <label htmlFor='bank_card' className='block text-sm font-medium text-gray-700'>Tarjeta de Banco</label>
-                        <input placeholder='Sólo para recibir depósitos o transferencias' type='text' name='bank_card' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' value={form.bank_card} onChange={handleChange} />
+                        <input placeholder='Sólo para recibir depósitos o transferencias' type='text' name='bank_card' className={tarjetaError === false ? 'mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' : 'mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.bank_card} onChange={handleTarjeta} />
+                        {tarjetaError === true ? <p className='mt-2 text-sm text-red-600' id='email-error'>Tarjeta inválida</p> : null}
                       </div>
                       <div className='sm:col-span-3'>
                         <label htmlFor='bank_account' className='block text-sm font-medium text-gray-700'>Cuenta Bancaria</label>
-                        <input placeholder='Sólo para recibir depósitos o transferencias' type='text' name='bank_account' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' value={form.bank_account} onChange={handleChange} />
+                        <input placeholder='Sólo para recibir depósitos o transferencias' type='text' name='bank_account' className={bankAccountError === false ? 'mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' : 'mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.bank_account} onChange={handleBankAccount} />
+                        {bankAccountError === true ? <p className='mt-2 text-sm text-red-600' id='email-error'>Cuenta inválida</p> : null}
                       </div>
                       <div className='sm:col-span-3'>
                         <label htmlFor='bank_clabe' className='block text-sm font-medium text-gray-700'>CLABE interbancaria</label>
-                        <input placeholder='Solo para recibir depósitos o transferencias' type='text' name='bank_clabe' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' value={form.bank_clabe} onChange={handleCLABE} />
+                        <input placeholder='Solo para recibir depósitos o transferencias' type='text' name='bank_clabe' className={CLABEError === false ? 'mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' : 'mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.bank_clabe} onChange={handleCLABE} />
+                        {CLABEError === true ? <p className='mt-2 text-sm text-red-600' id='email-error'>CLABE inválida</p> : null}
                       </div>
                       <div className='sm:col-span-3'>
                         <label htmlFor='password' className='block text-sm font-medium text-gray-700'>Password</label>
