@@ -45,9 +45,10 @@ function Registro() {
 
   const [signup, setSignup] = useState(true);
   const [emailError, setEmailError] = useState(false);
-  const [CLABEError, setCLABEError] = useState(false);
+  const [clabeError, setclabeError] = useState(false);
   const [tarjetaError, setTarjetaError] = useState(false);
   const [bankAccountError, setBankAccountError] = useState(false);
+  const [rfcError, setRFCError] = useState(false);
 
   
 
@@ -93,9 +94,9 @@ function Registro() {
         const regexCLABE = /^\d{18}$/;
         const bank_clabe = e.target.value;
         if (!regexCLABE.test(bank_clabe)) {
-          setCLABEError(true);
+          setclabeError(true);
         } else {
-          setCLABEError(false);
+          setclabeError(false);
         };
 
         setForm({
@@ -131,6 +132,21 @@ function Registro() {
         setForm({
           ...form,
           [e.target.name]: e.target.value
+        });
+    }
+
+    const handleRFC = (e) => {
+        const regexRFC = /^[a-zA-Z]{4}\d{6}[a-zA-Z0-9]{3}$/;
+        const rfc = e.target.value;
+        if (!regexRFC.test(rfc)) {
+          setRFCError(true);
+        } else {
+          setRFCError(false);
+        };
+
+        setForm({
+          ...form,
+          [e.target.name]: e.target.value.toUpperCase()
         });
     }
 
@@ -198,7 +214,8 @@ function Registro() {
                       </div>
                       <div className='sm:col-span-3'>
                         <label htmlFor='rfc' className='block text-sm font-medium text-gray-700'>RFC</label>
-                        <input placeholder='RFC' type='text' name='rfc' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' value={form.rfc} onChange={handleChange} />
+                        <input placeholder='RFC' type='text' name='rfc' className={rfcError === false ? 'mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' : 'mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.rfc} onChange={handleRFC} />
+                      {rfcError === true ? <p className='mt-2 text-sm text-red-600' id='rfcError'>RFC inválido</p> : null}
                       </div>
                       <div className='sm:col-span-3'>
                         <label htmlFor='bank' className='block text-sm font-medium text-gray-700'>Banco</label>
@@ -212,17 +229,17 @@ function Registro() {
                       <div className='sm:col-span-3'>
                         <label htmlFor='bank_card' className='block text-sm font-medium text-gray-700'>Tarjeta de Banco</label>
                         <input placeholder='Sólo para recibir depósitos o transferencias' type='text' name='bank_card' className={tarjetaError === false ? 'mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' : 'mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.bank_card} onChange={handleTarjeta} />
-                        {tarjetaError === true ? <p className='mt-2 text-sm text-red-600' id='email-error'>Tarjeta inválida</p> : null}
+                        {tarjetaError === true ? <p className='mt-2 text-sm text-red-600' id='tarjetaError'>Tarjeta inválida</p> : null}
                       </div>
                       <div className='sm:col-span-3'>
                         <label htmlFor='bank_account' className='block text-sm font-medium text-gray-700'>Cuenta Bancaria</label>
                         <input placeholder='Sólo para recibir depósitos o transferencias' type='text' name='bank_account' className={bankAccountError === false ? 'mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' : 'mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.bank_account} onChange={handleBankAccount} />
-                        {bankAccountError === true ? <p className='mt-2 text-sm text-red-600' id='email-error'>Cuenta inválida</p> : null}
+                        {bankAccountError === true ? <p className='mt-2 text-sm text-red-600' id='cuentaError'>Cuenta inválida</p> : null}
                       </div>
                       <div className='sm:col-span-3'>
                         <label htmlFor='bank_clabe' className='block text-sm font-medium text-gray-700'>CLABE interbancaria</label>
-                        <input placeholder='Solo para recibir depósitos o transferencias' type='text' name='bank_clabe' className={CLABEError === false ? 'mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' : 'mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.bank_clabe} onChange={handleCLABE} />
-                        {CLABEError === true ? <p className='mt-2 text-sm text-red-600' id='email-error'>CLABE inválida</p> : null}
+                        <input placeholder='Solo para recibir depósitos o transferencias' type='text' name='bank_clabe' className={clabeError === false ? 'mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' : 'mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.bank_clabe} onChange={handleCLABE} />
+                        {clabeError === true ? <p className='mt-2 text-sm text-red-600' id='clabeError'>CLABE inválida</p> : null}
                       </div>
                       <div className='sm:col-span-3'>
                         <label htmlFor='password' className='block text-sm font-medium text-gray-700'>Password</label>
