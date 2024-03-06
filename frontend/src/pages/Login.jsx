@@ -39,6 +39,7 @@ function Login() {
       email,
       password
     });
+    
    if (token.access) {
        localStorage.setItem('id', token.id);
        localStorage.setItem('token', token.access);

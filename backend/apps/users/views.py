@@ -51,13 +51,13 @@ class CreateUser(APIView):
         bank_clabe = data['bank_clabe']
         terms = True if data['terms'] == 'true' else False
         role = 'User'
-        profile_img = data['profile_img']
+        profile_img = data['profile_img'] if 'profile_img' in data else None
         date_joined = datetime.now()
 
         if User.objects.filter(email=email).exists():
             return Response({'message': 'El correo ya existe'}, status=status.HTTP_400_BAD_REQUEST)
         else:
-            user = User.objects.create_user(email=email, password=password, first_name=first_name, last_name=last_name, phone=phone, bank_card=bank_card, bank_account=bank_account, bank_clabe=bank_clabe, terms=terms, role=role, bank=bank, date_joined=date_joined, profile_img=profile_img)
+            user = User.objects.create_user(email=email, password=password, first_name=first_name, last_name=last_name, phone=phone, bank_card=bank_card, bank_account=bank_account, bank_clabe=bank_clabe, terms=terms, role=role, bank=bank, date_joined=date_joined, profile_img=profile_img if profile_img else None)
             user.save()
 
             return Response({'message': 'Usuario creado correctamente'}, status=status.HTTP_201_CREATED)
@@ -152,7 +152,7 @@ class GetUser(APIView):
 
     def get(self, request, id, format=None):
         user = User.objects.get(id=id)
-        return Response({'id': user.id, 'email': user.email, 'first_name': user.first_name, 'last_name': user.last_name, 'phone': user.phone, 'bank': user.bank, 'bank_card': user.bank_card, 'bank_account': user.bank_account, 'bank_clabe': user.bank_clabe, 'codigo': user.codigo, 'role': user.role, 'date_joined': user.date_joined, 'profile_img': request.build_absolute_uri(user.profile_img.url)}, status=status.HTTP_200_OK)
+        return Response({'id': user.id, 'email': user.email, 'first_name': user.first_name, 'last_name': user.last_name, 'phone': user.phone, 'bank': user.bank, 'bank_card': user.bank_card, 'bank_account': user.bank_account, 'bank_clabe': user.bank_clabe, 'codigo': user.codigo, 'role': user.role, 'date_joined': user.date_joined, 'profile_img': request.build_absolute_uri(user.profile_img.url) if user.profile_img else None}, status=status.HTTP_200_OK)
 
         
 
