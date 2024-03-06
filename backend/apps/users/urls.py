@@ -8,4 +8,6 @@ urlpatterns = [
     path('check-token/', checkToken.as_view(), name='checkToken'),
     path('create-suscripcion/', CreateSuscripcion.as_view(), name='createSuscripcion'),
     path('register/', CreateUser.as_view(), name='createUser'),
+    path('get/<int:id>/', GetUser.as_view(), name='getUser'),
+    path('update/<int:id>/', UpdateUser.as_view(), name='updateUser'),
 ]

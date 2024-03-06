@@ -1,6 +1,11 @@
 from django.contrib import admin
 from .models import * 
 
-admin.site.register(User)
+class UserAdmin(admin.ModelAdmin):
+    list_display = ('first_name', 'last_name', 'phone', 'email', 'codigo', 'date_joined', 'role', 'is_active')
+    search_fields = ('first_name', 'last_name', 'phone', 'email', 'role')
+    list_filter = ('date_joined', 'role', 'is_active')
+    ordering = ('-date_joined',)
+    list_per_page = 10
 
-# Register your models here.
+admin.site.register(User, UserAdmin)

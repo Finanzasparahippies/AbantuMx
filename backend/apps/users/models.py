@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from .managers import UserManager
 import uuid
-from phonenumber_field.modelfields import PhoneNumberField
 
 ROLES = [
     ('Usuario', 'Usuario'),
@@ -12,9 +11,8 @@ ROLES = [
 class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    phone = PhoneNumberField()
+    phone = models.CharField(max_length=10)
     profile_img = models.ImageField(upload_to="photos", null=True, blank=True)
-    rfc = models.CharField(max_length=100)
     bank = models.CharField(max_length=100)
     bank_card = models.CharField(max_length=100)
     bank_account = models.CharField(max_length=100)

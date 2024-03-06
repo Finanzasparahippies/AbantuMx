@@ -16,7 +16,7 @@ function DonacionesRecibidas() {
   return (
     <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200">
       <header className="px-5 py-4 border-b border-slate-100">
-        <h2 className="font-semibold text-slate-800">Mis Donaciones Recibidas</h2>
+        <h2 className="font-semibold text-slate-800">Recibidas</h2>
       </header>
       <div className="p-3">
 

@@ -39,3 +39,28 @@ class DonacionesRecibidas(APIView):
             })
 
         return Response(list, status=status.HTTP_200_OK)
+    
+class GetRedesbyUser(APIView):
+    def get(self, request, id, format=None):
+        usuario = User.objects.get(id=id)
+        redes = Redes.objects.all()
+        suscripciones = Suscripcion.objects.filter(donador=usuario)
+        list = []
+
+        for red in redes:
+            if suscripciones.filter(red=red).exists():
+                list.append({
+                    'id': red.id,
+                    'nombre': red.nombre,
+                    'activa': True,
+                    'descripcion': red.monto,
+                })
+            else:
+                list.append({
+                    'id': red.id,
+                    'nombre': red.nombre,
+                    'activa': False,
+                    'descripcion': red.monto,
+                })
+
+        return Response(list, status=status.HTTP_200_OK)

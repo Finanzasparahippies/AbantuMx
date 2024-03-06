@@ -45,6 +45,9 @@ function Login() {
        localStorage.setItem('name', token.name);
        localStorage.setItem('last_name', token.last_name);
        localStorage.setItem('rol', token.rol);
+       localStorage.setItem('foto', token.foto);
+       localStorage.setItem('email', token.email);
+       localStorage.setItem('phone', token.phone);
        window.location.reload();
      } else {
          Swal.fire({

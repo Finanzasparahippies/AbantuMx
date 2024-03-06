@@ -167,6 +167,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                                 "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " +
                                 (isActive ? "!text-green-500" : "")
                               }
+                              onClick={() => setSidebarOpen(false)}
                             >
                               <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
                                 Inicio
@@ -383,7 +384,6 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                 }}
               </SidebarLinkGroup>
               ): null} */}
-              { localStorage.getItem("rol") === "Administrador" ? (
               <SidebarLinkGroup activecondition={pathname.includes("usuarios")}>
                 {(handleClick, open) => {
                   return (
@@ -414,7 +414,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                               />
                             </svg>
                             <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                              Usuarios
+                              Mis Redes
                             </span>
                           </div>
                           <div className="flex shrink-0 ml-2">
@@ -434,14 +434,45 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                           <li className="mb-1 last:mb-0">
                             <NavLink
                               end
-                              to="/usuarios"
+                              to="/mi-perfil"
                               className={({ isActive }) =>
                                 "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " +
                                 (isActive ? "!text-green-500" : "")
                               }
+                              onClick={() => setSidebarOpen(false)}
                             >
                               <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                Usuarios
+                                Mi Perfil
+                              </span>
+                            </NavLink>
+                          </li>
+                          <li className="mb-1 last:mb-0">
+                            <NavLink
+                              end
+                              to="/redes"
+                              className={({ isActive }) =>
+                                "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " +
+                                (isActive ? "!text-green-500" : "")
+                              }
+                              onClick={() => setSidebarOpen(false)}
+                            >
+                              <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                Redes
+                              </span>
+                            </NavLink>
+                          </li>
+                          <li className="mb-1 last:mb-0">
+                            <NavLink
+                              end
+                              to="/contribuciones"
+                              className={({ isActive }) =>
+                                "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " +
+                                (isActive ? "!text-green-500" : "")
+                              }
+                              onClick={() => setSidebarOpen(false)}
+                            >
+                              <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                Contribuciones
                               </span>
                             </NavLink>
                           </li>
@@ -451,7 +482,6 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                   );
                 }}
               </SidebarLinkGroup>
-              ): null}
             </ul>
           </div>
         </div>
