@@ -17,7 +17,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         data["last_name"] = self.user.last_name
         data["email"] = self.user.email
         data["phone"] = self.user.phone
-        data["foto"] = self.user.profile_img.url
+        data["foto"] = self.user.profile_img.url if self.user.profile_img else None
 
         return data
 
