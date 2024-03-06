@@ -56,10 +56,10 @@ const handleSubmit = () => {
         setRestart(!restart);
       }
       ).catch(err => {
-        console.log(err);
+        handleCancel();
         Swal.fire({
           title: '¡Error!',
-          text: 'Ha ocurrido un error, intenta de nuevo.',
+          text: err.response.data.message,
           icon: 'error',
           confirmButtonText: 'Aceptar'
         });
@@ -148,7 +148,8 @@ const handleCancel = () => {
                 placeholder="Codigo de invitacion" 
                 className={ input1 ? "w-full border rounded-lg p-2 mt-2" : "hidden"}
                 name="codigo"
-                onChange={(e) => setForm({...form, codigo: e.target.value})} 
+                onChange={(e) => setForm({...form, codigo: e.target.value})}
+                value={form.codigo}
               />
   
               <div className="flex justify-end pt-2">

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import API from '../../utils/API';
 
 function DonacionesRecibidas() {
@@ -60,11 +61,11 @@ function DonacionesRecibidas() {
                 <td className="p-2">
                   <div className="text-center text-green-500">{donacion.fecha.split('T')[0]}</div>
                 </td>
-                <td className="p-2">
+                <td className="p-2 flex justify-center">
                   { donacion.evidencia === null ?
                   <div className="text-center">Sin evidencia</div>
                   :
-                  <div className="text-center"><img src={donacion.evidencia} alt="evidencia" className="w-20 h-20" /></div>
+                  <div className="text-center"><img src={donacion.evidencia} alt="evidencia" className="w-10 h-10" /></div>
                   }
                 </td>
                 
@@ -74,9 +75,12 @@ function DonacionesRecibidas() {
             <tfoot>
               <tr>
                 <td colspan="4" className="text-center text-xs text-green-500 py-3">
-                  <button className="bg-green-50 hover:bg-green-100 text-green-400 hover:text-green-500 px-3 py-1 rounded-sm">
+                  <Link 
+                    className="bg-green-50 hover:bg-green-100 text-green-400 hover:text-green-500 px-3 py-1 rounded-sm"
+                    to="/contribuciones"
+                  >
                     Ver todas
-                  </button>
+                  </Link>
                 </td>
               </tr>
             </tfoot>

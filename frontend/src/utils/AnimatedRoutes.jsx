@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import Dashboard from '../pages/Dashboard';
 import Redes from '../pages/Redes';
 import Perfil from '../pages/Perfil';
+import Contribuciones from '../pages/Contribuciones';
 import Login from '../pages/Login';
 import { AnimatePresence } from "framer-motion";
 import Sidebar from "../partials/Sidebar";
@@ -42,6 +43,7 @@ function AnimatedRoutes() {
                 <Route path="*" element={<h1>404 Not Found</h1>} />
                 <Route exact path="/redes" element={<Redes />} />
                 <Route exact path="/mi-perfil" element={<Perfil />} />
+                <Route exact path="/contribuciones" element={<Contribuciones />} />
               </Routes>
             </AnimatePresence>
           <Footer />

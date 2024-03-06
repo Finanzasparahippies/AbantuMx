@@ -70,7 +70,11 @@ class CreateSuscripcion(APIView):
         donador = User.objects.get(id=data['donador_id'])
 
         if data['codigo'] != '':
-            beneficiario = User.objects.get(codigo=data['codigo'])
+            beneficiario1 = User.objects.get(codigo=data['codigo'])
+            beneficiario = beneficiario1 if Suscripcion.objects.filter(donador=beneficiario1, red=red).exists() else None
+
+            if beneficiario == None:
+                return Response({'message': 'Este usuario no esta activo en esta red'}, status=status.HTTP_400_BAD_REQUEST)
         else:
             beneficiario = None
 
@@ -93,13 +97,13 @@ class CreateSuscripcion(APIView):
                         Suscripcion.objects.create(red=red, donador=donador, beneficiario=beneficiario, tipo='A1', propietario=beneficiario)
                     return Response({'message': 'Suscripcion creada correctamente'}, status=status.HTTP_201_CREATED)
                 else:
-                    return Response({'message': 'El usuario ya tiene 4 registros'}, status=status.HTTP_400_BAD_REQUEST)
+                    return Response({'message': 'Este codigo ya se ha usado 4 veces en esta red'}, status=status.HTTP_400_BAD_REQUEST)
             else:
                 if registros_count < 4:
                     Suscripcion.objects.create(red=red, donador=donador, beneficiario=beneficiario, tipo='A1', propietario=beneficiario)
                     return Response({'message': 'Suscripcion creada correctamente'}, status=status.HTTP_201_CREATED)
                 else:
-                    return Response({'message': 'El usuario ya tiene 4 registros'}, status=status.HTTP_400_BAD_REQUEST)
+                    return Response({'message': 'Este usuario ya se ha usado 4 veces en esta red'}, status=status.HTTP_400_BAD_REQUEST)
         else:
 
             usuarios = User.objects.exclude(id=donador.id)
@@ -107,46 +111,44 @@ class CreateSuscripcion(APIView):
             list_usuarios = []
 
             for usuario in usuarios:
-                if Suscripcion.objects.filter(red=red, beneficiario_id=usuario.id):
-                    if Suscripcion.objects.filter(red=red, beneficiario=usuario).count() > 0 and Suscripcion.objects.filter(red=red, beneficiario=usuario).count() < 4:
+                if Suscripcion.objects.filter(donador_id=usuario.id, red=red):
+                    if Suscripcion.objects.filter(red=red, beneficiario_id=usuario.id).count() < 4 or Suscripcion.objects.filter(red=red, donador_id=usuario.id).count() == 0:
                         list_usuarios.append({
                             'id': usuario.id,
                         })
-                else:
-                    list_usuarios.append({
-                        'id': usuario.id,
-                    })
-
-            random_user = list_usuarios[random.randint(0, len(list_usuarios) - 1)]['id']
-
-            beneficiario_random = User.objects.get(id=random_user)
-
-            print(beneficiario_random)
-
-            last_suscripcion = Suscripcion.objects.filter(propietario=beneficiario_random, red=red).last() if Suscripcion.objects.filter(propietario=beneficiario_random).exists() else None
-            registros_count = Suscripcion.objects.filter(propietario=beneficiario_random, red=red).count() if last_suscripcion != None else 0
-            beneficiario_padre = Suscripcion.objects.get(donador=beneficiario_random, red=red).beneficiario if Suscripcion.objects.filter(donador=beneficiario_random, red=red) else None
-
-            if last_suscripcion != None:
-                if registros_count < 4:
-                    if beneficiario_padre != None:
-                        if last_suscripcion.tipo == 'A1':
-                            Suscripcion.objects.create(red=red, donador=donador, beneficiario=beneficiario_padre, tipo='B1', propietario=beneficiario_random)
-                        elif last_suscripcion.tipo == 'A2':
-                            Suscripcion.objects.create(red=red, donador=donador, beneficiario=beneficiario_random, tipo='B2', propietario=beneficiario_random) 
-                        else:
-                            Suscripcion.objects.create(red=red, donador=donador, beneficiario=beneficiario_random, tipo='A2', propietario=beneficiario_random)
-                    else:
-                        Suscripcion.objects.create(red=red, donador=donador, beneficiario=beneficiario_random, tipo='A1', propietario=beneficiario_random)
-                    return Response({'message': 'Suscripcion creada correctamente'}, status=status.HTTP_201_CREATED)
-                else:
-                    return Response({'message': 'El usuario ya tiene 4 registros'}, status=status.HTTP_400_BAD_REQUEST)
+        
+            if list_usuarios == []:
+                return Response({'message': 'No hay lugares disponibles en esta red'}, status=status.HTTP_400_BAD_REQUEST)
             else:
-                if registros_count < 4:
-                    Suscripcion.objects.create(red=red, donador=donador, beneficiario=beneficiario_random, tipo='A1', propietario=beneficiario_random)
-                    return Response({'message': 'Suscripcion creada correctamente'}, status=status.HTTP_201_CREATED)
+                random_user = list_usuarios[random.randint(0, len(list_usuarios) - 1)]['id']
+
+                beneficiario_random = User.objects.get(id=random_user)
+
+
+                last_suscripcion = Suscripcion.objects.filter(propietario=beneficiario_random, red=red).last() if Suscripcion.objects.filter(propietario=beneficiario_random).exists() else None
+                registros_count = Suscripcion.objects.filter(propietario=beneficiario_random, red=red).count() if last_suscripcion != None else 0
+                beneficiario_padre = Suscripcion.objects.get(donador=beneficiario_random, red=red).beneficiario if Suscripcion.objects.filter(donador=beneficiario_random, red=red) else None
+
+                if last_suscripcion != None:
+                    if registros_count < 4:
+                        if beneficiario_padre != None:
+                            if last_suscripcion.tipo == 'A1':
+                                Suscripcion.objects.create(red=red, donador=donador, beneficiario=beneficiario_padre, tipo='B1', propietario=beneficiario_random)
+                            elif last_suscripcion.tipo == 'A2':
+                                Suscripcion.objects.create(red=red, donador=donador, beneficiario=beneficiario_random, tipo='B2', propietario=beneficiario_random) 
+                            else:
+                                Suscripcion.objects.create(red=red, donador=donador, beneficiario=beneficiario_random, tipo='A2', propietario=beneficiario_random)
+                        else:
+                            Suscripcion.objects.create(red=red, donador=donador, beneficiario=beneficiario_random, tipo='A1', propietario=beneficiario_random)
+                        return Response({'message': 'Suscripcion creada correctamente'}, status=status.HTTP_201_CREATED)
+                    else:
+                        return Response({'message': 'El usuario ya tiene 4 registros'}, status=status.HTTP_400_BAD_REQUEST)
                 else:
-                    return Response({'message': 'El usuario ya tiene 4 registros'}, status=status.HTTP_400_BAD_REQUEST)
+                    if registros_count < 4:
+                        Suscripcion.objects.create(red=red, donador=donador, beneficiario=beneficiario_random, tipo='A1', propietario=beneficiario_random)
+                        return Response({'message': 'Suscripcion creada correctamente'}, status=status.HTTP_201_CREATED)
+                    else:
+                        return Response({'message': 'El usuario ya tiene 4 registros'}, status=status.HTTP_400_BAD_REQUEST)
                 
 class GetUser(APIView):
 
