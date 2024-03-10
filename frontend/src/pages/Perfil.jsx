@@ -10,7 +10,6 @@ const BANKS = [
   'CITIBANAMEX',
   'BBVA',
   'SANTANDER',
-  'BANCOMER',
   'BANORTE',
   'HSBC',
   'INBURSA',
@@ -24,11 +23,8 @@ const BANKS = [
   'BANCO COMPARTAMOS',
   'BANCO BASE',
   'MULTIVA',
-  'SABADELL',
-  'MIFEL',
   'BANSEFI',
   'BANJERCITO',
-  'BANCOFON',
   'BANCO DEL BIENESTAR',
   'INVEX',
   'BANCO REGIONAL DE MONTERREY',
@@ -59,6 +55,10 @@ function Perfil() {
   const [clabeError, setclabeError] = useState(false);
   const [TarjetaError, setTarjetaError] = useState(false);
   const [BankAccountError, setBankAccountError] = useState(false);
+  const [modal, setModal] = useState(false);
+  const [password, setPassword] = useState('');
+  const [password2, setPassword2] = useState('');
+  const [passwordError, setPasswordError] = useState(false);
 
 
 useEffect(() => {
@@ -79,7 +79,6 @@ const copyClipboard = () => {
 
   })
 }
-
 
 
 const handleSubmit = () => {
@@ -184,16 +183,67 @@ const handleBankAccount = (e) => {
   });
 }
 
+const handleCancel = () => {
+  setModal(false);
+}
+
+const handlePassword = (e) => {
+  if (e.target.value !== password) {
+    setPasswordError(true);
+    setPassword2(e.target.value);
+  } else {
+    setPasswordError(false);
+    setPassword2(e.target.value);
+  }
+}
+
+const handleSubmitPassword = () => {
+  Swal.fire({
+    title: '¿Estas seguro?',
+    text: "Estas a punto de cambiar tu contraseña, ¿estas seguro de querer continuar?",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    cancelButtonText: 'Cancelar',
+    confirmButtonText: 'Si, cambiar',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      API.put(`/api/users/update-password/${localStorage.getItem('id')}/`, { password: password }).then(res => {
+        Swal.fire({
+          title: '¡Listo!',
+          text: 'Tu contraseña ha sido actualizada.',
+          icon: 'success',
+          confirmButtonText: 'Aceptar'
+        });
+        setModal(false);
+      }
+      ).catch(err => {
+        console.log(err);
+        Swal.fire({
+          title: '¡Error!',
+          text: 'Ha ocurrido un error, intenta de nuevo.',
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
+      });
+    }
+  });
+
+}
+
 
   return (
     <AnimatedPage>
         <main className="bg-gray-100 py-8 flex justify-center items-center">
           <section className="container mx-auto">
-            <h2 className="text-gray-800 text-xl font-extrabold sm:text-2xl">Mi Perfil</h2>
-            <p className="text-gray-600 mt-2">Consulta y actualiza tu perfil</p>
+            <div className="flex flex-col items-center mb-8">
+              <h2 className="text-gray-800 text-xl font-extrabold sm:text-2xl">Mi Perfil</h2>
+              <p className="text-gray-600 mt-2">Consulta y actualiza tu perfil</p>
+            </div>
             <div className="mx-auto px-4 md:px-8 space-y-6 sm:max-w-mdspace-y-6 text-gray-600 sm:max-w-md bg-white shadow sm:rounded-lg p-6">
               <div className="text-center py-4">
-                <img src={perfil?.profile_img ? perfil?.profile_img : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"} alt="profile" className="w-24 h-24 mx-auto rounded-full" />
+                <img src={perfil?.profile_img ? perfil?.profile_img : "https://ui-avatars.com/api/?name=" + perfil?.first_name + "+" + perfil?.last_name + "&background=random"} alt="profile" className="w-24 h-24 mx-auto rounded-full" />
                 <div className="mt-5 space-y-2">
                   <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">{perfil?.first_name + " " + perfil?.last_name}</h3>
                 </div>
@@ -264,13 +314,17 @@ const handleBankAccount = (e) => {
                 <label className="font-bold">
                   Banco
                 </label>
-                <input
-                  type="text"
+                <select
                   className="w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg"
                   value={perfil.bank}
                   name="bank"
                   onChange={handleChange}
-                />
+                >
+                  <option value="">Selecciona un banco</option>
+                  {BANKS.map((bank, idx) => (
+                    <option key={idx} value={bank}>{bank}</option>
+                  ))}
+                </select>
               </div>
               <div>
                 <label className="font-bold">
@@ -317,8 +371,51 @@ const handleBankAccount = (e) => {
               >
                 Guardar Perfil
               </button>
+              <button
+                className="w-full px-4 py-2 text-white font-medium bg-gray-600 hover:bg-gray-500 active:bg-gray-600 rounded-lg duration-150"
+                onClick={() => setModal(true)}
+              >
+                Cambiar Contraseña
+              </button>
             </div>
           </section>
+          <div className={ modal ? "fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full display-block" : "hidden"}>
+            <div className="relative py-4 text-left px-6 bg-white rounded-lg shadow-xl w-11/12 md:w-1/2 mx-auto align-center justify-center my-24">
+
+              <div className="flex justify-between items-center pb-3">
+                <p className="text-2xl font-bold">Cambiar Contraseña</p>
+                <div className="modal-close cursor-pointer z-50" onClick={handleCancel}>
+                  <svg className="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                    <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+                  </svg>
+                </div>
+              </div>
+              <label className="font-bold">
+                Contraseña Nueva
+              </label>
+              <input
+                type="password"
+                className={!passwordError ? "w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg border-red-600"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+
+              />
+              <label className="font-bold">
+                Confirmar Contraseña
+              </label>
+              <input
+                type="password"
+                className={!passwordError ? "w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg border-red-600"}
+                value={password2}
+                onChange={handlePassword}
+              />
+              {passwordError === true ? <p className='mt-2 text-sm text-red-600' id='email-error'>Las contraseñas no coinciden</p> : null}
+              <div className="flex justify-end pt-2">
+                <button className="px-4 bg-transparent p-3 rounded-lg text-green-500 hover:bg-gray-100 hover:text-green-400 mr-2" onClick={handleSubmitPassword}>Cambiar Contraseña</button>
+                <button className="modal-close px-4 bg-green-500 p-3 rounded-lg text-white hover:bg-green-400" onClick={handleCancel}>Cancelar</button>
+              </div>
+            </div>
+          </div>
       </main>
     </AnimatedPage>
   );

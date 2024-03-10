@@ -3,6 +3,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from django.contrib.auth.hashers import make_password
 import random
 from .models import User
 from apps.sistema.models import *
@@ -174,3 +175,21 @@ class UpdateUser(APIView):
         user.save()
         return Response({'message': 'Usuario actualizado correctamente'}, status=status.HTTP_200_OK)
 
+class UpdatePassword(APIView):
+
+    def put(self, request, id, format=None):
+        user = User.objects.get(id=id)
+        data = request.data
+        hash = make_password(data['password'])
+        user.password = hash
+        user.save()
+        return Response({'message': 'Contraseña actualizada correctamente'}, status=status.HTTP_200_OK)
+    
+class UpdateProfileImg(APIView):
+
+    def put(self, request, id, format=None):
+        user = User.objects.get(id=id)
+        data = request.data
+        user.profile_img = data['profile_img']
+        user.save()
+        return Response({'message': 'Imagen de perfil actualizada correctamente'}, status=status.HTTP_200_OK)

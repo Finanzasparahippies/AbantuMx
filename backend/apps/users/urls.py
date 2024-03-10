@@ -10,4 +10,5 @@ urlpatterns = [
     path('register/', CreateUser.as_view(), name='createUser'),
     path('get/<int:id>/', GetUser.as_view(), name='getUser'),
     path('update/<int:id>/', UpdateUser.as_view(), name='updateUser'),
+    path('update-password/<int:id>/', UpdatePassword.as_view(), name='updatePassword'),
 ]

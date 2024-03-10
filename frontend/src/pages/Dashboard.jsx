@@ -9,7 +9,6 @@ function Dashboard() {
     <AnimatedPage>
       <WelcomeBanner />
       <div className="dashboard-container h-screen overflow-y-auto p-8">
-        
         <h2 className="section-title mb-4 text-2xl">Contribuciones Recientes</h2>
         <section className="dashboard-section mb-8">
           <div className="container">

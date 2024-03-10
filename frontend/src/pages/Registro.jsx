@@ -47,6 +47,7 @@ function Registro() {
   const [clabeError, setclabeError] = useState(false);
   const [tarjetaError, setTarjetaError] = useState(false);
   const [bankAccountError, setBankAccountError] = useState(false);
+  const [passError, setPassError] = useState(false);
   const [foto, setFoto] = useState('');
 
   const [form, setForm] = useState({
@@ -59,6 +60,7 @@ function Registro() {
         terms: false,
         email: '',
         password: '',
+        password2: '',
         profile_img: '',
     });
 
@@ -174,7 +176,7 @@ function Registro() {
                   title: 'Usuario registrado correctamente'
               });
               setTimeout(() => {
-              console.log(res);
+                window.location.href = '/login'; 
               }
               , 1250);
           })
@@ -211,7 +213,21 @@ function Registro() {
     reader.readAsDataURL(e.target.files[0]);
   }
 
-
+  const handlePassword = (e) => {
+    if (e.target.value !== form.password) {
+      setForm({
+        ...form,
+        [e.target.name]: e.target.value
+      });
+      setPassError(true);
+    } else {
+      setForm({
+        ...form,
+        [e.target.name]: e.target.value
+      });
+      setPassError(false);
+    }
+  }
 
   return (
     console.log(form),
@@ -271,8 +287,13 @@ function Registro() {
                         {clabeError === true ? <p className='mt-2 text-sm text-red-600' id='clabeError'>CLABE inválida</p> : null}
                       </div>
                       <div className='sm:col-span-3'>
-                        <label htmlFor='password' className='block text-sm font-medium text-gray-700'>Password</label>
-                        <input placeholder='Ingrese su contraseña' type='password' name='password' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' value={form.password} onChange={handleTarjeta} />
+                        <label htmlFor='password' className='block text-sm font-medium text-gray-700'>Contraseña</label>
+                        <input placeholder='Ingrese su contraseña' type='password' name='password' className={passError === false ? 'mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' : 'mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.password} onChange={handleChange} />
+                      </div>
+                      <div className='sm:col-span-3'>
+                        <label htmlFor='password2' className='block text-sm font-medium text-gray-700'>Confirmar Contraseña</label>
+                        <input placeholder='Confirme su contraseña' type='password' name='password2' className={passError === false ? 'mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' : 'mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.password2} onChange={handlePassword} />
+                        {passError === true ? <p className='mt-2 text-sm text-red-600' id='passError'>Las contraseñas no coinciden</p> : null}
                       </div>
                       <div className='sm:col-span-3'>
                         <label htmlFor='foto' className='block text-sm font-medium text-gray-700'>Foto</label>
