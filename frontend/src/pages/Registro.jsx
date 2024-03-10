@@ -174,7 +174,7 @@ function Registro() {
                   title: 'Usuario registrado correctamente'
               });
               setTimeout(() => {
-              window.location.href = '/';
+              console.log(res);
               }
               , 1250);
           })

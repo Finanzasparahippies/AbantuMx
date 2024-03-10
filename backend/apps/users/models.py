@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from .managers import UserManager
-import uuid
 
 ROLES = [
     ('Usuario', 'Usuario'),
@@ -21,7 +20,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=100, unique=True)
     date_joined = models.DateTimeField(auto_now_add=True)
     role = models.CharField(max_length=100, choices=ROLES, default='Usuario')
-    codigo = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    codigo = models.CharField(max_length=100, unique=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
@@ -32,6 +31,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
+
+    def save(self, *args, **kwargs):
+        self.codigo = self.last_name[0:3] + self.phone[4:7] + self.first_name[0:3]
+        super().save(*args, **kwargs)
 
     class Meta:
         ordering = ['-id']
