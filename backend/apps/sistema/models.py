@@ -39,7 +39,7 @@ class DonacionRevision(models.Model):
     fecha = models.DateTimeField(auto_now_add=True)
     comentarios = models.TextField(blank=True, null=True)
     aprobado = models.BooleanField(default=False)
-    revisor = models.ForeignKey('users.User', on_delete=models.CASCADE)
+    revisor = models.ForeignKey('users.User', on_delete=models.CASCADE, blank=True, null=True)
     resolucion = models.TextField(blank=True, null=True)
 
     class Meta:

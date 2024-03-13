@@ -49,7 +49,7 @@ function Login() {
        localStorage.setItem('foto', token.foto);
        localStorage.setItem('email', token.email);
        localStorage.setItem('phone', token.phone);
-       window.location.reload();
+       window.location.href = '/';
      } else {
          Swal.fire({
              icon: 'error',

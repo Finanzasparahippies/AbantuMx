@@ -9,4 +9,8 @@ urlpatterns = [
     path('donaciones/<int:id>/', GetDonacionesbyRed.as_view()),
     path('donaciones-info/<int:id>/', GetContributionInfo.as_view()),
     path('crear-donacion/', CreateDonacion.as_view()),
+    path('donadores-100/<int:id>/', GetDonadores100.as_view()),
+    path('donadores-500/<int:id>/', GetDonadores500.as_view()),
+    path('donadores-1000/<int:id>/', GetDonadores1000.as_view()),
+    path('reportar-donacion/', ReportarDonacion.as_view()),
 ]

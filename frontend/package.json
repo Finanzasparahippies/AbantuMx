@@ -2,7 +2,7 @@
   "name": "medic-app",
   "version": "0.1.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -31,12 +31,14 @@
     "react-datepicker": "^4.8.0",
     "react-dom": "^18.2.0",
     "react-flatpickr": "^3.10.13",
+    "react-organizational-chart": "^2.2.1",
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.3.0",
     "react-select": "^5.4.0",
     "react-to-print": "^2.14.12",
     "react-transition-group": "^4.4.2",
     "sass": "^1.55.0",
+    "styled-components": "^6.1.8",
     "sweetalert2": "^11.4.37",
     "use-bn-idle": "^1.0.11"
   },

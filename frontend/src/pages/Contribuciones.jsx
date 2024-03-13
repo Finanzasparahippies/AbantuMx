@@ -2,17 +2,20 @@ import React, { useState, useEffect } from 'react';
 import AnimatedPage from '../utils/AnimatedPage';
 import * as Tabs from "@radix-ui/react-tabs";
 import API from '../utils/API';
+import Swal from 'sweetalert2';
 
 
 
 function Contribuciones() {
 
   const [contribuciones, setContribuciones] = useState([]);
-
+  const [modal, setModal] = useState(false);
+  const [id, setId] = useState(0);
   const [selectedTab, setSelectedTab] = useState("Red 100");
 
   const [enviadas, setEnviadas] = useState([]);
   const [recibidas, setRecibidas] = useState([]);
+  const [comments, setComments] = useState("");
 
   const tabItems = [
     "Red 100",
@@ -48,6 +51,50 @@ function Contribuciones() {
       setRecibidas(contribuciones.donaciones1000ben)
     }
   };
+
+  const handleReport = (id) => {
+    setModal(!modal);
+    setComments("");
+    setId(id);
+  }
+
+  const handleReportSend = (id) => {
+    Swal.fire({
+      'title': 'Reportar donación',
+      'text': '¿Estás seguro de reportar esta donación?',
+      'icon': 'warning',
+      'showCancelButton': true,
+      'confirmButtonText': 'Sí',
+      'cancelButtonText': 'No',
+      }).then((result) => {
+      if (result.isConfirmed) {
+        API.post(`/api/sistema/reportar-donacion/`, {
+          id: id,
+          comments: comments
+        })
+        .then((res) => {
+          setModal(!modal);
+          Swal.fire({
+            'title': 'Evidencia reportada',
+            'text': 'La evidencia ha sido reportada, se revisará en breve',
+            'icon': 'success'
+          });
+        })
+        .catch((error) => {
+          setModal(!modal);
+          Swal.fire({
+            'title': 'Error',
+            'text': 'No se pudo reportar la evidencia',
+            'icon': 'error'
+          });
+        });
+      }
+    });
+  }
+
+  const handleCancel = () => {
+    setModal(!modal);
+  }
 
 
   return (
@@ -157,7 +204,6 @@ function Contribuciones() {
                         <div className="text-center"><img src={donacion.evidencia} alt="evidencia" className="w-10 h-10" /></div>
                         }
                       </td>
-                      
                     </tr>
                     ))}
                   </tbody>
@@ -201,6 +247,8 @@ function Contribuciones() {
                       <th className="p-2">
                         <div className="font-semibold text-center">Evidencia</div>
                       </th>
+                      <th className="p-2">
+                      </th>
                     </tr>
                   </thead>
                   {/* Table body */}
@@ -229,12 +277,21 @@ function Contribuciones() {
                         <div className="text-center"><img src={donacion.evidencia} alt="evidencia" className="w-10 h-10" /></div>
                         }
                       </td>
-                      
+                      <td className="p-2">
+                        <button 
+                          className="bg-red-500 text-white font-semibold px-3 py-1 rounded-sm hover:bg-red-600 focus:outline-none focus:ring-0 focus:bg-red-600 active:bg-red-700 transition duration-150 ease-in-out"
+                          onClick={() => {
+                            handleReport(donacion.id);
+                          }}
+                        >
+                          Reportar
+                        </button> 
+                      </td>
                     </tr>
                     ))}
                   </tbody>
                 </table>
-      
+                
               </div>
             </div>
           </div>
@@ -249,6 +306,27 @@ function Contribuciones() {
           </div>
         )}
       </Tabs.Root>
+        <div className={ modal ? "fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full display-block" : "hidden"}>
+            <div className="relative py-4 text-left px-6 bg-white rounded-lg shadow-xl w-11/12 md:w-1/2 mx-auto align-center justify-center my-24">
+
+              <div className="flex justify-between items-center pb-3">
+                <p className="text-2xl font-bold">Reportar error</p>
+                <div className="modal-close cursor-pointer z-50" onClick={handleCancel}>
+                  <svg className="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                    <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+                  </svg>
+                </div>
+              </div>
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="comments">
+                Comentarios
+              </label>
+              <textarea className="w-full h-24 px-3 py-2 text-base placeholder-gray-300 border rounded-lg focus:shadow-outline" name="comments" value={comments} onChange={e => setComments(e.target.value)}></textarea>
+              <div className="flex justify-end pt-2">
+                <button className="px-4 bg-transparent p-3 rounded-lg text-green-500 hover:bg-gray-100 hover:text-green-400 mr-2" onClick={handleReportSend.bind(this, id)}>Enviar reporte</button>
+                <button className="modal-close px-4 bg-green-500 p-3 rounded-lg text-white hover:bg-green-400" onClick={handleCancel}>Cancelar</button>
+              </div>
+            </div>
+        </div>
       </main>
     </AnimatedPage>
   );

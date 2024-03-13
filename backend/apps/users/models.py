@@ -21,6 +21,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(auto_now_add=True)
     role = models.CharField(max_length=100, choices=ROLES, default='Usuario')
     codigo = models.CharField(max_length=100, unique=True)
+    starter = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)

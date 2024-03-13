@@ -257,4 +257,198 @@ class GetContributionInfo(APIView):
 
         return Response(list, status=status.HTTP_200_OK)
     
+
+class GetDonadores100(APIView):
+    def get(self, request, id, format=None):
+        usuario = User.objects.get(id=id)
+        donadores = Suscripcion.objects.filter(propietario=usuario, red__nombre='Red 100').order_by('fecha')
+        count = Suscripcion.objects.filter(beneficiario=usuario, red__nombre='Red 100').count()
+        list = []
+
+        for donacion in donadores:
+            listA = []
+            list.append({
+                'id': donacion.id,
+                'red': donacion.red.nombre,
+                'donador': donacion.donador.first_name + ' ' + donacion.donador.last_name,
+                'donador_id': donacion.donador.id,
+                'fecha': donacion.fecha,
+                'profile_img': request.build_absolute_uri(donacion.donador.profile_img.url) if donacion.donador.profile_img else None,
+                'tipo': donacion.tipo,
+                'donadores': listA,
+                'count': count
+            })
+            donadoresA = Suscripcion.objects.filter(propietario_id=donacion.donador.id, beneficiario_id=usuario.id).order_by('fecha')
+            for donador in donadoresA:
+                        listB = []
+                        listA.append({
+                            'id': donador.id,
+                            'red': donador.red.nombre,
+                            'donador': donador.donador.first_name + ' ' + donador.donador.last_name,
+                            'donador_id': donador.donador.id,
+                            'fecha': donador.fecha,
+                            'profile_img': request.build_absolute_uri(donador.donador.profile_img.url) if donador.donador.profile_img else None,
+                            'tipo': donador.tipo,
+                            'donadores': listB
+                        })
+                        donadoresB = Suscripcion.objects.filter(propietario_id=donador.donador.id, beneficiario_id=usuario.id).order_by('fecha')
+                        for donador1 in donadoresB:
+                            listC = []
+                            listB.append({
+                                'id': donador1.id,
+                                'red': donador1.red.nombre,
+                                'donador': donador1.donador.first_name + ' ' + donador1.donador.last_name,
+                                'donador_id': donador1.donador.id,
+                                'fecha': donador1.fecha,
+                                'profile_img': request.build_absolute_uri(donador1.donador.profile_img.url) if donador1.donador.profile_img else None,
+                                'tipo': donador1.tipo,
+                                'donadores': listC
+                            })
+                            donadoresC = Suscripcion.objects.filter(propietario_id=donador1.donador.id, beneficiario_id=usuario.id).order_by('fecha')
+                            for donador2 in donadoresC:
+                                listC.append({
+                                    'id': donador2.id,
+                                    'red': donador2.red.nombre,
+                                    'donador': donador2.donador.first_name + ' ' + donador2.donador.last_name,
+                                    'donador_id': donador2.donador.id,
+                                    'fecha': donador2.fecha,
+                                    'profile_img': request.build_absolute_uri(donador2.donador.profile_img.url) if donador2.donador.profile_img else None,
+                                    'tipo': donador2.tipo,
+                                })
+
+        return Response(list, status=status.HTTP_200_OK)
+    
+
+class GetDonadores500(APIView):
+    def get(self, request, id, format=None):
+        usuario = User.objects.get(id=id)
+        donadores = Suscripcion.objects.filter(propietario=usuario, red__nombre='Red 500').order_by('fecha')
+        count = Suscripcion.objects.filter(propietario=usuario, red__nombre='Red 500').count()
+        list = []
+
+        for donacion in donadores:
+            listA = []
+            list.append({
+                'id': donacion.id,
+                'red': donacion.red.nombre,
+                'donador': donacion.donador.first_name + ' ' + donacion.donador.last_name,
+                'donador_id': donacion.donador.id,
+                'fecha': donacion.fecha,
+                'profile_img': request.build_absolute_uri(donacion.donador.profile_img.url) if donacion.donador.profile_img else None,
+                'tipo': donacion.tipo,
+                'donadores': listA,
+                'count': count
+            })
+            donadoresA = Suscripcion.objects.filter(propietario_id=donacion.donador.id, beneficiario_id=usuario.id).order_by('fecha')
+            for donador in donadoresA:
+                        listB = []
+                        listA.append({
+                            'id': donador.id,
+                            'red': donador.red.nombre,
+                            'donador': donador.donador.first_name + ' ' + donador.donador.last_name,
+                            'donador_id': donador.donador.id,
+                            'fecha': donador.fecha,
+                            'profile_img': request.build_absolute_uri(donador.donador.profile_img.url) if donador.donador.profile_img else None,
+                            'tipo': donador.tipo,
+                            'donadores': listB
+                        })
+                        donadoresB = Suscripcion.objects.filter(propietario_id=donador.donador.id, beneficiario_id=usuario.id).order_by('fecha')
+                        for donador1 in donadoresB:
+                            listC = []
+                            listB.append({
+                                'id': donador1.id,
+                                'red': donador1.red.nombre,
+                                'donador': donador1.donador.first_name + ' ' + donador1.donador.last_name,
+                                'donador_id': donador1.donador.id,
+                                'fecha': donador1.fecha,
+                                'profile_img': request.build_absolute_uri(donador1.donador.profile_img.url) if donador1.donador.profile_img else None,
+                                'tipo': donador1.tipo,
+                                'donadores': listC
+                            })
+                            donadoresC = Suscripcion.objects.filter(propietario_id=donador1.donador.id, beneficiario_id=usuario.id).order_by('fecha')
+                            for donador2 in donadoresC:
+                                listC.append({
+                                    'id': donador2.id,
+                                    'red': donador2.red.nombre,
+                                    'donador': donador2.donador.first_name + ' ' + donador2.donador.last_name,
+                                    'donador_id': donador2.donador.id,
+                                    'fecha': donador2.fecha,
+                                    'profile_img': request.build_absolute_uri(donador2.donador.profile_img.url) if donador2.donador.profile_img else None,
+                                    'tipo': donador2.tipo,
+                                })
+
+        return Response(list, status=status.HTTP_200_OK)
+
+
+class GetDonadores1000(APIView):
+    def get(self, request, id, format=None):
+        usuario = User.objects.get(id=id)
+        donadores = Suscripcion.objects.filter(beneficiario=usuario, red__nombre='Red 1000').order_by('fecha')
+        count = Suscripcion.objects.filter(beneficiario=usuario, red__nombre='Red 1000').count()
+        list = []
+
+        for donacion in donadores:
+            listA = []
+            list.append({
+                'id': donacion.id,
+                'red': donacion.red.nombre,
+                'donador': donacion.donador.first_name + ' ' + donacion.donador.last_name,
+                'donador_id': donacion.donador.id,
+                'fecha': donacion.fecha,
+                'profile_img': request.build_absolute_uri(donacion.donador.profile_img.url) if donacion.donador.profile_img else None,
+                'tipo': donacion.tipo,
+                'donadores': listA,
+                'count': count
+            })
+            donadoresA = Suscripcion.objects.filter(propietario_id=donacion.donador.id, beneficiario_id=usuario.id).order_by('fecha')
+            for donador in donadoresA:
+                        listB = []
+                        listA.append({
+                            'id': donador.id,
+                            'red': donador.red.nombre,
+                            'donador': donador.donador.first_name + ' ' + donador.donador.last_name,
+                            'donador_id': donador.donador.id,
+                            'fecha': donador.fecha,
+                            'profile_img': request.build_absolute_uri(donador.donador.profile_img.url) if donador.donador.profile_img else None,
+                            'tipo': donador.tipo,
+                            'donadores': listB
+                        })
+                        donadoresB = Suscripcion.objects.filter(propietario_id=donador.donador.id, beneficiario_id=usuario.id).order_by('fecha')
+                        for donador1 in donadoresB:
+                            listC = []
+                            listB.append({
+                                'id': donador1.id,
+                                'red': donador1.red.nombre,
+                                'donador': donador1.donador.first_name + ' ' + donador1.donador.last_name,
+                                'donador_id': donador1.donador.id,
+                                'fecha': donador1.fecha,
+                                'profile_img': request.build_absolute_uri(donador1.donador.profile_img.url) if donador1.donador.profile_img else None,
+                                'tipo': donador1.tipo,
+                                'donadores': listC
+                            })
+                            donadoresC = Suscripcion.objects.filter(propietario_id=donador1.donador.id, beneficiario_id=usuario.id).order_by('fecha')
+                            for donador2 in donadoresC:
+                                listC.append({
+                                    'id': donador2.id,
+                                    'red': donador2.red.nombre,
+                                    'donador': donador2.donador.first_name + ' ' + donador2.donador.last_name,
+                                    'donador_id': donador2.donador.id,
+                                    'fecha': donador2.fecha,
+                                    'profile_img': request.build_absolute_uri(donador2.donador.profile_img.url) if donador2.donador.profile_img else None,
+                                    'tipo': donador2.tipo,
+                                })
+
+        return Response(list, status=status.HTTP_200_OK)
+    
+class ReportarDonacion(APIView):
+        def post(self, request, format=None):
+            data = request.data
+            donacion = Donaciones.objects.get(id=data['id'])
+            comentarions = data['comments']
+
+            DonacionRevision.objects.create(donacion=donacion, comentarios=comentarions, aprobado=False)
+
+            return Response({'message': 'Donacion reportada correctamente'}, status=status.HTTP_201_CREATED)
+        
+    
         
