@@ -5,11 +5,13 @@ import Redes from '../pages/Redes';
 import Perfil from '../pages/Perfil';
 import Contribuciones from '../pages/Contribuciones';
 import Contribucion from '../pages/Contribucion';
+import Reportes from '../pages/Reportes';
 import Login from '../pages/Login';
 import { AnimatePresence } from "framer-motion";
 import Sidebar from "../partials/Sidebar";
 import Header from "../partials/Header";
 import Footer from "../partials/Footer";
+import { FloatingWhatsApp } from 'react-floating-whatsapp'
 import API from './API';
 
 function AnimatedRoutes() {
@@ -46,8 +48,19 @@ function AnimatedRoutes() {
                 <Route exact path="/redes/mi-perfil" element={<Perfil />} />
                 <Route exact path="/redes/contribuciones" element={<Contribuciones />} />
                 <Route exact path="/redes/enviar-contribucion" element={<Contribucion />} />
+                <Route exact path="/redes/reportes" element={<Reportes />} />
               </Routes>
             </AnimatePresence>
+            <FloatingWhatsApp
+              phoneNumber="526623669348"
+              accountName="Soporte Abantu"
+              avatar="https://comunidad.abantu.mx/assets/logo.6b5bbaed.png"
+              chatMessage="Hola, ¿en qué podemos ayudarte?"
+              statusMessage="En línea"
+              backgroundColor="#25d366"
+              buttonImage="whatsapp.png"
+              placeholder="Escribe tu mensaje"
+              />
           <Footer />
         </div>
     </div>

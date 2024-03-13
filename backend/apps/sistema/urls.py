@@ -13,4 +13,5 @@ urlpatterns = [
     path('donadores-500/<int:id>/', GetDonadores500.as_view()),
     path('donadores-1000/<int:id>/', GetDonadores1000.as_view()),
     path('reportar-donacion/', ReportarDonacion.as_view()),
+    path('reportes/<int:id>/', ReportesView.as_view()),
 ]

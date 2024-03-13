@@ -441,14 +441,33 @@ class GetDonadores1000(APIView):
         return Response(list, status=status.HTTP_200_OK)
     
 class ReportarDonacion(APIView):
-        def post(self, request, format=None):
-            data = request.data
-            donacion = Donaciones.objects.get(id=data['id'])
-            comentarions = data['comments']
+    def post(self, request, format=None):
+        data = request.data
+        donacion = Donaciones.objects.get(id=data['id'])
+        comentarions = data['comments']
 
-            DonacionRevision.objects.create(donacion=donacion, comentarios=comentarions, aprobado=False)
+        DonacionRevision.objects.create(donacion=donacion, comentarios=comentarions, aprobado=False)
 
-            return Response({'message': 'Donacion reportada correctamente'}, status=status.HTTP_201_CREATED)
+        return Response({'message': 'Donacion reportada correctamente'}, status=status.HTTP_201_CREATED)
+    
+
+class ReportesView(APIView):
+    def get(self, request, id, format=None):
+        reportes = DonacionRevision.objects.filter(donacion__beneficiario_id=id).order_by('-fecha')
+        list = []
+
+        for reporte in reportes:
+            list.append({
+                'id': reporte.id,
+                'donacion': reporte.donacion.id,
+                'fecha': reporte.fecha,
+                'comentarios': reporte.comentarios,
+                'aprobado': reporte.aprobado,
+                'resolucion': reporte.resolucion,
+                'donador': reporte.donacion.donador.first_name + ' ' + reporte.donacion.donador.last_name,
+            })
+
+        return Response(list, status=status.HTTP_200_OK)
         
     
         

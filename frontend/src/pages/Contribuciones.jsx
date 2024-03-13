@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AnimatedPage from '../utils/AnimatedPage';
 import * as Tabs from "@radix-ui/react-tabs";
+import ModalImage from "react-modal-image";
 import API from '../utils/API';
 import Swal from 'sweetalert2';
 
@@ -201,7 +202,7 @@ function Contribuciones() {
                         { donacion.evidencia === null ?
                         <div className="text-center">Sin evidencia</div>
                         :
-                        <div className="text-center"><img src={donacion.evidencia} alt="evidencia" className="w-10 h-10" /></div>
+                        <div className="text-center"><ModalImage small={donacion.evidencia} large={donacion.evidencia} alt="evidencia" className="w-10 h-10" /></div>
                         }
                       </td>
                     </tr>
@@ -274,7 +275,7 @@ function Contribuciones() {
                         { donacion.evidencia === null ?
                         <div className="text-center">Sin evidencia</div>
                         :
-                        <div className="text-center"><img src={donacion.evidencia} alt="evidencia" className="w-10 h-10" /></div>
+                        <div className="text-center"><ModalImage small={donacion.evidencia} large={donacion.evidencia} alt="evidencia" className="w-10 h-10" /></div>
                         }
                       </td>
                       <td className="p-2">

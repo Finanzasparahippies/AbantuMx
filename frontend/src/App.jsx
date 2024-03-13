@@ -3,9 +3,6 @@ import AnimatedRoutes from './utils/AnimatedRoutes';
 import './css/style.css';
 import './charts/ChartjsConfig';
 import AppLogout from './utils/AppLogout';
-import Login from './pages/Login';
-import Registro from './pages/Registro';
-import { Route, Routes, useLocation } from 'react-router-dom';
 
 
 function App() {

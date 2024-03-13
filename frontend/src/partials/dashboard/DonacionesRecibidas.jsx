@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ModalImage from "react-modal-image";
 import { Link } from 'react-router-dom';
 import API from '../../utils/API';
 
@@ -61,10 +62,10 @@ function DonacionesRecibidas() {
                   <div className="text-center text-green-500">{donacion.fecha.split('T')[0]}</div>
                 </td>
                 <td className="p-2 flex justify-center">
-                  { donacion.evidencia === null ?
+                  { donacion.evidencia === null ? 
                   <div className="text-center">Sin evidencia</div>
                   :
-                  <div className="text-center"><img src={donacion.evidencia} alt="evidencia" className="w-10 h-10" /></div>
+                  <div className="text-center"><ModalImage small={donacion.evidencia} large={donacion.evidencia} alt="evidencia" className="w-10 h-10" /></div>
                   }
                 </td>
                 
@@ -76,7 +77,7 @@ function DonacionesRecibidas() {
                 <td colSpan="4" className="text-center text-xs text-green-500 py-3">
                   <Link 
                     className="bg-green-50 hover:bg-green-100 text-green-400 hover:text-green-500 px-3 py-1 rounded-sm"
-                    to="/contribuciones"
+                    to="/redes/contribuciones"
                   >
                     Ver todas
                   </Link>
