@@ -465,6 +465,10 @@ class ActualizarReporte(APIView):
         reporte.revisor = User.objects.get(id=data['revisor'])
         reporte.save()
 
+        donacion = Donaciones.objects.get(id=reporte.donacion.id)
+        donacion.activo = False
+        donacion.save()
+
         return Response({'message': 'Reporte actualizado correctamente'}, status=status.HTTP_200_OK)
     
 

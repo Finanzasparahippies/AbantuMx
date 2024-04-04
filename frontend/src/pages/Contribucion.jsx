@@ -201,7 +201,7 @@ function Contribucion() {
             <div className="p-3">
               <p className="text-gray-600 text-lg">No te has unido a esta red.</p>
               <p className="text-gray-600 text-md">Para unirte a esta red, ve a la sección de redes y únete a la red de tu elección.</p>
-              <button className="px-4 py-2 bg-green-500 text-white rounded-lg font-semibold hover:bg-green-400 duration-150 mt-4" onClick={() => window.location.href = '/redes'}>Ir a Redes</button>
+              <button className="px-4 py-2 bg-green-500 text-white rounded-lg font-semibold hover:bg-green-400 duration-150 mt-4" onClick={() => window.location.href = '/inicio/redes'}>Ir a Redes</button>
             </div>
           )}
         </div>

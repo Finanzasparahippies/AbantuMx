@@ -15,7 +15,12 @@ function ReportesAdmin() {
   const [id, setId] = useState("");
 
   const [resolucion, setResolucion] = useState("");
-  const [image, setImage] = useState("");
+  const [form, setForm] = useState({
+    image: null,
+    beneficiario: "",
+    donador: "",
+    comentarios: ""
+  });
   
 
   useEffect(() => {
@@ -90,6 +95,9 @@ function ReportesAdmin() {
                         <div className="font-semibold text-left">Contribuyente</div>
                       </th>
                       <th className="p-2">
+                        <div className="font-semibold text-center">Beneficiario</div>
+                      </th>
+                      <th className="p-2">
                         <div className="font-semibold text-center">Fecha</div>
                       </th>
                       <th className="p-2">
@@ -97,9 +105,6 @@ function ReportesAdmin() {
                       </th>
                       <th className="p-2">
                         <div className="font-semibold text-center">Evidencia</div>
-                      </th>
-                      <th className="p-2">
-                        <div className="font-semibold text-center">Resolucion</div>
                       </th>
                       <th className="p-2">
                         <div className="font-semibold text-center">Acciones</div>
@@ -115,6 +120,9 @@ function ReportesAdmin() {
                         <div className="flex items-center">
                           <div className="text-slate-800">{reporte.donador}</div>
                         </div>
+                      </td>
+                      <td className="p-2">
+                        <div className="text-center">{reporte.beneficiario}</div>
                       </td>
                       <td className="p-2">
                         <div className="text-center">{reporte.fecha.slice(0,10)} {reporte.fecha.slice(11,19)}</div>
@@ -133,15 +141,17 @@ function ReportesAdmin() {
                         </div>
                       </td>
                       <td className="p-2">
-                        <div className="text-center">{reporte.resolucion}</div>
-                      </td>
-                      <td className="p-2">
                        <button 
                         className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full"
                         onClick={() => {
                           setModal(true);
                           setId(reporte.id);
-                          setImage(reporte.evidencia);
+                          setForm({
+                            image: reporte.evidencia,
+                            beneficiario: reporte.beneficiario,
+                            donador: reporte.donador,
+                            comentarios: reporte.comentarios
+                          });
                         }}
                         >
                           Revisar
@@ -170,6 +180,9 @@ function ReportesAdmin() {
                         <div className="font-semibold text-left">Contribuyente</div>
                       </th>
                       <th className="p-2">
+                        <div className="font-semibold text-center">Beneficiario</div>
+                      </th>
+                      <th className="p-2">
                         <div className="font-semibold text-center">Fecha</div>
                       </th>
                       <th className="p-2">
@@ -195,6 +208,9 @@ function ReportesAdmin() {
                         <div className="flex items-center">
                           <div className="text-slate-800">{reporte.donador}</div>
                         </div>
+                      </td>
+                      <td className="p-2">
+                        <div className="text-center">{reporte.beneficiario}</div>
                       </td>
                       <td className="p-2">
                         <div className="text-center">{reporte.fecha.slice(0,10)} {reporte.fecha.slice(11,19)}</div>
@@ -236,16 +252,32 @@ function ReportesAdmin() {
                   </svg>
                 </div>
               </div>
-              <div className="mt-2">
-                <ModalImage 
-                  small={image}
-                  large={image}
-                  alt="Evidencia"
-                  className="w-80 h-80"
-                />
+              <div className="flex flex-col items-center lg:flex-row">
+                <div className="mt-2">
+                  <ModalImage 
+                    small={form.image}
+                    large={form.image}
+                    alt="Evidencia"
+                    className="w-80 h-80"
+                  />
+                </div>
+                <div className="ml-4 w-1/2 justify-center flex flex-col">
+                  <label className="block text-gray-700 text-sm font-bold mt-2 mb-2">
+                    Beneficiario
+                  </label>
+                  <p className="text-xl font-semibold">{form.beneficiario}</p>
+                  <label className="block text-gray-700 text-sm font-bold mt-2 mb-2">
+                    Donador
+                  </label>
+                  <p className="text-lg font-semibold">{form.donador}</p>
+                  <label className="block text-gray-700 text-sm font-bold mt-2 mb-2">
+                    Comentarios
+                  </label>
+                  <p className="text-sm font-semibold">{form.comentarios}</p>
+                </div>
               </div>
-              <label className="block text-gray-700 text-sm font-bold mt-2 mb-2" htmlFor="comments">
-                Resolucion
+              <label className="block text-gray-700 text-lg font-bold mt-2 mb-2">
+                Resolución
               </label>
               <textarea className="w-full h-24 px-3 py-2 text-base placeholder-gray-300 border rounded-lg focus:shadow-outline" name="resolucion" value={resolucion} onChange={(e) => setResolucion(e.target.value)}></textarea>
               <div className="flex justify-end pt-2">
