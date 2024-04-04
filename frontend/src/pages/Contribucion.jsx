@@ -11,6 +11,7 @@ function Contribucion() {
   const [selectedTab, setSelectedTab] = useState("Red 100");
   const [red, setRed] = useState({});
   const [image, setImage] = useState(null);
+  const [preview, setPreview] = useState(null);
 
   const tabItems = [
     "Red 100",
@@ -39,7 +40,8 @@ function Contribucion() {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, enviar'
+      confirmButtonText: 'Si, enviar',
+      cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
         API.post(`/api/sistema/crear-donacion/`, {
@@ -161,19 +163,28 @@ function Contribucion() {
               </div>
               {red.donacion_mes ? ( 
               <div className="mt-4">
-                <div className="flex flex-row mt-4">
+                <div className="flex flex-col mt-4 md:flex-row items-center">
                   
                   <div className="max-w-md h-40 rounded-lg border-2 border-dashed flex items-center justify-center">
                       <label htmlFor="file" className="cursor-pointer text-center p-4 md:p-8">
                           <svg className="w-10 h-10 mx-auto" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M12.1667 26.6667C8.48477 26.6667 5.5 23.6819 5.5 20C5.5 16.8216 7.72428 14.1627 10.7012 13.4949C10.5695 12.9066 10.5 12.2947 10.5 11.6667C10.5 7.0643 14.231 3.33334 18.8333 3.33334C22.8655 3.33334 26.2288 6.19709 27.0003 10.0016C27.0556 10.0006 27.1111 10 27.1667 10C31.769 10 35.5 13.731 35.5 18.3333C35.5 22.3649 32.6371 25.7279 28.8333 26.5M25.5 21.6667L20.5 16.6667M20.5 16.6667L15.5 21.6667M20.5 16.6667L20.5 36.6667" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                           </svg>
-                          <p className="mt-3 text-gray-700 max-w-xs mx-auto">Haz click para <span className="font-medium text-green-500">Subir tu comprobante</span> o arrastra y sueltalo aquí</p>
+                          <p className="mt-3 text-gray-700 max-w-xs mx-auto">Haz click para <span className="font-medium text-green-500">Subir tu comprobante</span></p>
                       </label>
-                      <p className={image ? "text-sm text-gray-600 mt-2" : "hidden"}>{image ? image.name : ''}</p>
-                      <input id="file" type="file" className="hidden" accept='image/*' onChange={(e) => setImage(e.target.files[0])} />
+                      <input 
+                        id="file" 
+                        type="file" 
+                        className="hidden" 
+                        accept='image/*' 
+                        onChange={(e) => {
+                          setImage(e.target.files[0])
+                          setPreview(URL.createObjectURL(e.target.files[0]))
+                        }} 
+                      />
+                      <img src={preview} alt="" className={preview ? "w-full h-full object-cover rounded-lg" : "hidden"} />
                   </div>
-                  <div className="flex flex-col items-start justify-center ml-4">
+                  <div className="flex flex-col items-start justify-center ml-4 mt-2 md:mt-0">
                     <button className="px-4 py-2 bg-green-500 text-white rounded-lg font-semibold hover:bg-green-400 duration-150 disabled:opacity-50 disabled:cursor-not-allowed" onClick={handleSubmit} disabled={image ? false : true}>Enviar Comprobante</button>
                     <p className="text-sm text-gray-600">Sube tu comprobante de pago</p>
                     <p className="text-xs text-gray-400">Formatos permitidos: .jpg, .png, .bmp</p>

@@ -25,6 +25,7 @@ class Donaciones(models.Model):
     beneficiario = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='beneficiario')
     fecha = models.DateTimeField(auto_now_add=True)
     evidencia = models.ImageField(upload_to='evidencias', blank=True, null=True)
+    activo = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = 'Donacion'

@@ -10,7 +10,7 @@ from django.utils import timezone
 class DonacionesEnviadas(APIView):
     def get(self, request, id, format=None):
         usuario = User.objects.get(id=id)
-        donaciones = Donaciones.objects.filter(donador=usuario).order_by('-fecha')[:3]
+        donaciones = Donaciones.objects.filter(donador=usuario, activo=True).order_by('-fecha')[:3]
         list = []
 
         for donacion in donaciones:
@@ -29,7 +29,7 @@ class DonacionesEnviadas(APIView):
 class DonacionesRecibidas(APIView):
     def get(self, request, id, format=None):
         usuario = User.objects.get(id=id)
-        donaciones = Donaciones.objects.filter(beneficiario=usuario).order_by('-fecha')[:5]
+        donaciones = Donaciones.objects.filter(beneficiario=usuario, activo=True).order_by('-fecha')[:5]
         list = []
 
         for donacion in donaciones:
@@ -65,19 +65,19 @@ class GetRedesbyUser(APIView):
                     'nombre': red.nombre,
                     'activa': False,
                     'descripcion': red.monto,
-                })
+                }) 
 
         return Response(list, status=status.HTTP_200_OK)
     
 class GetDonacionesbyRed(APIView):
     def get(self, request, id, format=None):
 
-        donaciones100ben = Donaciones.objects.filter(red__nombre='Red 100', beneficiario__id=id, fecha__gte=timezone.now() - timedelta(days=30)).order_by('-fecha')
-        donaciones100don = Donaciones.objects.filter(red__nombre='Red 100', donador__id=id).order_by('-fecha')[:12]
-        donaciones500ben = Donaciones.objects.filter(red__nombre='Red 500', beneficiario__id=id, fecha__gte=timezone.now() - timedelta(days=30)).order_by('-fecha')
-        donaciones500don = Donaciones.objects.filter(red__nombre='Red 500', donador__id=id).order_by('-fecha')[:12]
-        donaciones1000ben = Donaciones.objects.filter(red__nombre='Red 1000', beneficiario__id=id, fecha__gte=timezone.now() - timedelta(days=30)).order_by('-fecha')
-        donaciones1000don = Donaciones.objects.filter(red__nombre='Red 1000', donador__id=id).order_by('-fecha')[:12]
+        donaciones100ben = Donaciones.objects.filter(red__nombre='Red 100', beneficiario__id=id, fecha__gte=timezone.now() - timedelta(days=30), activo=True).order_by('-fecha')
+        donaciones100don = Donaciones.objects.filter(red__nombre='Red 100', donador__id=id, activo=True).order_by('-fecha')[:12]
+        donaciones500ben = Donaciones.objects.filter(red__nombre='Red 500', beneficiario__id=id, fecha__gte=timezone.now() - timedelta(days=30), activo=True).order_by('-fecha')
+        donaciones500don = Donaciones.objects.filter(red__nombre='Red 500', donador__id=id, activo=True).order_by('-fecha')[:12]
+        donaciones1000ben = Donaciones.objects.filter(red__nombre='Red 1000', beneficiario__id=id, fecha__gte=timezone.now() - timedelta(days=30), activo=True).order_by('-fecha')
+        donaciones1000don = Donaciones.objects.filter(red__nombre='Red 1000', donador__id=id, activo=True).order_by('-fecha')[:12]
 
         list = []
         list_100_ben = []
@@ -97,6 +97,7 @@ class GetDonacionesbyRed(APIView):
         })
 
         for donacion in donaciones100ben:
+            reportes = DonacionRevision.objects.filter(donacion=donacion, aprobado=False)
             list_100_ben.append({
                 'id': donacion.id,
                 'red': donacion.red.nombre,
@@ -104,6 +105,7 @@ class GetDonacionesbyRed(APIView):
                 'fecha': donacion.fecha,
                 'evidencia': request.build_absolute_uri(donacion.evidencia.url) if donacion.evidencia else None,
                 'profile_img': request.build_absolute_uri(donacion.donador.profile_img.url) if donacion.donador.profile_img else None,
+                'reporte': False if len(reportes) > 0 else True,
             })
 
         for donacion in donaciones100don:
@@ -116,6 +118,7 @@ class GetDonacionesbyRed(APIView):
                 'profile_img': request.build_absolute_uri(donacion.beneficiario.profile_img.url) if donacion.beneficiario.profile_img else None,
             })
         for donacion in donaciones500ben:
+            reportes = DonacionRevision.objects.filter(donacion=donacion, aprobado=False)
             list_500_ben.append({
                 'id': donacion.id,
                 'red': donacion.red.nombre,
@@ -123,6 +126,7 @@ class GetDonacionesbyRed(APIView):
                 'fecha': donacion.fecha,
                 'evidencia': request.build_absolute_uri(donacion.evidencia.url) if donacion.evidencia else None,
                 'profile_img': request.build_absolute_uri(donacion.donador.profile_img.url) if donacion.donador.profile_img else None,
+                'reporte': False if len(reportes) > 0 else True,
             })
         for donacion in donaciones500don:
             list_500_don.append({
@@ -134,6 +138,7 @@ class GetDonacionesbyRed(APIView):
                 'profile_img': request.build_absolute_uri(donacion.beneficiario.profile_img.url) if donacion.beneficiario.profile_img else None,
             })
         for donacion in donaciones1000ben:
+            reportes = DonacionRevision.objects.filter(donacion=donacion, aprobado=False)
             list_1000_ben.append({
                 'id': donacion.id,
                 'red': donacion.red.nombre,
@@ -141,6 +146,7 @@ class GetDonacionesbyRed(APIView):
                 'fecha': donacion.fecha,
                 'evidencia': request.build_absolute_uri(donacion.evidencia.url) if donacion.evidencia else None,
                 'profile_img': request.build_absolute_uri(donacion.donador.profile_img.url) if donacion.donador.profile_img else None,
+                'reporte': False if len(reportes) > 0 else True,
             })
         for donacion in donaciones1000don:
             list_1000_don.append({
@@ -176,7 +182,7 @@ class GetContributionInfo(APIView):
 
         for red in redes:
             if red.red.nombre == 'Red 100':
-                donacion_mes = Donaciones.objects.filter(donador_id=id, red__nombre='Red 100').order_by('-fecha')[0] if Donaciones.objects.filter(donador_id=id, red__nombre='Red 100').exists() else None
+                donacion_mes = Donaciones.objects.filter(donador_id=id, red__nombre='Red 100', activo=True).order_by('-fecha')[0] if Donaciones.objects.filter(donador_id=id, red__nombre='Red 100', activo=True).exists() else None
                 if donacion_mes:
                     list[0]['Red 100'] = {
                         'id': red.id,
@@ -450,6 +456,17 @@ class ReportarDonacion(APIView):
 
         return Response({'message': 'Donacion reportada correctamente'}, status=status.HTTP_201_CREATED)
     
+class ActualizarReporte(APIView):
+    def post(self, request, format=None):
+        data = request.data
+        reporte = DonacionRevision.objects.get(id=data['id'])
+        reporte.aprobado = True
+        reporte.resolucion = data['resolucion']
+        reporte.revisor = User.objects.get(id=data['revisor'])
+        reporte.save()
+
+        return Response({'message': 'Reporte actualizado correctamente'}, status=status.HTTP_200_OK)
+    
 
 class ReportesView(APIView):
     def get(self, request, id, format=None):
@@ -465,6 +482,67 @@ class ReportesView(APIView):
                 'aprobado': reporte.aprobado,
                 'resolucion': reporte.resolucion,
                 'donador': reporte.donacion.donador.first_name + ' ' + reporte.donacion.donador.last_name,
+            })
+
+        return Response(list, status=status.HTTP_200_OK)
+    
+
+class ReportesRecibidosView(APIView):
+    def get(self, request, id, format=None):
+        reportes = DonacionRevision.objects.filter(donacion__donador_id=id).order_by('-fecha')
+        list = []
+
+        for reporte in reportes:
+            list.append({
+                'id': reporte.id,
+                'donacion': reporte.donacion.id,
+                'fecha': reporte.fecha,
+                'comentarios': reporte.comentarios,
+                'aprobado': reporte.aprobado,
+                'resolucion': reporte.resolucion,
+                'beneficiario': reporte.donacion.beneficiario.first_name + ' ' + reporte.donacion.beneficiario.last_name,
+            })
+
+        return Response(list, status=status.HTTP_200_OK)
+    
+
+class ReportesPendientesView(APIView):
+    def get(self, request, format=None):
+        reportes = DonacionRevision.objects.filter(aprobado=False).order_by('-fecha')
+        list = []
+
+        for reporte in reportes:
+            list.append({
+                'id': reporte.id,
+                'donacion': reporte.donacion.id,
+                'fecha': reporte.fecha,
+                'comentarios': reporte.comentarios,
+                'aprobado': reporte.aprobado,
+                'resolucion': reporte.resolucion,
+                'donador': reporte.donacion.donador.first_name + ' ' + reporte.donacion.donador.last_name,
+                'beneficiario': reporte.donacion.beneficiario.first_name + ' ' + reporte.donacion.beneficiario.last_name,
+                'evidencia': request.build_absolute_uri(reporte.donacion.evidencia.url) if reporte.donacion.evidencia else None,
+            })
+
+        return Response(list, status=status.HTTP_200_OK)
+    
+
+class ReportesRevisadosView(APIView):
+    def get(self, request, format=None):
+        reportes = DonacionRevision.objects.filter(aprobado=True).order_by('-fecha')
+        list = []
+
+        for reporte in reportes:
+            list.append({
+                'id': reporte.id,
+                'donacion': reporte.donacion.id,
+                'fecha': reporte.fecha,
+                'comentarios': reporte.comentarios,
+                'aprobado': reporte.aprobado,
+                'resolucion': reporte.resolucion,
+                'donador': reporte.donacion.donador.first_name + ' ' + reporte.donacion.donador.last_name,
+                'beneficiario': reporte.donacion.beneficiario.first_name + ' ' + reporte.donacion.beneficiario.last_name,
+                'evidencia': request.build_absolute_uri(reporte.donacion.evidencia.url) if reporte.donacion.evidencia else None,
             })
 
         return Response(list, status=status.HTTP_200_OK)

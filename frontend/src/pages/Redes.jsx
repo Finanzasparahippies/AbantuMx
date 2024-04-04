@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import AnimatedPage from '../utils/AnimatedPage';
 import Swal from 'sweetalert2';
 import API from '../utils/API';
+import Images from '../images/Images';
 
 function Redes() {
 
@@ -96,29 +97,16 @@ const handleCancel = () => {
                               <li className="border rounded-lg bg-white shadow-lg" key={idx}>
                                   <div className="flex items-start justify-between p-4">
                                       <div className="space-y-2">
-                                          <svg className="w-10 h-10" viewBox="0 0 43 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                              <g clipPath="url(#clip0_690_1894)">
-                                                  <path d="M14.1693 48C18.08 48 21.254 44.4159 21.254 39.9999V31.9999H14.1693C10.2586 31.9999 7.08459 35.5839 7.08459 39.9999C7.08459 44.4159 10.2586 48 14.1693 48Z" fill="#0ACF83" />
-                                                  <path d="M7.08459 23.9999C7.08459 19.5839 10.2586 15.9999 14.1693 15.9999H21.254V31.9998H14.1693C10.2586 32 7.08459 28.4159 7.08459 23.9999Z" fill="#A259FF" />
-                                                  <path d="M7.08459 8.00006C7.08459 3.58406 10.2586 0 14.1693 0H21.254V15.9999H14.1693C10.2586 15.9999 7.08459 12.4161 7.08459 8.00006Z" fill="#F24E1E" />
-                                                  <path d="M21.2535 0H28.3382C32.2489 0 35.4229 3.58406 35.4229 8.00006C35.4229 12.4161 32.2489 15.9999 28.3382 15.9999H21.2535V0Z" fill="#FF7262" />
-                                                  <path d="M35.4229 23.9999C35.4229 28.4159 32.2489 32 28.3382 32C24.4275 32 21.2535 28.4159 21.2535 23.9999C21.2535 19.5839 24.4275 15.9999 28.3382 15.9999C32.2489 15.9999 35.4229 19.5839 35.4229 23.9999Z" fill="#1ABCFE" />
-                                              </g>
-                                              <defs>
-                                                  <clipPath id="clip0_690_1894">
-                                                      <rect width="42.5075" height="48" fill="white" />
-                                                  </clipPath>
-                                              </defs>
-                                          </svg>
+                                          <img src={Images.redes} alt="Redes" className="w-20 h-20 object-cover rounded-full" />
                                           <h4 className="text-gray-800 font-semibold">{item.nombre}</h4>
-                                          <p className="text-gray-600 text-sm">En esta red contribuyes ${item.descripcion} pesos al mes.</p>
+                                          <p className="text-gray-600 text-sm">En esta red contribuyes con ${item.descripcion} pesos al mes.</p>
                                       </div>
                                       {item.activa ?
                                       <div className="flex items-center justify-center bg-green-100 text-green-500 rounded-lg px-3 py-2">
-                                          <p className="text-sm font-semibold">Ya estas en esta red</p>
+                                          <p className="text-lg font-semibold">Ya estas en esta red</p>
                                       </div>
                                       :
-                                      <button className="text-gray-700 text-sm border rounded-lg px-3 py-2 duration-150 hover:bg-gray-100" onClick={() => handleModal(item.nombre)}>Unirse</button>
+                                      <button className="text-gray-700 text-lg border rounded-lg px-3 py-2 duration-150 hover:bg-gray-100" onClick={() => handleModal(item.nombre)}>Unirse</button>
                                       }
                                   </div>
                               </li>

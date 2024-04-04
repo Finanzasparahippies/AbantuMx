@@ -25,6 +25,11 @@ function Contribuciones() {
   ];
 
   useEffect(() => {
+    handleDonaciones();
+  }
+  , []);
+
+  const handleDonaciones = () => {
     API.get(`/api/sistema/donaciones/${localStorage.getItem("id")}/`)
       .then((res) => {
         setContribuciones(res.data[0]);
@@ -35,7 +40,6 @@ function Contribuciones() {
         console.log(error);
       });
   }
-  , []);
 
   const handleTabChange = (val) => {
     setSelectedTab(val);
@@ -80,6 +84,7 @@ function Contribuciones() {
             'text': 'La evidencia ha sido reportada, se revisará en breve',
             'icon': 'success'
           });
+          handleDonaciones();
         })
         .catch((error) => {
           setModal(!modal);
@@ -202,7 +207,7 @@ function Contribuciones() {
                         { donacion.evidencia === null ?
                         <div className="text-center">Sin evidencia</div>
                         :
-                        <div className="text-center"><ModalImage small={donacion.evidencia} large={donacion.evidencia} alt="evidencia" className="w-10 h-10" /></div>
+                        <div className="text-center"><ModalImage small={donacion.evidencia} large={donacion.evidencia} alt="evidencia" className="w-16 h-16" /></div>
                         }
                       </td>
                     </tr>
@@ -278,6 +283,7 @@ function Contribuciones() {
                         <div className="text-center"><ModalImage small={donacion.evidencia} large={donacion.evidencia} alt="evidencia" className="w-10 h-10" /></div>
                         }
                       </td>
+                      {donacion.reporte === true ?
                       <td className="p-2">
                         <button 
                           className="bg-red-500 text-white font-semibold px-3 py-1 rounded-sm hover:bg-red-600 focus:outline-none focus:ring-0 focus:bg-red-600 active:bg-red-700 transition duration-150 ease-in-out"
@@ -288,6 +294,11 @@ function Contribuciones() {
                           Reportar
                         </button> 
                       </td>
+                      :
+                      <td className="p-2">
+                        <div className="text-center bg-yellow-600 text-white rounded-full px-2">En revisión</div>
+                      </td>
+                      }
                     </tr>
                     ))}
                   </tbody>

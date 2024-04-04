@@ -75,7 +75,7 @@ function UserMenu() {
             <li>
               <Link
                 className="font-medium text-sm text-green-500 hover:text-green-600 flex items-center py-1 px-3"
-                to="/redes/mi-perfil"
+                to="/inicio/mi-perfil"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               >
                 Ver Perfil

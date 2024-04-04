@@ -6,6 +6,7 @@ import Perfil from '../pages/Perfil';
 import Contribuciones from '../pages/Contribuciones';
 import Contribucion from '../pages/Contribucion';
 import Reportes from '../pages/Reportes';
+import ReportesAdmin from '../pages/ReportesAdmin';
 import Login from '../pages/Login';
 import { AnimatePresence } from "framer-motion";
 import Sidebar from "../partials/Sidebar";
@@ -44,11 +45,12 @@ function AnimatedRoutes() {
                 <Route exact path="/login" element={<Login />} />
                 <Route exact path="/" element={<Dashboard />} />
                 <Route path="*" element={<h1>404 Not Found</h1>} />
-                <Route exact path="/redes" element={<Redes />} />
-                <Route exact path="/redes/mi-perfil" element={<Perfil />} />
-                <Route exact path="/redes/contribuciones" element={<Contribuciones />} />
-                <Route exact path="/redes/enviar-contribucion" element={<Contribucion />} />
-                <Route exact path="/redes/reportes" element={<Reportes />} />
+                <Route exact path="/inicio/redes" element={<Redes />} />
+                <Route exact path="/inicio/mi-perfil" element={<Perfil />} />
+                <Route exact path="/inicio/contribuciones" element={<Contribuciones />} />
+                <Route exact path="/inicio/enviar-contribucion" element={<Contribucion />} />
+                <Route exact path="/inicio/reportes" element={<Reportes />} />
+                <Route exact path="/admin/reportes" element={<ReportesAdmin />} />
               </Routes>
             </AnimatePresence>
             <FloatingWhatsApp

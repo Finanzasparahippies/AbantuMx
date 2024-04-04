@@ -51,7 +51,7 @@ class CreateUser(APIView):
         bank_account = data['bank_account']
         bank_clabe = data['bank_clabe']
         terms = True if data['terms'] == 'true' else False
-        role = 'User'
+        role = 'Usuario'
         profile_img = data['profile_img'] if 'profile_img' in data else None
         date_joined = datetime.now()
 
