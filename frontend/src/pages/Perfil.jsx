@@ -59,6 +59,8 @@ function Perfil() {
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
   const [passwordError, setPasswordError] = useState(false);
+  const [passEye, setPassEye] = useState(false);
+  const [passEye2, setPassEye2] = useState(false);
 
 
 useEffect(() => {
@@ -393,22 +395,31 @@ const handleSubmitPassword = () => {
               <label className="font-bold">
                 Contraseña Nueva
               </label>
-              <input
-                type="password"
-                className={!passwordError ? "w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg border-red-600"}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-
-              />
+              <div className="mb-5 flex flex-row items-center justify-between relative">
+                <div>
+                  {passEye ? <span className="fa-solid fa-eye-slash flex items-center cursor-pointer absolute right-2" onClick={() => setPassEye(!passEye)}></span> : <span className="fa-solid fa-eye flex items-center cursor-pointer absolute right-2" onClick={() => setPassEye(!passEye)}></span>}
+                </div>
+                <input
+                  type={passEye ? "text" : "password"}
+                  className={!passwordError ? "w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg border-red-600"}
+                  value={password2}
+                  onChange={handlePassword}
+                />
+              </div>
               <label className="font-bold">
                 Confirmar Contraseña
               </label>
-              <input
-                type="password"
-                className={!passwordError ? "w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg border-red-600"}
-                value={password2}
-                onChange={handlePassword}
-              />
+              <div className="mb-5 flex flex-row items-center justify-between relative">
+                <div>
+                  {passEye2 ? <span className="fa-solid fa-eye-slash flex items-center cursor-pointer absolute right-2" onClick={() => setPassEye2(!passEye2)}></span> : <span className="fa-solid fa-eye flex items-center cursor-pointer absolute right-2" onClick={() => setPassEye2(!passEye2)}></span>}
+                </div>
+                <input
+                  type={passEye2 ? "text" : "password"}
+                  className={!passwordError ? "w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg border-red-600"}
+                  value={password2}
+                  onChange={handlePassword}
+                />
+              </div>
               {passwordError === true ? <p className='mt-2 text-sm text-red-600' id='email-error'>Las contraseñas no coinciden</p> : null}
               <div className="flex justify-end pt-2">
                 <button className="px-4 bg-transparent p-3 rounded-lg text-green-500 hover:bg-gray-100 hover:text-green-400 mr-2" onClick={handleSubmitPassword}>Cambiar Contraseña</button>
