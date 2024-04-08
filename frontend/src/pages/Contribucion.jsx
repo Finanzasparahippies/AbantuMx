@@ -44,6 +44,17 @@ function Contribucion() {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Enviando comprobante...',
+          text: 'Por favor espera un momento.',
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          allowEnterKey: false,
+          showConfirmButton: false,
+          willOpen: () => {
+            Swal.showLoading();
+          }
+        });
         API.post(`/api/sistema/crear-donacion/`, {
           red: selectedTab,
           donador: localStorage.getItem("id"),
@@ -54,6 +65,7 @@ function Contribucion() {
             'Content-Type': 'multipart/form-data'
           }
         }).then(res => {
+          Swal.close();
           Swal.fire({
             title: '¡Comprobante enviado!',
             text: 'Tu comprobante ha sido enviado correctamente.',
@@ -64,6 +76,7 @@ function Contribucion() {
           });
           console.log(res.data.message);
         }).catch(err => {
+          Swal.close();
           Swal.fire({
             title: '¡Error!',
             text: err.response.data.message,

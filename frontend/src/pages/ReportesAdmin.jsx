@@ -141,21 +141,23 @@ function ReportesAdmin() {
                         </div>
                       </td>
                       <td className="p-2">
-                       <button 
-                        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full"
-                        onClick={() => {
-                          setModal(true);
-                          setId(reporte.id);
-                          setForm({
-                            image: reporte.evidencia,
-                            beneficiario: reporte.beneficiario,
-                            donador: reporte.donador,
-                            comentarios: reporte.comentarios
-                          });
-                        }}
-                        >
-                          Revisar
-                       </button>
+                        <div className="text-center">
+                          <button 
+                            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full"
+                            onClick={() => {
+                              setModal(true);
+                              setId(reporte.id);
+                              setForm({
+                                image: reporte.evidencia,
+                                beneficiario: reporte.beneficiario,
+                                donador: reporte.donador,
+                                comentarios: reporte.comentarios
+                              });
+                            }}
+                            >
+                              Revisar
+                          </button>
+                        </div>
                       </td>
                     </tr>
                     )) : <tr><td colSpan="5" className="text-center">No hay reportes pendientes</td></tr>}
