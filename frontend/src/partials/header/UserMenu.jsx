@@ -43,7 +43,7 @@ function UserMenu() {
         onClick={() => setDropdownOpen(!dropdownOpen)}
         aria-expanded={dropdownOpen}
       >
-        <img className="w-10 h-10 rounded-full" src={localStorage.getItem('foto') != 'null' ? import.meta.env.VITE_APP_API_URL+localStorage.getItem('foto') : "https://ui-avatars.com/api/?name="+localStorage.getItem('name')+"+"+localStorage.getItem('last_name')+"&background=random"} alt="avatar" />
+        <img className="w-10 h-10 rounded-full" src={localStorage.getItem('foto') != 'null' ? import.meta.env.VITE_APP_API_URL+localStorage.getItem('foto') : "https://ui-avatars.com/api/?name="+localStorage.getItem('name').charAt(0)+"&background=random"} alt="avatar" />
         <div className="flex items-center truncate">
           <span className="truncate ml-2 text-sm font-medium group-hover:text-slate-800">{localStorage.getItem('name')} {localStorage.getItem('last_name')}</span>
           <svg className="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400" viewBox="0 0 12 12">

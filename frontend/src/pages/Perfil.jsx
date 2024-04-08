@@ -243,7 +243,7 @@ const handleSubmitPassword = () => {
             </div>
             <div className="mx-auto px-4 md:px-8 space-y-6 sm:max-w-mdspace-y-6 text-gray-600 sm:max-w-md bg-white shadow sm:rounded-lg p-6">
               <div className="text-center py-4">
-                <img src={perfil?.profile_img ? perfil?.profile_img : "https://ui-avatars.com/api/?name=" + perfil?.first_name + "+" + perfil?.last_name + "&background=random"} alt="profile" className="w-24 h-24 mx-auto rounded-full" />
+                <img src={perfil?.profile_img ? perfil?.profile_img : "https://ui-avatars.com/api/?name=" + perfil?.first_name.charAt(0) + "&background=random"} alt="profile" className="w-24 h-24 mx-auto rounded-full" />
                 <div className="mt-5 space-y-2">
                   <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">{perfil?.first_name + " " + perfil?.last_name}</h3>
                 </div>

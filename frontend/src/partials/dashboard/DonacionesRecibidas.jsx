@@ -50,7 +50,7 @@ function DonacionesRecibidas() {
                 <td className="p-2">
                   <div className="flex items-center">
                     <div className="w-10 h-10 flex-shrink-0 mr-2 rounded-full overflow-hidden">
-                      <img src={donacion.profile_img ? donacion.profile_img : "https://ui-avatars.com/api/?name="+donacion.donador+"&background=random"} alt="avatar" className="w-10 h-10" />
+                      <img src={donacion.profile_img ? donacion.profile_img : "https://ui-avatars.com/api/?name="+donacion.donador.charAt(0)+"&background=random"} alt="avatar" className="w-10 h-10" />
                     </div>
                     <div className="text-slate-800">{donacion.donador}</div>
                   </div>
@@ -77,7 +77,7 @@ function DonacionesRecibidas() {
                 <td colSpan="4" className="text-center text-xs text-green-500 py-3">
                   <Link 
                     className="bg-green-50 hover:bg-green-100 text-green-400 hover:text-green-500 px-3 py-1 rounded-sm"
-                    to="/redes/contribuciones"
+                    to="/inicio/contribuciones"
                   >
                     Ver todas
                   </Link>

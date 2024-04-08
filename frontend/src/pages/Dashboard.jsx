@@ -137,17 +137,17 @@ function Dashboard() {
                 lineWidth={'2px'}
                 lineColor={'green'}
                 lineBorderRadius={'10px'}
-                label={<StyledNode>Yo<img src={localStorage.getItem('foto') !== 'null' ? localStorage.getItem('foto') : 'https://ui-avatars.com/api/?name=' + localStorage.getItem('name') + ' ' + localStorage.getItem('last_name') + '&background=random'} alt="donador" className="w-10 h-10 rounded-full" /></StyledNode>}
+                label={<StyledNode>Yo<img src={localStorage.getItem('foto') !== 'null' ? localStorage.getItem('foto') : 'https://ui-avatars.com/api/?name=' + localStorage.getItem('name').charAt(0) + '&background=random'} alt="donador" className="w-10 h-10 rounded-full" /></StyledNode>}
               >
                 {donadores.map((donador) => (
-                  <TreeNode label={<StyledNode>{donador.donador}<img src={donador.imagen ? donador.imagen : 'https://ui-avatars.com/api/?name=' + donador.donador + '&background=random'} alt="donador" className="w-10 h-10 rounded-full" />{donador.tipo === 'B1' || donador.tipo === 'B2' ? <p className='text-green-600' >Este usuario forma parte de otra red</p> : <p></p>}</StyledNode>}>
+                  <TreeNode label={<StyledNode>{donador.donador}<img src={donador.imagen ? donador.imagen : 'https://ui-avatars.com/api/?name=' + donador.donador.charAt(0) + '&background=random'} alt="donador" className="w-10 h-10 rounded-full" />{donador.tipo === 'B1' || donador.tipo === 'B2' ? <p className='text-green-600' >Este usuario forma parte de otra red</p> : <p></p>}</StyledNode>}>
                     {donador?.donadores.map((hijo) => (
-                      <TreeNode label={<StyledNode>{hijo.donador}<img src={hijo.imagen ? hijo.imagen : 'https://ui-avatars.com/api/?name=' + hijo.donador + '&background=random'} alt="donador" className="w-10 h-10 rounded-full" /></StyledNode>}>
+                      <TreeNode label={<StyledNode>{hijo.donador}<img src={hijo.imagen ? hijo.imagen : 'https://ui-avatars.com/api/?name=' + hijo.donador.charAt(0) + '&background=random'} alt="donador" className="w-10 h-10 rounded-full" /></StyledNode>}>
                         {hijo?.donadores.map((nieto) => (
-                          <TreeNode label={<StyledNode>{nieto.donador}<img src={nieto.imagen ? nieto.imagen : 'https://ui-avatars.com/api/?name=' + nieto.donador + '&background=random'} alt="donador" className="w-10 h-10 rounded-full" /></StyledNode>}>
+                          <TreeNode label={<StyledNode>{nieto.donador}<img src={nieto.imagen ? nieto.imagen : 'https://ui-avatars.com/api/?name=' + nieto.donador.charAt(0) + '&background=random'} alt="donador" className="w-10 h-10 rounded-full" /></StyledNode>}>
                             {nieto?.donadores.map((bisnieto) => (
                               <TreeNode 
-                                label={<StyledNode>{bisnieto.donador}<img src={bisnieto.imagen ? bisnieto.imagen : 'https://ui-avatars.com/api/?name=' + bisnieto.donador + '&background=random'} alt="donador" className="w-10 h-10 rounded-full" /></StyledNode>}>
+                                label={<StyledNode>{bisnieto.donador}<img src={bisnieto.imagen ? bisnieto.imagen : 'https://ui-avatars.com/api/?name=' + bisnieto.donador.charAt(0) + '&background=random'} alt="donador" className="w-10 h-10 rounded-full" /></StyledNode>}>
                               </TreeNode>
                             ))}
                           </TreeNode>

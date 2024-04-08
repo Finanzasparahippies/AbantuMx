@@ -192,7 +192,7 @@ function Contribuciones() {
                       <td className="p-2">
                         <div className="flex items-center">
                           <div className="w-10 h-10 flex-shrink-0 mr-2 rounded-full overflow-hidden">
-                            <img src={donacion.profile_img ? donacion.profile_img : "https://ui-avatars.com/api/?name="+donacion.beneficiario+"&background=random"} alt="avatar" className="w-10 h-10" />
+                            <img src={donacion.profile_img ? donacion.profile_img : "https://ui-avatars.com/api/?name="+donacion.beneficiario.charAt(0)+"&background=random"} alt="avatar" className="w-10 h-10" />
                           </div>
                           <div className="text-slate-800">{donacion.beneficiario}</div>
                         </div>
@@ -265,7 +265,7 @@ function Contribuciones() {
                       <td className="p-2">
                         <div className="flex items-center">
                           <div className="w-10 h-10 flex-shrink-0 mr-2 rounded-full overflow-hidden">
-                            <img src={donacion.profile_img ? donacion.profile_img : "https://ui-avatars.com/api/?name="+donacion.donador+"&background=random"} alt="avatar" className="w-10 h-10" />
+                            <img src={donacion.profile_img ? donacion.profile_img : "https://ui-avatars.com/api/?name="+donacion.donador.charAt(0)+"&background=random"} alt="avatar" className="w-10 h-10" />
                           </div>
                           <div className="text-slate-800">{donacion.donador}</div>
                         </div>

@@ -35,7 +35,7 @@ function Contribucion() {
   const handleSubmit = (e) => {
     Swal.fire({
       title: '¿Estas seguro?',
-      text: "Estas a punto de enviar tu comprobante de pago.",
+      text: "Estas a punto de enviar tu comprobante de pago por contribución.",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
