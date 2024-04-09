@@ -24,6 +24,11 @@ function ReportesAdmin() {
   
 
   useEffect(() => {
+    getPendientes()
+    getRevisados()
+  }, []);
+
+  const getPendientes = () => {
     API.get(`/api/sistema/reportes/pendientes`)
       .then((res) => {
         setPendientes(res.data);
@@ -32,8 +37,10 @@ function ReportesAdmin() {
       .catch((error) => {
         console.log(error);
       });
+  }
 
-      API.get(`/api/sistema/reportes/revisados`)
+  const getRevisados = () => {
+    API.get(`/api/sistema/reportes/revisados`)
       .then((res) => {
         setRevisados(res.data);
        
@@ -42,7 +49,6 @@ function ReportesAdmin() {
         console.log(error);
       });
   }
-  , []);
 
   const handleReportSend = (id) => {
     API.post(`/api/sistema/reportes/actualizar/`, {
@@ -53,11 +59,13 @@ function ReportesAdmin() {
       .then((res) => {
         Swal.fire({
           icon: 'success',
-          title: 'Reporte enviado',
+          title: 'Reporte Resuelto',
           showConfirmButton: false,
           timer: 1500
         });
         setModal(false);
+        getPendientes()
+        getRevisados()
       })
       .catch((error) => {
         console.log(error);
