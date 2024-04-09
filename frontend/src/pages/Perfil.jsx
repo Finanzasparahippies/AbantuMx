@@ -189,15 +189,24 @@ const handleCancel = () => {
   setModal(false);
 }
 
-const handlePassword = (e) => {
-  if (e.target.value !== password) {
-    setPasswordError(true);
-    setPassword2(e.target.value);
+const handlePassword = (e) => { 
+  if (e.target.name === 'password2') {
+    if (e.target.value !== password) {
+      setPasswordError(true);
+    } else {
+      setPasswordError(false);
+    }
+  setPassword2(e.target.value);
   } else {
-    setPasswordError(false);
-    setPassword2(e.target.value);
+    if (e.target.value !== password2) {
+      setPasswordError(true);
+    } else {
+      setPasswordError(false);
+    }
+  setPassword(e.target.value);
   }
 }
+
 
 const handleSubmitPassword = () => {
   Swal.fire({
@@ -241,7 +250,7 @@ const handleSubmitPassword = () => {
           <section className="container mx-auto">
             <div className="flex flex-col items-center mb-8">
               <h2 className="text-gray-800 text-xl font-extrabold sm:text-2xl">Mi Perfil</h2>
-              <p className="text-gray-600 mt-2">Consulta y actualiza tu perfil</p>
+              <p className="text-gray-600 mt-2">Aquí puedes consultar y actualizar la información de tu perfil.</p>
             </div>
             <div className="mx-auto px-4 md:px-8 space-y-6 sm:max-w-mdspace-y-6 text-gray-600 sm:max-w-md bg-white shadow sm:rounded-lg p-6">
               <div className="text-center py-4">
@@ -250,7 +259,7 @@ const handleSubmitPassword = () => {
                   <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">{perfil?.first_name + " " + perfil?.last_name}</h3>
                 </div>
                 <div className="mt-2 space-y-2">
-                  <p className="text-gray-800 text-md font-bold">Codigo de invitacion:</p>
+                  <p className="text-gray-800 text-md font-bold">Código de invitación:</p>
                   <p className="text-gray-800 text-md font-semibold">{perfil.codigo}</p>
                 </div>
                 <div className="mt-2 space-y-2">
@@ -258,7 +267,7 @@ const handleSubmitPassword = () => {
                     className="px-4 py-2 text-white font-medium bg-green-600 hover:bg-green-500 active:bg-green-600 rounded-lg duration-150"
                     onClick={copyClipboard}
                   >
-                    Copiar Codigo
+                    Copiar Código
                   </button>
                 </div>
               </div>
@@ -288,7 +297,7 @@ const handleSubmitPassword = () => {
               </div>
               <div>
                 <label className="font-bold">
-                  Telefono
+                  Teléfono
                 </label>
                 <input
                   type="text"
@@ -301,7 +310,7 @@ const handleSubmitPassword = () => {
               </div>
               <div>
                 <label className="font-bold">
-                  Correo Electronico
+                  Correo Electrónico
                 </label>
                 <input
                   type="text"
@@ -330,7 +339,7 @@ const handleSubmitPassword = () => {
               </div>
               <div>
                 <label className="font-bold">
-                  Numero de Cuenta
+                  Número de Cuenta
                 </label>
                 <input
                   type="text"
@@ -343,7 +352,7 @@ const handleSubmitPassword = () => {
               </div>
               <div>
                 <label className="font-bold">
-                  Numero de Tarjeta
+                  Número de Tarjeta
                 </label>
                 <input
                   type="text"
@@ -371,7 +380,7 @@ const handleSubmitPassword = () => {
                 className="w-full px-4 py-2 text-white font-medium bg-green-600 hover:bg-green-500 active:bg-green-600 rounded-lg duration-150"
                 onClick={handleSubmit}
               >
-                Guardar Perfil
+                Guardar Cambios
               </button>
               <button
                 className="w-full px-4 py-2 text-white font-medium bg-gray-600 hover:bg-gray-500 active:bg-gray-600 rounded-lg duration-150"
@@ -400,10 +409,11 @@ const handleSubmitPassword = () => {
                   {passEye ? <span className="fa-solid fa-eye-slash flex items-center cursor-pointer absolute right-2" onClick={() => setPassEye(!passEye)}></span> : <span className="fa-solid fa-eye flex items-center cursor-pointer absolute right-2" onClick={() => setPassEye(!passEye)}></span>}
                 </div>
                 <input
+                  name="password"
                   type={passEye ? "text" : "password"}
                   className={!passwordError ? "w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg border-red-600"}
-                  value={password2}
-                  onChange={handlePassword}
+                  value={password}
+                  onChange={(e) => handlePassword(e)}
                 />
               </div>
               <label className="font-bold">
@@ -414,10 +424,11 @@ const handleSubmitPassword = () => {
                   {passEye2 ? <span className="fa-solid fa-eye-slash flex items-center cursor-pointer absolute right-2" onClick={() => setPassEye2(!passEye2)}></span> : <span className="fa-solid fa-eye flex items-center cursor-pointer absolute right-2" onClick={() => setPassEye2(!passEye2)}></span>}
                 </div>
                 <input
+                  name="password2"
                   type={passEye2 ? "text" : "password"}
                   className={!passwordError ? "w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg border-red-600"}
                   value={password2}
-                  onChange={handlePassword}
+                  onChange={(e) => handlePassword(e)}
                 />
               </div>
               {passwordError === true ? <p className='mt-2 text-sm text-red-600' id='email-error'>Las contraseñas no coinciden</p> : null}

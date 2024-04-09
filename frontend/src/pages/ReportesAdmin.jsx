@@ -137,6 +137,8 @@ function ReportesAdmin() {
                             large={reporte.evidencia}
                             alt="Evidencia"
                             className="w-16 h-16"
+                            hideDownload
+                            hideZoom
                           />
                         </div>
                       </td>
@@ -227,6 +229,8 @@ function ReportesAdmin() {
                             large={reporte.evidencia}
                             alt="Evidencia"
                             className="w-16 h-16"
+                            hideDownload
+                            hideZoom
                           />
                         </div>
                       </td>
@@ -261,6 +265,8 @@ function ReportesAdmin() {
                     large={form.image}
                     alt="Evidencia"
                     className="w-80 h-80"
+                    hideDownload
+                    hideZoom
                   />
                 </div>
                 <div className="ml-4 w-1/2 justify-center flex flex-col">

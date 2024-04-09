@@ -84,14 +84,14 @@ const handleCancel = () => {
 
   return (
     <AnimatedPage>
-        <main className="bg-gray-100 h-screen overflow-y-auto p-4">
-            <section className="py-16">
-              <div className="max-w-screen-xl mx-auto px-4 md:px-8">
-                  <div className="max-w-md">
-                      <h1 className="text-gray-800 text-xl font-extrabold sm:text-2xl">Redes</h1>
-                      <p className="text-gray-600 mt-2">Estas son las redes a las que puedes unirte.</p>
-                  </div>
-                  <ul className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <main className="bg-gray-100 h-screen overflow-y-auto">
+            <section className="container mx-auto px-6 py-6">
+              <div className="max-w-screen-xl mx-auto">
+                <div className="flex flex-col items-center mb-8">
+                  <h2 className="text-gray-800 text-xl font-extrabold sm:text-2xl">Redes de Contribución</h2>
+                  <p className="text-gray-600 mt-2">Estas son las redes a las que puedes unirte.</p>
+                </div>
+                  <ul className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
                       {
                           redes.map((item, idx) => (
                               <li className="border rounded-lg bg-white shadow-lg" key={idx}>

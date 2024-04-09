@@ -66,7 +66,7 @@ function DonacionesEnviadas() {
                   { donacion.evidencia === null ?
                   <div className="text-center">Sin evidencia</div>
                   :
-                  <div className="text-center"><ModalImage small={donacion.evidencia} large={donacion.evidencia} alt="evidencia" className="w-10 h-10" /></div>
+                  <div className="text-center"><ModalImage small={donacion.evidencia} large={donacion.evidencia} alt="evidencia" className="w-10 h-10" hideDownload hideZoom/></div>
                   }
                 </td>
                 

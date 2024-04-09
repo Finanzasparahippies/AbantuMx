@@ -52,13 +52,12 @@ class CreateUser(APIView):
         bank_clabe = data['bank_clabe']
         terms = True if data['terms'] == 'true' else False
         role = 'Usuario'
-        profile_img = data['profile_img'] if 'profile_img' in data else None
         date_joined = datetime.now()
 
         if User.objects.filter(email=email).exists():
             return Response({'message': 'El correo ya existe'}, status=status.HTTP_400_BAD_REQUEST)
         else:
-            user = User.objects.create_user(email=email, password=password, first_name=first_name, last_name=last_name, phone=phone, bank_card=bank_card, bank_account=bank_account, bank_clabe=bank_clabe, terms=terms, role=role, bank=bank, date_joined=date_joined, profile_img=profile_img if profile_img else None)
+            user = User.objects.create_user(email=email, password=password, first_name=first_name, last_name=last_name, phone=phone, bank_card=bank_card, bank_account=bank_account, bank_clabe=bank_clabe, terms=terms, role=role, bank=bank, date_joined=date_joined, profile_img=None)
             user.save()
 
             return Response({'message': 'Usuario creado correctamente'}, status=status.HTTP_201_CREATED)

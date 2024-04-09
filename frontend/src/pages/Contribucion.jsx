@@ -93,11 +93,9 @@ function Contribucion() {
     console.log(red),
     <AnimatedPage>
       <main className="bg-gray-100 h-screen overflow-y-auto p-4">
-        <div className="p-8 bg-white rounded-lg shadow-sm mb-4">
-          <h1 className="text-2xl font-semibold text-gray-700">Enviar Contribución</h1>
-          <p className="text-sm text-gray-600">
-            Aquí puedes ver la información bancaria de la red a la que perteneces y enviar tu contribución.
-          </p>
+        <div className="flex flex-col items-center mb-8">
+          <h2 className="text-gray-800 text-xl font-extrabold sm:text-2xl">Envía tu Comprobante de Contribución</h2>
+          <p className="text-gray-600 mt-2">Aquí puedes ver la información bancaria de cada red a la que te has unido para enviar tu comprobante de contribución.</p>
         </div>
       <Tabs.Root
         className="max-w-screen-xl mt-2 mx-auto px-4 md:px-8"
@@ -206,7 +204,7 @@ function Contribucion() {
               </div>
               ) : (
                 <div className="mt-4">
-                  <p className="text-xl font-semibold text-green-500">Ya has enviado tu comprobante de pago de este mes.</p>
+                  <p className="text-xl font-semibold text-green-500">Ya has enviado tu comprobante de contribución de este mes.</p>
                 </div>
               )}
             </div>

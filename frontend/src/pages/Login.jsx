@@ -63,7 +63,7 @@ function Login() {
 
   return (
     <section className="h-screen">
-      <div className="px-6 h-full text-gray-800"> {/* style={{backgroundImage: `url(${Fondo})`}} */}
+      <div className="px-6 h-full text-gray-800">
         <div
           className="flex xl:justify-center lg:justify-center justify-center items-center flex-wrap h-full g-6"
         >
@@ -113,11 +113,11 @@ function Login() {
                 </button>
               </div>
             </form>
-          </div>
-          <div className="w-full text-center text-gray-500">
-            <Link className="text-sm underline" onClick={() => setSignup(true)}>
-              ¿No tienes cuenta? Regístrate
-            </Link>
+            <div className="w-full text-center text-gray-500 mt-5">
+              <Link className="text-lg underline" onClick={() => setSignup(true)}>
+                ¿No tienes cuenta? Regístrate
+              </Link>
+            </div>
           </div>
         </div>
       </div>

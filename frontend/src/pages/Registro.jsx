@@ -63,7 +63,6 @@ function Registro() {
         email: '',
         password: '',
         password2: '',
-        profile_img: '',
     });
 
     if (!signup) {
@@ -164,7 +163,6 @@ function Registro() {
             bank_clabe: form.bank_clabe,
             email: form.email,
             password: form.password,
-            profile_img: foto,
             terms: form.terms
           },
           {
@@ -199,20 +197,6 @@ function Registro() {
             }
           });
     }
-  }
-
-  const handleFoto = (e) => {
-    setFoto(e.target.files[0]);
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        setForm({
-          ...form,
-          profile_img: reader.result
-        });
-      }
-    }
-    reader.readAsDataURL(e.target.files[0]);
   }
 
   const handlePassword = (e) => {
@@ -298,12 +282,8 @@ function Registro() {
                         <span onClick={() => setViewPass2(!viewPass2)} className={viewPass2 ? 'fas fa-eye-slash flex items-center cursor-pointer absolute right-2' : 'fas fa-eye flex items-center cursor-pointer absolute right-2'}></span>
                         <input placeholder='Confirme su contraseña' type={viewPass2 ? 'text':'password'} name='password2' className={passError === false ? 'mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' : 'mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.password2} onChange={handlePassword} />
                       </div>
-                      <div className='sm:col-span-3'>
-                        <label htmlFor='foto' className='block text-sm font-medium text-gray-700'>Foto</label>
-                        <input type='file' name='foto' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' onChange={handleFoto} />
-                      </div>
                       <div className='sm:col-span-2'>
-                        <label htmlFor='terms' className='block text-sm font-medium text-gray-700'>Terminos y Condiciones</label>
+                        <label htmlFor='terms' className='block text-sm font-medium text-gray-700'>Términos y Condiciones</label>
                         <input type='checkbox' name='terms' className='mt-1 focus:ring-green-500 focus:border-green-500 block shadow-sm sm:text-sm border-gray-300 rounded-md' value={form.terms} onChange={handleCheck} />
                       </div>
                     </div>

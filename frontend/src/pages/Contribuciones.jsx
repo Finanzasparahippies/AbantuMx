@@ -108,11 +108,10 @@ function Contribuciones() {
     console.log(recibidas),
     <AnimatedPage>
       <main className="bg-gray-100 h-screen overflow-y-auto p-4">
-        <div className="p-8 bg-white rounded-lg shadow-sm mb-4">
-          <h1 className="text-2xl font-semibold text-gray-700">Contribuciones</h1>
-          <p className="text-sm text-gray-600">
-            Aquí puedes ver tus contribuciones enviadas y recibidas en tus redes.
-          </p>
+        <div className="flex flex-col items-center mb-8">
+          <h2 className="text-gray-800 text-xl font-extrabold sm:text-2xl">Contribuciones</h2>
+          <p className="text-gray-600 mt-2">Aquí puedes ver tus contribuciones enviadas y recibidas en tus redes.</p>
+          <p className="text-gray-600 mt-2">También puedes reportar algun error en las evidencias recibidas.</p>
         </div>
       <Tabs.Root
         className="max-w-screen-xl mt-2 mx-auto px-4 md:px-8"
@@ -207,7 +206,7 @@ function Contribuciones() {
                         { donacion.evidencia === null ?
                         <div className="text-center">Sin evidencia</div>
                         :
-                        <div className="text-center"><ModalImage small={donacion.evidencia} large={donacion.evidencia} alt="evidencia" className="w-16 h-16" /></div>
+                        <div className="text-center"><ModalImage small={donacion.evidencia} large={donacion.evidencia} alt="evidencia" className="w-16 h-16" hideDownload hideZoom /></div>
                         }
                       </td>
                     </tr>
@@ -280,7 +279,7 @@ function Contribuciones() {
                         { donacion.evidencia === null ?
                         <div className="text-center">Sin evidencia</div>
                         :
-                        <div className="text-center"><ModalImage small={donacion.evidencia} large={donacion.evidencia} alt="evidencia" className="w-10 h-10" /></div>
+                        <div className="text-center"><ModalImage small={donacion.evidencia} large={donacion.evidencia} alt="evidencia" className="w-10 h-10" hideDownload hideZoom /></div>
                         }
                       </td>
                       {donacion.reporte === true ?
