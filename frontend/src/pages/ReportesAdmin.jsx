@@ -74,11 +74,8 @@ function ReportesAdmin() {
     console.log(pendientes),
     <AnimatedPage>
       <main className="bg-gray-100 h-screen overflow-y-auto p-4">
-        <div className="p-8 bg-white rounded-lg shadow-sm mb-4">
-          <h1 className="text-2xl font-semibold text-gray-700">Reportes</h1>
-          <p className="text-sm text-gray-600">
-            Aqui podras revisar los reportes que se han hecho sobre las contribuciones de los usuarios.
-          </p>
+        <div className="flex flex-col items-center mb-8">
+          <h2 className="text-gray-800 text-xl font-extrabold sm:text-2xl">Administrador de Reportes</h2>
         </div>  
           <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200 mt-4">
             <header className="px-5 py-4 border-b border-slate-100">
