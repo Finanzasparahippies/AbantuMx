@@ -73,7 +73,7 @@ useEffect(() => {
 
 
 const copyClipboard = () => {
-  copy(perfil.codigo)
+  copy(`Hola! Te invito a que te unas a la comunidad ABANTU. Utiliza mi código personal: ${perfil.codigo}. Regístrate en abantu.mx.`);
   Toast.fire({
     title: 'Listo',
     text: 'Se ha copiado el codigo de invitacion',

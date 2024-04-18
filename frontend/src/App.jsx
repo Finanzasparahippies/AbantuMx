@@ -45,7 +45,8 @@ function App() {
   }
   
     return (
-      <div className="flex h-screen overflow-hidden">
+      <>
+      <div className="flex h-screen w-full">
           <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
           <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
             <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
@@ -65,7 +66,7 @@ function App() {
               <FloatingWhatsApp
                 phoneNumber="526623669348"
                 accountName="Soporte Abantu"
-                avatar="https://comunidad.abantu.mx/assets/logo.6b5bbaed.png"
+                avatar="https://i.imgur.com/depT4No.jpeg"
                 chatMessage="Hola, ¿en qué podemos ayudarte?"
                 statusMessage="En línea"
                 backgroundColor="#25d366"
@@ -75,6 +76,7 @@ function App() {
             <Footer />
           </div>
       </div>
+      </>
     );
 }
 

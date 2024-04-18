@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from .managers import UserManager
+import random
 
 ROLES = [
     ('Usuario', 'Usuario'),
@@ -34,7 +35,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
 
     def save(self, *args, **kwargs):
-        self.codigo = self.last_name[0:3] + self.phone[4:7] + self.first_name[0:3]
+        self.codigo = self.last_name[1:3] + str(random.randint(1000, 9999))
         super().save(*args, **kwargs)
 
     class Meta:

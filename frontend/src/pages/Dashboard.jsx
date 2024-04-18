@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import WelcomeBanner from '../partials/dashboard/WelcomeBanner';
 import AnimatedPage from '../utils/AnimatedPage';
 import DonacionesRecibidas from '../partials/dashboard/DonacionesRecibidas';
-import DonacionesEnviadas from '../partials/dashboard/DonacionesEnviadas';
 import * as Tabs from "@radix-ui/react-tabs";
 import { Tree, TreeNode } from 'react-organizational-chart';
 import styled from 'styled-components';
@@ -166,11 +165,6 @@ function Dashboard() {
         <section className="dashboard-section mb-8">
           <div className="container">
             <DonacionesRecibidas />
-          </div>
-        </section>
-        <section className="dashboard-section">
-          <div className="container">
-            <DonacionesEnviadas />
           </div>
         </section>
       </div>
