@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth.hashers import make_password
 import random
+import string
 from .models import User
 from apps.sistema.models import *
 from datetime import datetime
@@ -51,13 +52,14 @@ class CreateUser(APIView):
         bank_account = data['bank_account']
         bank_clabe = data['bank_clabe']
         terms = True if data['terms'] == 'true' else False
+        codigo = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
         role = 'Usuario'
         date_joined = datetime.now()
 
         if User.objects.filter(email=email).exists():
             return Response({'message': 'El correo ya existe'}, status=status.HTTP_400_BAD_REQUEST)
         else:
-            user = User.objects.create_user(email=email, password=password, first_name=first_name, last_name=last_name, phone=phone, bank_card=bank_card, bank_account=bank_account, bank_clabe=bank_clabe, terms=terms, role=role, bank=bank, date_joined=date_joined, profile_img=None)
+            user = User.objects.create_user(email=email, codigo=codigo, password=password, first_name=first_name, last_name=last_name, phone=phone, bank_card=bank_card, bank_account=bank_account, bank_clabe=bank_clabe, terms=terms, role=role, bank=bank, date_joined=date_joined, profile_img=None)
             user.save()
 
             return Response({'message': 'Usuario creado correctamente'}, status=status.HTTP_201_CREATED)
@@ -220,3 +222,13 @@ class UpdateProfileImg(APIView):
         user.profile_img = data['profile_img']
         user.save()
         return Response({'message': 'Imagen de perfil actualizada correctamente'}, status=status.HTTP_200_OK)
+    
+class ChangeUsersCodes(APIView):
+
+    def get(self, request, format=None):
+        users = User.objects.all()
+        for user in users:
+            user.codigo = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
+            user.save()
+        return Response({'message': 'Códigos cambiados correctamente'}, status=status.HTTP_200_OK)
+    

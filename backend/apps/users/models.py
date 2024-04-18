@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from .managers import UserManager
 import random
+import string
 
 ROLES = [
     ('Usuario', 'Usuario'),
@@ -21,7 +22,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=100, unique=True)
     date_joined = models.DateTimeField(auto_now_add=True)
     role = models.CharField(max_length=100, choices=ROLES, default='Usuario')
-    codigo = models.CharField(max_length=100, unique=True)
+    codigo = models.CharField(max_length=100)
     starter = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
@@ -33,10 +34,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-
-    def save(self, *args, **kwargs):
-        self.codigo = self.last_name[1:3] + str(random.randint(1000, 9999))
-        super().save(*args, **kwargs)
 
     class Meta:
         ordering = ['-id']
