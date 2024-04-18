@@ -52,7 +52,7 @@ class CreateUser(APIView):
         bank_account = data['bank_account']
         bank_clabe = data['bank_clabe']
         terms = True if data['terms'] == 'true' else False
-        codigo = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
+        codigo = ''.join(random.choices(string.ascii_uppercase, k=2)) + ''.join(random.choices(string.digits, k=4))
         role = 'Usuario'
         date_joined = datetime.now()
 
