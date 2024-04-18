@@ -228,7 +228,7 @@ class ChangeUsersCodes(APIView):
     def get(self, request, format=None):
         users = User.objects.all()
         for user in users:
-            user.codigo = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
+            user.codigo = ''.join(random.choices(string.ascii_uppercase, k=2)) + ''.join(random.choices(string.digits, k=4))
             user.save()
         return Response({'message': 'Códigos cambiados correctamente'}, status=status.HTTP_200_OK)
     
