@@ -246,7 +246,7 @@ function Registro() {
                       </div>
                       <div className='sm:col-span-3'>
                         <label htmlFor='phone' className='block text-sm font-medium text-gray-700'>Teléfono</label>
-                        <input placeholder='Telefono' type='text' name='phone' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' value={form.phone} onChange={handleChange} />
+                        <input placeholder='Telefono' type='text' name='phone' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' value={form.phone} onChange={handleChange} max={10} />
                       </div>
                       <div className='sm:col-span-3'>
                         <label htmlFor='bank' className='block text-sm font-medium text-gray-700'>Banco</label>
