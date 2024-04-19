@@ -35,12 +35,12 @@ function Contribucion() {
   const handleSubmit = (e) => {
     Swal.fire({
       title: '¿Estas seguro?',
-      text: "Estas a punto de enviar tu comprobante de pago por contribución.",
+      text: "Estas a punto de enviar tu comprobante de contribución.",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, enviar',
+      confirmButtonText: 'Sí, enviar',
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
@@ -197,7 +197,7 @@ function Contribucion() {
                   </div>
                   <div className="flex flex-col items-start justify-center ml-4 mt-2 md:mt-0">
                     <button className="px-4 py-2 bg-green-500 text-white rounded-lg font-semibold hover:bg-green-400 duration-150 disabled:opacity-50 disabled:cursor-not-allowed" onClick={handleSubmit} disabled={image ? false : true}>Enviar Comprobante</button>
-                    <p className="text-sm text-gray-600">Sube tu comprobante de pago</p>
+                    <p className="text-sm text-gray-600">Sube tu comprobante de contribución</p>
                     <p className="text-xs text-gray-400">Formatos permitidos: .jpg, .png, .bmp</p>
                   </div>
                 </div>

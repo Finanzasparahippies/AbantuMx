@@ -221,23 +221,20 @@ function Registro() {
     <AnimatedPage>
         <main>
             <div className='px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto'>
-                <h1 className='text-2xl font-semibold text-gray-900'>Registro de nuevo usuario</h1>
+                <h1 className='text-2xl font-semibold text-gray-900'>Registro de Nuevo Usuario</h1>
             </div>
             <div className='px-4 sm:px-6 lg:px-8 w-full max-w-9xl mx-auto bg-white rounded-lg shadow p-8'>
               <form className='space-y-8 divide-y divide-gray-200' onSubmit={handleSubmit}>
                 <div className='space-y-8 divide-y divide-gray-200 sm:space-y-5'>
                   <div>
-                    <div>
-                      <h3 className='text-lg leading-6 font-medium text-gray-900'>Registro de nuevo usuario</h3>
-                    </div>
                     <div className='mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6'>
                       <div className='sm:col-span-3'>
-                        <label htmlFor='first_name' className='block text-sm font-medium text-gray-700'>Nombres</label>
-                        <input placeholder='Nombres' type='text' name='first_name' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' value={form.first_name} onChange={handleChange} />
+                        <label htmlFor='first_name' className='block text-sm font-medium text-gray-700'>{'Nombre(s)'}</label>
+                        <input placeholder='Nombre(s)' type='text' name='first_name' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' value={form.first_name} onChange={handleChange} />
                       </div>
                       <div className='sm:col-span-3'>
-                        <label htmlFor='last_name' className='block text-sm font-medium text-gray-700'>Apellidos</label>
-                        <input placeholder='Apellidos' type='text' name='last_name' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' value={form.last_name}onChange={handleChange} />
+                        <label htmlFor='last_name' className='block text-sm font-medium text-gray-700'>{'Apellido(s)'}</label>
+                        <input placeholder='Apellido(s)' type='text' name='last_name' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' value={form.last_name}onChange={handleChange} />
                       </div>
                       <div className='sm:col-span-3'>
                         <label htmlFor='email' className='block text-sm font-medium text-gray-700'>Correo Electrónico</label>
@@ -246,7 +243,7 @@ function Registro() {
                       </div>
                       <div className='sm:col-span-3'>
                         <label htmlFor='phone' className='block text-sm font-medium text-gray-700'>Teléfono</label>
-                        <input placeholder='Telefono' type='text' name='phone' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' value={form.phone} onChange={handleChange} max={10} />
+                        <input placeholder='Teléfono' type='text' name='phone' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' value={form.phone} onChange={handleChange} maxLength='10' />
                       </div>
                       <div className='sm:col-span-3'>
                         <label htmlFor='bank' className='block text-sm font-medium text-gray-700'>Banco</label>
@@ -268,22 +265,22 @@ function Registro() {
                         {bankAccountError === true ? <p className='mt-2 text-sm text-red-600' id='cuentaError'>Cuenta inválida</p> : null}
                       </div>
                       <div className='sm:col-span-3'>
-                        <label htmlFor='bank_clabe' className='block text-sm font-medium text-gray-700'>CLABE interbancaria</label>
-                        <input placeholder='Solo para recibir depósitos o transferencias' type='text' name='bank_clabe' className={clabeError === false ? 'mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' : 'mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.bank_clabe} onChange={handleCLABE} maxLength='18' />
+                        <label htmlFor='bank_clabe' className='block text-sm font-medium text-gray-700'>CLABE Interbancaria</label>
+                        <input placeholder='Sólo para recibir depósitos o transferencias' type='text' name='bank_clabe' className={clabeError === false ? 'mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' : 'mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.bank_clabe} onChange={handleCLABE} maxLength='18' />
                         {clabeError === true ? <p className='mt-2 text-sm text-red-600' id='clabeError'>CLABE inválida</p> : null}
                       </div>
                       <div className='sm:col-span-3 flex flex-row items-center justify-between relative'>
                         <label htmlFor='password' className='block text-sm font-medium text-gray-700 mr-2'>Contraseña</label>
                         <span onClick={() => setViewPass(!viewPass)} className={viewPass ? 'fas fa-eye-slash flex items-center cursor-pointer absolute right-2' : 'fas fa-eye flex items-center cursor-pointer absolute right-2'}></span>
-                        <input placeholder='Ingrese su contraseña' type={viewPass ? 'text':'password'} name='password' className={passError === false ? 'mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' : 'mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.password} onChange={handleChange} />
+                        <input placeholder='Ingresa tu contraseña' type={viewPass ? 'text':'password'} name='password' className={passError === false ? 'mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' : 'mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.password} onChange={handleChange} />
                       </div>
                       <div className='sm:col-span-3 flex flex-row items-center justify-between relative'>
                         <label htmlFor='password2' className='block text-sm font-medium text-gray-700'>Confirmar Contraseña</label>
                         <span onClick={() => setViewPass2(!viewPass2)} className={viewPass2 ? 'fas fa-eye-slash flex items-center cursor-pointer absolute right-2' : 'fas fa-eye flex items-center cursor-pointer absolute right-2'}></span>
-                        <input placeholder='Confirme su contraseña' type={viewPass2 ? 'text':'password'} name='password2' className={passError === false ? 'mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' : 'mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.password2} onChange={handlePassword} />
+                        <input placeholder='Confirma tu contraseña' type={viewPass2 ? 'text':'password'} name='password2' className={passError === false ? 'mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' : 'mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.password2} onChange={handlePassword} />
                       </div>
                       <div className='sm:col-span-2'>
-                        <label htmlFor='terms' className='block text-sm font-medium text-gray-700'>Términos y Condiciones</label>
+                        <label htmlFor='terms' className='block text-sm font-medium text-gray-700'>He leído y acepto los Términos y Condiciones y Aviso de Privacidad.</label>
                         <input type='checkbox' name='terms' className='mt-1 focus:ring-green-500 focus:border-green-500 block shadow-sm sm:text-sm border-gray-300 rounded-md' value={form.terms} onChange={handleCheck} />
                       </div>
                     </div>
