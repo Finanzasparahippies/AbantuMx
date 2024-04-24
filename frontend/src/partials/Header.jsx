@@ -7,7 +7,7 @@ function Header({
 }) {
 
   return (
-    <header className="relative top-0 bg-white border-b border-slate-200">
+    <header className="relative top-0 bg-[#03E19B] border-b border-[#03E19B]">
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 -mb-px">
           <div className="flex">

@@ -88,7 +88,7 @@ function Dashboard() {
           {tabItems.map((item, idx) => (
             <Tabs.Trigger
               key={idx}
-              className="data-[state=active]:bg-white data-[state=active]:text-green-600 data-[state=active]:shadow-sm py-1.5 px-3 rounded-lg duration-150 text-gray-500 hover:text-green-600 hover:bg-white active:bg-white/50 font-medium"
+              className="data-[state=active]:bg-[#029d85] data-[state=active]:text-white data-[state=active]:shadow-sm py-1.5 px-3 rounded-lg duration-150 text-gray-500 hover:text-white hover:bg-[#029d85] active:bg-[#029d85] font-medium"
               value={item}
             >
               {item}

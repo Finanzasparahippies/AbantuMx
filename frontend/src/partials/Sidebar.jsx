@@ -52,22 +52,23 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
   return (
     <div>
       <div
-        className={`fixed inset-0 bg-slate-900 bg-opacity-30 z-40 lg:hidden lg:z-auto transition-opacity duration-200 ${
+        className={`fixed inset-0 bg-white bg-opacity-30 z-40 lg:hidden lg:z-auto transition-opacity duration-200 ${
           sidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         aria-hidden="true"
-      ></div>
+      >
+      </div>
       <div
         id="sidebar"
         ref={sidebar}
-        className={`flex flex-col absolute z-40 left-0 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 h-screen overflow-y-scroll lg:overflow-y-auto no-scrollbar w-64 lg:w-20 lg:sidebar-expanded:!w-64 2xl:!w-64 shrink-0 bg-gray-700 p-4 transition-all duration-200 ease-in-out ${
+        className={`flex flex-col absolute z-40 left-0 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 h-screen overflow-y-scroll lg:overflow-y-auto no-scrollbar w-64 lg:w-20 lg:sidebar-expanded:!w-64 2xl:!w-64 shrink-0 bg-[#029d85] p-4 transition-all duration-200 ease-in-out ${
           sidebarOpen ? "translate-x-0" : "-translate-x-64"
         }`}
       >
         <div className="flex justify-between mb-10 pr-3 sm:px-2">
           <button
             ref={trigger}
-            className="lg:hidden text-slate-500 hover:text-slate-400"
+            className="lg:hidden text-white hover:text-black"
             onClick={() => setSidebarOpen(!sidebarOpen)}
             aria-controls="sidebar"
             aria-expanded={sidebarOpen}
@@ -98,9 +99,9 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                     <React.Fragment>
                       <a
                         href="#0"
-                        className={`block text-slate-200 hover:text-white truncate transition duration-150 ${
+                        className={`block text-black hover:text-slate-300 truncate transition duration-150 ${
                           (pathname === "/" || pathname.includes("inicio")) &&
-                          "hover:text-slate-200"
+                          "hover:text-slate-500"
                         }`}
                         onClick={(e) => {
                           e.preventDefault();
@@ -116,9 +117,9 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                               viewBox="0 0 24 24"
                             >
                               <path
-                                className={`fill-current text-slate-400 ${
+                                className={`fill-current text-black ${
                                   (pathname === "/" || pathname.includes("inicio")) &&
-                                  "!text-green-500"
+                                  "text-[#029d85]"
                                 }`}
                                 d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0z"
                               />
@@ -130,9 +131,9 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                                 d="M12 3c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9z"
                               />
                               <path
-                                className={`fill-current text-slate-400 ${
+                                className={`fill-current text-black ${
                                   (pathname === "/" || pathname.includes("inicio")) &&
-                                  "text-green-200"
+                                  "text-[#029d85]"
                                 }`}
                                 d="M12 15c-1.654 0-3-1.346-3-3 0-.462.113-.894.3-1.285L6 6l4.714 3.301A2.973 2.973 0 0112 9c1.654 0 3 1.346 3 3s-1.346 3-3 3z"
                               />
@@ -143,7 +144,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                           </div>
                           <div className="flex shrink-0 ml-2">
                             <svg
-                              className={`w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 ${
+                              className={`w-3 h-3 shrink-0 ml-1 fill-current text-black ${
                                 open && "rotate-180"
                               }`}
                               viewBox="0 0 12 12"
@@ -160,8 +161,8 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                               end
                               to="/"
                               className={({ isActive }) =>
-                                "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " +
-                                (isActive ? "!text-green-500" : "")
+                                "block text-black hover:text-slate-200 transition duration-150 truncate " +
+                                (isActive ? "text-[#029d85]" : "")
                               }
                               onClick={() => setSidebarOpen(false)}
                             >
@@ -175,8 +176,8 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                               end
                               to="/inicio/mi-perfil"
                               className={({ isActive }) =>
-                                "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " +
-                                (isActive ? "!text-green-500" : "")
+                                "block text-black hover:text-slate-200 transition duration-150 truncate " +
+                                (isActive ? "text-[#029d85]" : "")
                               }
                               onClick={() => setSidebarOpen(false)}
                             >
@@ -190,8 +191,8 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                               end
                               to="/inicio/redes"
                               className={({ isActive }) =>
-                                "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " +
-                                (isActive ? "!text-green-500" : "")
+                                "block text-black hover:text-slate-200 transition duration-150 truncate " +
+                                (isActive ? "text-[#029d85]" : "")
                               }
                               onClick={() => setSidebarOpen(false)}
                             >
@@ -205,8 +206,8 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                               end
                               to="/inicio/contribuciones"
                               className={({ isActive }) =>
-                                "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " +
-                                (isActive ? "!text-green-500" : "")
+                                "block text-black hover:text-slate-200 transition duration-150 truncate " +
+                                (isActive ? "text-[#029d85]" : "")
                               }
                               onClick={() => setSidebarOpen(false)}
                             >
@@ -220,8 +221,8 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                               end
                               to="/inicio/enviar-contribucion"
                               className={({ isActive }) =>
-                                "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " +
-                                (isActive ? "!text-green-500" : "")
+                                "block text-black hover:text-slate-200 transition duration-150 truncate " +
+                                (isActive ? "text-[#029d85]" : "")
                               }
                               onClick={() => setSidebarOpen(false)}
                             >
@@ -235,8 +236,8 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                               end
                               to="/inicio/reportes"
                               className={({ isActive }) =>
-                                "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " +
-                                (isActive ? "!text-green-500" : "")
+                                "block text-black hover:text-slate-200 transition duration-150 truncate " +
+                                (isActive ? "text-[#029d85]" : "")
                               }
                               onClick={() => setSidebarOpen(false)}
                             >
@@ -258,9 +259,9 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                     <React.Fragment>
                       <a
                         href="#0"
-                        className={`block text-slate-200 hover:text-white truncate transition duration-150 ${
+                        className={`block text-black hover:text-slate-300 truncate transition duration-150 ${
                           pathname.includes("admin") &&
-                          "hover:text-slate-200"
+                          "hover:text-slate-500"
                         }`}
                         onClick={(e) => {
                           e.preventDefault();
@@ -273,11 +274,11 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                           <div className="flex items-center">
                             <svg className="shrink-0 h-6 w-6" viewBox="0 0 24 24">
                               <path
-                                className={`fill-current text-slate-600 ${pathname.includes('admin') && 'text-green-500'}`}
+                                className={`fill-current text-slate-600 ${pathname.includes('admin') && 'text-green-600'}`}
                                 d="M18.974 8H22a2 2 0 012 2v6h-2v5a1 1 0 01-1 1h-2a1 1 0 01-1-1v-5h-2v-6a2 2 0 012-2h.974zM20 7a2 2 0 11-.001-3.999A2 2 0 0120 7zM2.974 8H6a2 2 0 012 2v6H6v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5H0v-6a2 2 0 012-2h.974zM4 7a2 2 0 11-.001-3.999A2 2 0 014 7z"
                               />
                               <path
-                                className={`fill-current text-slate-400 ${pathname.includes('admin') && 'text-green-300'}`}
+                                className={`fill-current text-black ${pathname.includes('admin') && 'text-[#029d85]'}`}
                                 d="M12 6a3 3 0 110-6 3 3 0 010 6zm2 18h-4a1 1 0 01-1-1v-6H6v-6a3 3 0 013-3h6a3 3 0 013 3v6h-3v6a1 1 0 01-1 1z"
                               />
                             </svg>
@@ -287,7 +288,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                           </div>
                           <div className="flex shrink-0 ml-2">
                             <svg
-                              className={`w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 ${
+                              className={`w-3 h-3 shrink-0 ml-1 fill-current text-black ${
                                 open && "rotate-180"
                               }`}
                               viewBox="0 0 12 12"
@@ -304,8 +305,8 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                               end
                               to="/admin/reportes"
                               className={({ isActive }) =>
-                                "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " +
-                                (isActive ? "!text-green-500" : "")
+                                "block text-black hover:text-slate-300 transition duration-150 truncate " +
+                                (isActive ? "text-[#029d85]" : "")
                               }
                               onClick={() => setSidebarOpen(false)}
                             >
@@ -319,8 +320,8 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                               end
                               to="/admin/redes"
                               className={({ isActive }) =>
-                                "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " +
-                                (isActive ? "!text-green-500" : "")
+                                "block text-black hover:text-slate-300 transition duration-150 truncate " +
+                                (isActive ? "text-[#029d85]" : "")
                               }
                               onClick={() => setSidebarOpen(false)}
                             >
@@ -348,7 +349,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                 viewBox="0 0 24 24"
               >
                 <path
-                  className="text-slate-400"
+                  className="text-black"
                   d="M19.586 11l-5-5L16 4.586 23.414 12 16 19.414 14.586 18l5-5H7v-2z"
                 />
                 <path className="text-slate-600" d="M3 23H1V1h2z" />

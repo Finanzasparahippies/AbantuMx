@@ -40,8 +40,8 @@ const handleSubmit = () => {
     text: "Estas a punto de unirte a esta red.",
     icon: 'warning',
     showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
+    confirmButtonColor: '#03E19B',
+    cancelButtonColor: '#9c9c9c',
     confirmButtonText: 'Si, unirme'
   }).then((result) => {
     if (result.isConfirmed) {
@@ -51,7 +51,8 @@ const handleSubmit = () => {
           title: '¡Te has unido a la red!',
           text: 'Ahora formas parte de esta red.',
           icon: 'success',
-          confirmButtonText: 'Aceptar'
+          showConfirmButton: false,
+          timer: 1000
         });
         console.log(res.data.message);
         setRestart(!restart);
@@ -62,7 +63,8 @@ const handleSubmit = () => {
           title: '¡Error!',
           text: err.response.data.message,
           icon: 'error',
-          confirmButtonText: 'Aceptar'
+          showConfirmButton: false,
+          timer: 1000
         });
       });
     }
@@ -102,11 +104,11 @@ const handleCancel = () => {
                                           <p className="text-gray-600 text-sm">En esta red contribuyes con ${item.descripcion} pesos al mes.</p>
                                       </div>
                                       {item.activa ?
-                                      <div className="flex items-center justify-center bg-green-100 text-green-500 rounded-lg px-3 py-2">
+                                      <div className="flex items-center justify-center bg-[#c0fff5] text-[#029d85] rounded-lg px-3 py-2">
                                           <p className="text-lg font-semibold">Ya estas en esta red</p>
                                       </div>
                                       :
-                                      <button className="text-gray-700 text-lg border rounded-lg px-3 py-2 duration-150 hover:bg-gray-100" onClick={() => handleModal(item.nombre)}>Unirse</button>
+                                      <button className="text-gray-700 text-lg border rounded-lg px-3 py-2 duration-150 hover:bg-[#029d85] hover:text-white" onClick={() => handleModal(item.nombre)}>Unirse</button>
                                       }
                                   </div>
                               </li>

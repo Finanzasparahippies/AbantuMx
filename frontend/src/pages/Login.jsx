@@ -62,7 +62,7 @@ function Login() {
 
 
   return (
-    <section className="h-screen">
+    <section className="h-screen bg-[#029d85]">
       <div className="px-6 h-full text-gray-800">
         <div
           className="flex xl:justify-center lg:justify-center justify-center items-center flex-wrap h-full g-6"
@@ -70,12 +70,12 @@ function Login() {
           <div
             className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0"
           >
-            <img src={Images.logoDark} alt="login" className="w-half" />
+            <img src={Images.logo} alt="login" className="w-half" />
           </div>
           <div className="w-12/12 sm:w-4/12 mb-12 md:mb-0">
             <form onSubmit={handleSubmit}>
               <div className="flex flex-row items-center justify-center lg:justify-center mb-3">
-                <h1 className="text-4xl font-bold text-gray-800">Inicio de Sesión</h1>
+                <h1 className="text-4xl font-bold text-white">Inicio de Sesión</h1>
                 <p className="text-sm text-gray-500 ml-2"></p>
               </div>
               <div className="mb-6">
@@ -107,13 +107,13 @@ function Login() {
               <div className="text-center">
                 <button
                   type="submit"
-                  className="inline-block px-7 py-3 bg-green-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                  className="inline-block px-7 py-3 bg-[#03E19B] text-black font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-[#c0fff5] hover:shadow-lg focus:bg-[#c0fff5] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#c0fff5] active:shadow-lg transition duration-150 ease-in-out"
                 >
                   Iniciar sesión
                 </button>
               </div>
             </form>
-            <div className="w-full text-center text-gray-500 mt-5">
+            <div className="w-full text-center text-white mt-5 font-bold">
               <Link className="text-lg underline" onClick={() => setSignup(true)}>
                 ¿No tienes cuenta? Regístrate
               </Link>

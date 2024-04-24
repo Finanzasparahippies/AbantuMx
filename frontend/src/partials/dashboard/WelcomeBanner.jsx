@@ -2,7 +2,7 @@ import React from 'react';
 
 function WelcomeBanner() {
   return (
-    <div className="relative p-4 sm:p-6 rounded-sm overflow-hidden mb-8" style={{backgroundColor: '#05E09C'}}>
+    <div className="relative p-4 sm:p-6 rounded-sm overflow-hidden mb-8 bg-[#03E19B]">
 
       {/* Content */}
       <div className="relative">

@@ -89,8 +89,8 @@ const handleSubmit = () => {
     text: "Estas a punto de actualizar tu perfil, ¿estas seguro de querer continuar?",
     icon: 'warning',
     showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
+    confirmButtonColor: '#03E19B',
+    cancelButtonColor: '#9c9c9c',
     cancelButtonText: 'Cancelar',
     confirmButtonText: 'Si, actualizar',
   }).then((result) => {
@@ -100,7 +100,8 @@ const handleSubmit = () => {
           title: '¡Listo!',
           text: 'Tu perfil ha sido actualizado.',
           icon: 'success',
-          confirmButtonText: 'Aceptar'
+          showConfirmButton: false,
+          timer: 1000
         });
         console.log(res.data.message);
         setRestart(!restart);
@@ -111,7 +112,8 @@ const handleSubmit = () => {
           title: '¡Error!',
           text: 'Ha ocurrido un error, intenta de nuevo.',
           icon: 'error',
-          confirmButtonText: 'Aceptar'
+          showConfirmButton: false,
+          timer: 1000
         });
       });
     }
@@ -214,8 +216,8 @@ const handleSubmitPassword = () => {
     text: "Estas a punto de cambiar tu contraseña, ¿estas seguro de querer continuar?",
     icon: 'warning',
     showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
+    confirmButtonColor: '#03E19B',
+    cancelButtonColor: '#9c9c9c',
     cancelButtonText: 'Cancelar',
     confirmButtonText: 'Si, cambiar',
   }).then((result) => {
@@ -225,7 +227,8 @@ const handleSubmitPassword = () => {
           title: '¡Listo!',
           text: 'Tu contraseña ha sido actualizada.',
           icon: 'success',
-          confirmButtonText: 'Aceptar'
+          showConfirmButton: false,
+          timer: 1000
         });
         setModal(false);
       }
@@ -235,7 +238,8 @@ const handleSubmitPassword = () => {
           title: '¡Error!',
           text: 'Ha ocurrido un error, intenta de nuevo.',
           icon: 'error',
-          confirmButtonText: 'Aceptar'
+          showConfirmButton: false,
+          timer: 1000
         });
       });
     }
@@ -250,21 +254,21 @@ const handleSubmitPassword = () => {
           <section className="container mx-auto">
             <div className="flex flex-col items-center mb-8">
               <h2 className="text-gray-800 text-xl font-extrabold sm:text-2xl">Mi Perfil</h2>
-              <p className="text-gray-600 mt-2">Aquí puedes consultar y actualizar la información de tu perfil.</p>
+              <p className="text-gray-800 mt-2">Aquí puedes consultar y actualizar la información de tu perfil.</p>
             </div>
-            <div className="mx-auto px-4 md:px-8 space-y-6 sm:max-w-mdspace-y-6 text-gray-600 sm:max-w-md bg-white shadow sm:rounded-lg p-6">
+            <div className="mx-auto px-4 md:px-8 space-y-6 sm:max-w-mdspace-y-6 text-white sm:max-w-md bg-[#029d85] shadow sm:rounded-lg p-6">
               <div className="text-center py-4">
                 <img src={perfil?.profile_img ? perfil?.profile_img : "https://ui-avatars.com/api/?name=" + perfil?.first_name.charAt(0) + "&background=random"} alt="profile" className="w-24 h-24 mx-auto rounded-full" />
                 <div className="mt-5 space-y-2">
-                  <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">{perfil?.first_name + " " + perfil?.last_name}</h3>
+                  <h3 className="text-white text-2xl font-bold sm:text-3xl">{perfil?.first_name + " " + perfil?.last_name}</h3>
                 </div>
                 <div className="mt-2 space-y-2">
-                  <p className="text-gray-800 text-md font-bold">Código de invitación:</p>
-                  <p className="text-gray-800 text-md font-semibold">{perfil.codigo}</p>
+                  <p className="text-white text-md font-bold">Código de invitación:</p>
+                  <p className="text-white text-md font-semibold">{perfil.codigo}</p>
                 </div>
                 <div className="mt-2 space-y-2">
                   <button
-                    className="px-4 py-2 text-white font-medium bg-green-600 hover:bg-green-500 active:bg-green-600 rounded-lg duration-150"
+                    className="px-4 py-2 text-black font-medium bg-[#c0fff5] hover:bg-[#03E19B] active:bg-[#03E19B] rounded-lg duration-150"
                     onClick={copyClipboard}
                   >
                     Copiar Código
@@ -277,7 +281,7 @@ const handleSubmitPassword = () => {
                 </label>
                 <input
                   type="text"
-                  className="w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg"
+                  className="w-full mt-2 px-3 py-2 text-black bg-white outline-none shadow-sm rounded-lg"
                   value={perfil.first_name}
                   onChange={handleChange}
                   name="first_name"
@@ -289,7 +293,7 @@ const handleSubmitPassword = () => {
                 </label>
                 <input
                   type="text"
-                  className="w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg"
+                  className="w-full mt-2 px-3 py-2 text-black bg-white outline-none shadow-sm rounded-lg"
                   value={perfil.last_name}
                   name="last_name"
                   onChange={handleChange}
@@ -301,7 +305,7 @@ const handleSubmitPassword = () => {
                 </label>
                 <input
                   type="text"
-                  className="w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg"
+                  className="w-full mt-2 px-3 py-2 text-black bg-white outline-none shadow-sm rounded-lg"
                   value={perfil.phone}
                   name="phone"
                   onChange={handleChange}
@@ -314,7 +318,7 @@ const handleSubmitPassword = () => {
                 </label>
                 <input
                   type="text"
-                  className={!emailError ? "w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-red-600 bg-transparent outline-none shadow-sm rounded-lg"}
+                  className={!emailError ? "w-full mt-2 px-3 py-2 text-black bg-white outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-red-600 bg-white outline-none shadow-sm rounded-lg"}
                   value={perfil.email}
                   name="email"
                   onChange={handleEmail}
@@ -326,7 +330,7 @@ const handleSubmitPassword = () => {
                   Banco
                 </label>
                 <select
-                  className="w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg"
+                  className="w-full mt-2 px-3 py-2 text-black bg-white outline-none shadow-sm rounded-lg"
                   value={perfil.bank}
                   name="bank"
                   onChange={handleChange}
@@ -343,7 +347,7 @@ const handleSubmitPassword = () => {
                 </label>
                 <input
                   type="text"
-                  className={!BankAccountError ? "w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-red-600 bg-transparent outline-none shadow-sm rounded-lg"}
+                  className={!BankAccountError ? "w-full mt-2 px-3 py-2 text-black bg-white outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-red-600 bg-white outline-none shadow-sm rounded-lg"}
                   value={perfil.bank_account}
                   name="bank_account"
                   onChange={handleBankAccount}
@@ -356,7 +360,7 @@ const handleSubmitPassword = () => {
                 </label>
                 <input
                   type="text"
-                  className={!TarjetaError ? "w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-red-600 bg-transparent outline-none shadow-sm rounded-lg"}
+                  className={!TarjetaError ? "w-full mt-2 px-3 py-2 text-black bg-white outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-red-600 bg-white outline-none shadow-sm rounded-lg"}
                   value={perfil.bank_card}
                   name="bank_card"
                   onChange={handleTarjeta}
@@ -369,7 +373,7 @@ const handleSubmitPassword = () => {
                 </label>
                 <input
                   type="text"
-                  className={!clabeError ? "w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-red-600 bg-transparent outline-none shadow-sm rounded-lg"}
+                  className={!clabeError ? "w-full mt-2 px-3 py-2 text-black bg-white outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-red-600 bg-white outline-none shadow-sm rounded-lg"}
                   value={perfil.bank_clabe}
                   name="bank_clabe"
                   onChange={handleCLABE}
@@ -377,20 +381,20 @@ const handleSubmitPassword = () => {
                 {clabeError === true ? <p className='mt-2 text-sm text-red-600' id='email-error'>CLABE inválida</p> : null}
               </div>
               <button
-                className="w-full px-4 py-2 text-white font-medium bg-green-600 hover:bg-green-500 active:bg-green-600 rounded-lg duration-150"
+                className="w-full px-4 py-2 text-black font-medium bg-[#c0fff5] hover:bg-[#03E19B] active:bg-[#03E19B] rounded-lg duration-150"
                 onClick={handleSubmit}
               >
                 Guardar Cambios
               </button>
               <button
-                className="w-full px-4 py-2 text-white font-medium bg-gray-600 hover:bg-gray-500 active:bg-gray-600 rounded-lg duration-150"
+                className="w-full px-4 py-2 text-white font-medium bg-gray-600 hover:bg-gray-500 active:bg-white rounded-lg duration-150"
                 onClick={() => setModal(true)}
               >
                 Cambiar Contraseña
               </button>
             </div>
           </section>
-          <div className={ modal ? "fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full display-block" : "hidden"}>
+          <div className={ modal ? "fixed inset-0 bg-white bg-opacity-50 overflow-y-auto h-full w-full display-block" : "hidden"}>
             <div className="relative py-4 text-left px-6 bg-white rounded-lg shadow-xl w-11/12 md:w-1/2 mx-auto align-center justify-center my-24">
 
               <div className="flex justify-between items-center pb-3">
@@ -411,7 +415,7 @@ const handleSubmitPassword = () => {
                 <input
                   name="password"
                   type={passEye ? "text" : "password"}
-                  className={!passwordError ? "w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg border-red-600"}
+                  className={!passwordError ? "w-full mt-2 px-3 py-2 text-gray-800 bg-white outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-gray-800 bg-white outline-none shadow-sm rounded-lg border-red-600"}
                   value={password}
                   onChange={(e) => handlePassword(e)}
                 />
@@ -426,14 +430,14 @@ const handleSubmitPassword = () => {
                 <input
                   name="password2"
                   type={passEye2 ? "text" : "password"}
-                  className={!passwordError ? "w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-gray-600 bg-transparent outline-none shadow-sm rounded-lg border-red-600"}
+                  className={!passwordError ? "w-full mt-2 px-3 py-2 text-gray-800 bg-white outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-gray-800 bg-white outline-none shadow-sm rounded-lg border-red-600"}
                   value={password2}
                   onChange={(e) => handlePassword(e)}
                 />
               </div>
               {passwordError === true ? <p className='mt-2 text-sm text-red-600' id='email-error'>Las contraseñas no coinciden</p> : null}
               <div className="flex justify-end pt-2">
-                <button className="px-4 bg-transparent p-3 rounded-lg text-green-500 hover:bg-gray-100 hover:text-green-400 mr-2" onClick={handleSubmitPassword}>Cambiar Contraseña</button>
+                <button className="px-4 bg-white p-3 rounded-lg text-green-500 hover:bg-gray-100 hover:text-green-400 mr-2" onClick={handleSubmitPassword}>Cambiar Contraseña</button>
                 <button className="modal-close px-4 bg-green-500 p-3 rounded-lg text-white hover:bg-green-400" onClick={handleCancel}>Cancelar</button>
               </div>
             </div>

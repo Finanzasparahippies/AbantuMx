@@ -60,7 +60,7 @@ function DonacionesEnviadas() {
                   <div className="text-center">{donacion.red}</div>
                 </td>
                 <td className="p-2">
-                  <div className="text-center text-green-500">{donacion.fecha.split('T')[0]}</div>
+                  <div className="text-center text-[#029d85]">{donacion.fecha.split('T')[0]}</div>
                 </td>
                 <td className="p-2 flex justify-center">
                   { donacion.evidencia === null ?
@@ -75,9 +75,9 @@ function DonacionesEnviadas() {
             </tbody>
             <tfoot>
               <tr>
-                <td colSpan="4" className="text-center text-xs text-green-500 py-3">
+                <td colSpan="4" className="text-center text-xs text-[#029d85] py-3">
                   <Link 
-                    className="bg-green-50 hover:bg-green-100 text-green-400 hover:text-green-500 px-3 py-1 rounded-sm"
+                    className="bg-green-50 hover:bg-green-100 text-gray-800 hover:text-[#029d85] px-3 py-1 rounded-sm"
                     to="/inicio/contribuciones"
                   >
                     Ver todas

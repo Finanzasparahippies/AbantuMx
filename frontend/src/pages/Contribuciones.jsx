@@ -71,6 +71,8 @@ function Contribuciones() {
       'showCancelButton': true,
       'confirmButtonText': 'Sí',
       'cancelButtonText': 'No',
+      'confirmButtonColor': '#03E19B',
+      'cancelButtonColor': '#9c9c9c',
       }).then((result) => {
       if (result.isConfirmed) {
         API.post(`/api/sistema/reportar-donacion/`, {
@@ -125,7 +127,7 @@ function Contribuciones() {
           {tabItems.map((item, idx) => (
             <Tabs.Trigger
               key={idx}
-              className="data-[state=active]:bg-white data-[state=active]:text-green-600 data-[state=active]:shadow-sm py-1.5 px-3 rounded-lg duration-150 text-gray-500 hover:text-green-600 hover:bg-white active:bg-white/50 font-medium"
+              className="data-[state=active]:bg-[#029d85] data-[state=active]:text-white data-[state=active]:shadow-sm py-1.5 px-3 rounded-lg duration-150 text-gray-500 hover:text-white hover:bg-[#029d85] active:bg-[#029d85] font-medium"
               value={item}
             >
               {item}
@@ -200,7 +202,7 @@ function Contribuciones() {
                         <div className="text-center">{donacion.red}</div>
                       </td>
                       <td className="p-2">
-                        <div className="text-center text-green-500">{donacion.fecha.split('T')[0]}</div>
+                        <div className="text-center text-[#029d85]">{donacion.fecha.split('T')[0]}</div>
                       </td>
                       <td className="p-2 flex justify-center">
                         { donacion.evidencia === null ?
@@ -228,7 +230,7 @@ function Contribuciones() {
           </div>
         )}
         {recibidas.length > 0 ? (
-          <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200">
+          <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200 mt-4">
             <header className="px-5 py-4 border-b border-slate-100">
               <h2 className="font-semibold text-slate-800">Recibidas</h2>
             </header>
@@ -273,7 +275,7 @@ function Contribuciones() {
                         <div className="text-center">{donacion.red}</div>
                       </td>
                       <td className="p-2">
-                        <div className="text-center text-green-500">{donacion.fecha.split('T')[0]}</div>
+                        <div className="text-center text-[#029d85]">{donacion.fecha.split('T')[0]}</div>
                       </td>
                       <td className="p-2 flex justify-center">
                         { donacion.evidencia === null ?
@@ -333,7 +335,7 @@ function Contribuciones() {
               </label>
               <textarea className="w-full h-24 px-3 py-2 text-base placeholder-gray-300 border rounded-lg focus:shadow-outline" name="comments" value={comments} onChange={e => setComments(e.target.value)}></textarea>
               <div className="flex justify-end pt-2">
-                <button className="px-4 bg-transparent p-3 rounded-lg text-green-500 hover:bg-gray-100 hover:text-green-400 mr-2" onClick={handleReportSend.bind(this, id)}>Enviar reporte</button>
+                <button className="px-4 bg-transparent p-3 rounded-lg text-[#029d85] hover:bg-gray-100 hover:text-green-400 mr-2" onClick={handleReportSend.bind(this, id)}>Enviar reporte</button>
                 <button className="modal-close px-4 bg-green-500 p-3 rounded-lg text-white hover:bg-green-400" onClick={handleCancel}>Cancelar</button>
               </div>
             </div>
