@@ -44,16 +44,16 @@ function Reportes() {
           <h2 className="text-gray-800 text-xl font-extrabold sm:text-2xl">Reportes</h2>
           <p className="text-gray-600 mt-2">Aquí podrás consultar los reportes de tus contribuciones que hayas enviado y recibido.</p>
         </div>
-          <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200 mt-4">
-            <header className="px-5 py-4 border-b border-slate-100">
-              <h2 className="font-semibold text-slate-800">Enviados</h2>
+          <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-xl border border-slate-200 mt-4">
+            <header className="px-5 py-4 bg-[#03E19B] rounded-xl">
+              <h2 className="font-semibold text-white">Enviados</h2>
             </header>
             <div className="p-3">
               {/* Table */}
               <div className="overflow-x-auto">
                 <table className="table-auto w-full">
                   {/* Table header */}
-                  <thead className="text-xs uppercase text-slate-400 bg-slate-50 rounded-sm">
+                  <thead className="text-xs uppercase text-slate-400 bg-slate-50 rounded-xl">
                     <tr>
                       <th className="p-2">
                         <div className="font-semibold text-left">Contribuyente</div>
@@ -102,16 +102,16 @@ function Reportes() {
               </div>
             </div>
           </div>
-          <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200 mt-4">
-            <header className="px-5 py-4 border-b border-slate-100">
-              <h2 className="font-semibold text-slate-800">Recibidos</h2>
+          <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-xl border border-slate-200 mt-4">
+            <header className="px-5 py-4 bg-[#03E19B] rounded-xl">
+              <h2 className="font-semibold text-white">Recibidos</h2>
             </header>
             <div className="p-3">
               {/* Table */}
               <div className="overflow-x-auto">
                 <table className="table-auto w-full">
                   {/* Table header */}
-                  <thead className="text-xs uppercase text-slate-400 bg-slate-50 rounded-sm">
+                  <thead className="text-xs uppercase text-slate-400 bg-slate-50 rounded-xl">
                     <tr>
                       <th className="p-2">
                         <div className="font-semibold text-left">Contribuyente</div>

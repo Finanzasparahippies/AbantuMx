@@ -145,32 +145,32 @@ function Contribucion() {
           {red && Object.keys(red).length > 0 ? (
             <div className="p-3">
               <div className="mt-4">
-                <h3 className="text-xl font-semibold text-gray-700">Información Bancaria</h3>
+                <h3 className="text-xl text-[#029d85] font-bold">Información Bancaria</h3>
                 <div className="mt-4">
                   <div className="flex items-center">
-                    <p className="text-sm text-gray-600 mr-2">Nombre:</p>
+                    <p className="text-sm text-[#029d85] font-bold mr-2">Nombre:</p>
                     <p className="text-sm font-semibold text-gray-800">{red.beneficiario}</p>
                   </div>
                   <div className="flex items-center mt-2">
-                    <p className="text-sm text-gray-600 mr-2">Banco:</p>
+                    <p className="text-sm text-[#029d85] font-bold mr-2">Banco:</p>
                     <p className="text-sm font-semibold text-gray-800">{red.bank}</p>
                   </div>
                   <div className="flex items-center mt-2">
-                    <p className="text-sm text-gray-600 mr-2">Número de Cuenta:</p>
+                    <p className="text-sm text-[#029d85] font-bold mr-2">Número de Cuenta:</p>
                     <p className="text-sm font-semibold text-gray-800">{red.bank_account}</p>
                   </div>
                   <div className="flex items-center mt-2">
-                    <p className="text-sm text-gray-600 mr-2">CLABE Interbancaria:</p>
+                    <p className="text-sm text-[#029d85] font-bold mr-2">CLABE Interbancaria:</p>
                     <p className="text-sm font-semibold text-gray-800">{red.bank_clabe}</p>
                   </div>
                   <div className="flex items-center mt-2">
-                    <p className="text-sm text-gray-600 mr-2">Número de Tarjeta:</p>
+                    <p className="text-sm text-[#029d85] font-bold mr-2">Número de Tarjeta:</p>
                     <p className="text-sm font-semibold text-gray-800">{red.bank_card}</p>
                   </div>
                 </div>
               </div>
               <div className="mt-4">
-                <h1 className="text-xl font-semibold text-gray-700">¡Recuerda que tu fecha de contribución es el {red.fecha.toString().split('T')[0][8] + red.fecha.toString().split('T')[0][9]} de cada mes!</h1>
+                <h1 className="text-xl font-bold text-[#029d85]">¡Recuerda que tu fecha de contribución es el {red.fecha.toString().split('T')[0][8] + red.fecha.toString().split('T')[0][9]} de cada mes!</h1>
               </div>
               {red.donacion_mes ? ( 
               <div className="mt-4">

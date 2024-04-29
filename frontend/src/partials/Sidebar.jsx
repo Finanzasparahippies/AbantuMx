@@ -341,10 +341,10 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                 viewBox="0 0 24 24"
               >
                 <path
-                  className="text-black"
+                  className="text-white"
                   d="M19.586 11l-5-5L16 4.586 23.414 12 16 19.414 14.586 18l5-5H7v-2z"
                 />
-                <path className="text-slate-600" d="M3 23H1V1h2z" />
+                <path className="text-white" d="M3 23H1V1h2z" />
               </svg>
             </button>
           </div>

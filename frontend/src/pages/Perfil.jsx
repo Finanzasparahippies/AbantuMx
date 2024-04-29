@@ -256,7 +256,7 @@ const handleSubmitPassword = () => {
               <h2 className="text-gray-800 text-xl font-extrabold sm:text-2xl">Mi Perfil</h2>
               <p className="text-gray-800 mt-2">Aquí puedes consultar y actualizar la información de tu perfil.</p>
             </div>
-            <div className="mx-auto px-4 md:px-8 space-y-6 sm:max-w-mdspace-y-6 text-white sm:max-w-md bg-[#029d85] shadow sm:rounded-lg p-6">
+            <div className="mx-auto px-4 md:px-8 space-y-6 sm:max-w-mdspace-y-6 text-white sm:max-w-md bg-[#03E19B] shadow sm:rounded-lg p-6">
               <div className="text-center py-4">
                 <img src={perfil?.profile_img ? perfil?.profile_img : "https://ui-avatars.com/api/?name=" + perfil?.first_name.charAt(0) + "&background=random"} alt="profile" className="w-24 h-24 mx-auto rounded-full" />
                 <div className="mt-5 space-y-2">
@@ -268,7 +268,7 @@ const handleSubmitPassword = () => {
                 </div>
                 <div className="mt-2 space-y-2">
                   <button
-                    className="px-4 py-2 text-black font-medium bg-[#c0fff5] hover:bg-[#03E19B] active:bg-[#03E19B] rounded-lg duration-150"
+                    className="px-4 py-2 text-white hover:text-[#029d85] font-medium bg-[#029d85] hover:bg-white active:bg-white rounded-lg duration-150"
                     onClick={copyClipboard}
                   >
                     Copiar Código
@@ -281,7 +281,7 @@ const handleSubmitPassword = () => {
                 </label>
                 <input
                   type="text"
-                  className="w-full mt-2 px-3 py-2 text-black bg-white outline-none shadow-sm rounded-lg"
+                  className="w-full mt-2 px-3 py-2 text-[#029d85] bg-white outline-none shadow-sm rounded-lg"
                   value={perfil.first_name}
                   onChange={handleChange}
                   name="first_name"
@@ -293,7 +293,7 @@ const handleSubmitPassword = () => {
                 </label>
                 <input
                   type="text"
-                  className="w-full mt-2 px-3 py-2 text-black bg-white outline-none shadow-sm rounded-lg"
+                  className="w-full mt-2 px-3 py-2 text-[#029d85] bg-white outline-none shadow-sm rounded-lg"
                   value={perfil.last_name}
                   name="last_name"
                   onChange={handleChange}
@@ -305,7 +305,7 @@ const handleSubmitPassword = () => {
                 </label>
                 <input
                   type="text"
-                  className="w-full mt-2 px-3 py-2 text-black bg-white outline-none shadow-sm rounded-lg"
+                  className="w-full mt-2 px-3 py-2 text-[#029d85] bg-white outline-none shadow-sm rounded-lg"
                   value={perfil.phone}
                   name="phone"
                   onChange={handleChange}
@@ -318,7 +318,7 @@ const handleSubmitPassword = () => {
                 </label>
                 <input
                   type="text"
-                  className={!emailError ? "w-full mt-2 px-3 py-2 text-black bg-white outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-red-600 bg-white outline-none shadow-sm rounded-lg"}
+                  className={!emailError ? "w-full mt-2 px-3 py-2 text-[#029d85] bg-white outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-red-600 bg-white outline-none shadow-sm rounded-lg"}
                   value={perfil.email}
                   name="email"
                   onChange={handleEmail}
@@ -330,7 +330,7 @@ const handleSubmitPassword = () => {
                   Banco
                 </label>
                 <select
-                  className="w-full mt-2 px-3 py-2 text-black bg-white outline-none shadow-sm rounded-lg"
+                  className="w-full mt-2 px-3 py-2 text-[#029d85] bg-white outline-none shadow-sm rounded-lg"
                   value={perfil.bank}
                   name="bank"
                   onChange={handleChange}
@@ -347,10 +347,11 @@ const handleSubmitPassword = () => {
                 </label>
                 <input
                   type="text"
-                  className={!BankAccountError ? "w-full mt-2 px-3 py-2 text-black bg-white outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-red-600 bg-white outline-none shadow-sm rounded-lg"}
+                  className={!BankAccountError ? "w-full mt-2 px-3 py-2 text-[#029d85] bg-white outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-red-600 bg-white outline-none shadow-sm rounded-lg"}
                   value={perfil.bank_account}
                   name="bank_account"
                   onChange={handleBankAccount}
+                  maxLength="10"
                 />
                 {BankAccountError === true ? <p className='mt-2 text-sm text-red-600' id='email-error'>Numero de cuenta inválido</p> : null}
               </div>
@@ -360,10 +361,11 @@ const handleSubmitPassword = () => {
                 </label>
                 <input
                   type="text"
-                  className={!TarjetaError ? "w-full mt-2 px-3 py-2 text-black bg-white outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-red-600 bg-white outline-none shadow-sm rounded-lg"}
+                  className={!TarjetaError ? "w-full mt-2 px-3 py-2 text-[#029d85] bg-white outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-red-600 bg-white outline-none shadow-sm rounded-lg"}
                   value={perfil.bank_card}
                   name="bank_card"
                   onChange={handleTarjeta}
+                  maxLength="16"
                 />
                 {TarjetaError === true ? <p className='mt-2 text-sm text-red-600' id='email-error'>Numero de tarjeta inválido</p> : null}
               </div>
@@ -373,15 +375,16 @@ const handleSubmitPassword = () => {
                 </label>
                 <input
                   type="text"
-                  className={!clabeError ? "w-full mt-2 px-3 py-2 text-black bg-white outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-red-600 bg-white outline-none shadow-sm rounded-lg"}
+                  className={!clabeError ? "w-full mt-2 px-3 py-2 text-[#029d85] bg-white outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-red-600 bg-white outline-none shadow-sm rounded-lg"}
                   value={perfil.bank_clabe}
                   name="bank_clabe"
                   onChange={handleCLABE}
+                  maxLength="18"
                 />
                 {clabeError === true ? <p className='mt-2 text-sm text-red-600' id='email-error'>CLABE inválida</p> : null}
               </div>
               <button
-                className="w-full px-4 py-2 text-black font-medium bg-[#c0fff5] hover:bg-[#03E19B] active:bg-[#03E19B] rounded-lg duration-150"
+                className="w-full px-4 py-2 text-white hover:text-[#029d85] font-medium bg-[#029d85] hover:bg-white active:bg-white rounded-lg duration-150"
                 onClick={handleSubmit}
               >
                 Guardar Cambios
@@ -395,50 +398,52 @@ const handleSubmitPassword = () => {
             </div>
           </section>
           <div className={ modal ? "fixed inset-0 bg-white bg-opacity-50 overflow-y-auto h-full w-full display-block" : "hidden"}>
-            <div className="relative py-4 text-left px-6 bg-white rounded-lg shadow-xl w-11/12 md:w-1/2 mx-auto align-center justify-center my-24">
+            <div className="relative py-4 text-left px-6 bg-[#03E19B] rounded-lg shadow-xl w-11/12 md:w-1/2 mx-auto align-center justify-center my-24">
 
               <div className="flex justify-between items-center pb-3">
-                <p className="text-2xl font-bold">Cambiar Contraseña</p>
+                <p className="text-2xl font-bold text-white">Cambiar Contraseña</p>
                 <div className="modal-close cursor-pointer z-50" onClick={handleCancel}>
-                  <svg className="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                  <svg className="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
                     <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
                   </svg>
                 </div>
               </div>
-              <label className="font-bold">
+              <label className="font-bold text-white">
                 Contraseña Nueva
               </label>
               <div className="mb-5 flex flex-row items-center justify-between relative">
                 <div>
-                  {passEye ? <span className="fa-solid fa-eye-slash flex items-center cursor-pointer absolute right-2" onClick={() => setPassEye(!passEye)}></span> : <span className="fa-solid fa-eye flex items-center cursor-pointer absolute right-2" onClick={() => setPassEye(!passEye)}></span>}
+                  {passEye ? <span className="fa-solid fa-eye-slash flex items-center cursor-pointer absolute right-2 text-[#029d85]" onClick={() => setPassEye(!passEye)}></span> : <span className="fa-solid fa-eye flex items-center cursor-pointer absolute right-2 text-[#029d85]" onClick={() => setPassEye(!passEye)}></span>}
                 </div>
                 <input
                   name="password"
                   type={passEye ? "text" : "password"}
-                  className={!passwordError ? "w-full mt-2 px-3 py-2 text-gray-800 bg-white outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-gray-800 bg-white outline-none shadow-sm rounded-lg border-red-600"}
+                  className={!passwordError ? "w-full mt-2 px-3 py-2 text-[#029d85] bg-white outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-[#029d85] bg-white outline-none shadow-sm rounded-lg border-red-600"}
                   value={password}
                   onChange={(e) => handlePassword(e)}
+                  placeholder="Contraseña Nueva"
                 />
               </div>
-              <label className="font-bold">
+              <label className="font-bold text-white">
                 Confirmar Contraseña
               </label>
               <div className="mb-5 flex flex-row items-center justify-between relative">
                 <div>
-                  {passEye2 ? <span className="fa-solid fa-eye-slash flex items-center cursor-pointer absolute right-2" onClick={() => setPassEye2(!passEye2)}></span> : <span className="fa-solid fa-eye flex items-center cursor-pointer absolute right-2" onClick={() => setPassEye2(!passEye2)}></span>}
+                  {passEye2 ? <span className="fa-solid fa-eye-slash flex items-center cursor-pointer absolute right-2 text-[#029d85]" onClick={() => setPassEye2(!passEye2)}></span> : <span className="fa-solid fa-eye flex items-center cursor-pointer absolute right-2 text-[#029d85]" onClick={() => setPassEye2(!passEye2)}></span>}
                 </div>
                 <input
                   name="password2"
                   type={passEye2 ? "text" : "password"}
-                  className={!passwordError ? "w-full mt-2 px-3 py-2 text-gray-800 bg-white outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-gray-800 bg-white outline-none shadow-sm rounded-lg border-red-600"}
+                  className={!passwordError ? "w-full mt-2 px-3 py-2 text-[#029d85] bg-white outline-none shadow-sm rounded-lg" : "w-full mt-2 px-3 py-2 text-[#029d85] bg-white outline-none shadow-sm rounded-lg border-red-600"}
                   value={password2}
                   onChange={(e) => handlePassword(e)}
+                  placeholder="Confirmar Contraseña Nueva"
                 />
               </div>
               {passwordError === true ? <p className='mt-2 text-sm text-red-600' id='email-error'>Las contraseñas no coinciden</p> : null}
               <div className="flex justify-end pt-2">
-                <button className="px-4 bg-white p-3 rounded-lg text-green-500 hover:bg-gray-100 hover:text-green-400 mr-2" onClick={handleSubmitPassword}>Cambiar Contraseña</button>
-                <button className="modal-close px-4 bg-green-500 p-3 rounded-lg text-white hover:bg-green-400" onClick={handleCancel}>Cancelar</button>
+                <button className="px-4 p-3 rounded-lg text-white hover:text-[#029d85] font-medium bg-[#029d85] hover:bg-white active:bg-white mr-2" onClick={handleSubmitPassword}>Cambiar Contraseña</button>
+                <button className="modal-close px-4 text-white font-medium bg-gray-600 hover:bg-gray-500 active:bg-white p-3 rounded-lg" onClick={handleCancel}>Cancelar</button>
               </div>
             </div>
           </div>

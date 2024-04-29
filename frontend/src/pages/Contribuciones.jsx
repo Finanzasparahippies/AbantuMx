@@ -160,16 +160,16 @@ function Contribuciones() {
           </select>
         </div>
         {enviadas.length > 0 ? (
-          <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200 mt-4">
-            <header className="px-5 py-4 border-b border-slate-100">
-              <h2 className="font-semibold text-slate-800">Enviadas</h2>
+          <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-xl border border-slate-200 mt-4">
+            <header className="px-5 py-4 border-b border-slate-100 bg-[#03E19B] rounded-xl">
+              <h2 className="font-semibold text-white">Enviadas</h2>
             </header>
             <div className="p-3">
               {/* Table */}
               <div className="overflow-x-auto">
                 <table className="table-auto w-full">
                   {/* Table header */}
-                  <thead className="text-xs uppercase text-slate-400 bg-slate-50 rounded-sm">
+                  <thead className="text-xs uppercase text-slate-400 bg-slate-50 rounded-xl">
                     <tr>
                       <th className="p-2">
                         <div className="font-semibold text-left">Beneficiario</div>
@@ -208,7 +208,7 @@ function Contribuciones() {
                         { donacion.evidencia === null ?
                         <div className="text-center">Sin evidencia</div>
                         :
-                        <div className="text-center"><ModalImage small={donacion.evidencia} large={donacion.evidencia} alt="evidencia" className="w-16 h-16" hideDownload hideZoom /></div>
+                        <div className="text-center"><ModalImage small={donacion.evidencia} large={donacion.evidencia} alt="evidencia" className="w-16 h-16 rounded-lg" hideDownload hideZoom /></div>
                         }
                       </td>
                     </tr>
@@ -220,9 +220,9 @@ function Contribuciones() {
             </div>
           </div>
         ) : (
-          <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200 mt-4">
-            <header className="px-5 py-4 border-b border-slate-100">
-              <h2 className="font-semibold text-slate-800">Enviadas</h2>
+          <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-xl border border-slate-200 mt-4">
+            <header className="px-5 py-4 bg-[#03E19B] rounded-xl">
+              <h2 className="font-semibold text-white">Enviadas</h2>
             </header>
             <div className="p-3">
               <p className="text-center text-gray-500">No has enviado donaciones en esta red</p>
@@ -230,9 +230,9 @@ function Contribuciones() {
           </div>
         )}
         {recibidas.length > 0 ? (
-          <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200 mt-4">
-            <header className="px-5 py-4 border-b border-slate-100">
-              <h2 className="font-semibold text-slate-800">Recibidas</h2>
+          <div className="col-span-full xl:col-span-8 bg-white shadow-xl rounded-xl border border-slate-200 mt-4">
+            <header className="px-5 py-4 bg-[#03E19B] rounded-xl">
+              <h2 className="font-semibold text-white">Recibidas</h2>
             </header>
             <div className="p-3">
       
@@ -240,7 +240,7 @@ function Contribuciones() {
               <div className="overflow-x-auto">
                 <table className="table-auto w-full">
                   {/* Table header */}
-                  <thead className="text-xs uppercase text-slate-400 bg-slate-50 rounded-sm">
+                  <thead className="text-xs uppercase text-slate-400 bg-slate-50 rounded-xl">
                     <tr>
                       <th className="p-2">
                         <div className="font-semibold text-left">Donador</div>
@@ -281,13 +281,13 @@ function Contribuciones() {
                         { donacion.evidencia === null ?
                         <div className="text-center">Sin evidencia</div>
                         :
-                        <div className="text-center"><ModalImage small={donacion.evidencia} large={donacion.evidencia} alt="evidencia" className="w-10 h-10" hideDownload hideZoom /></div>
+                        <div className="text-center"><ModalImage small={donacion.evidencia} large={donacion.evidencia} alt="evidencia" className="w-10 h-10 rounded-lg" hideDownload hideZoom /></div>
                         }
                       </td>
                       {donacion.reporte === true ?
                       <td className="p-2">
                         <button 
-                          className="bg-red-500 text-white font-semibold px-3 py-1 rounded-sm hover:bg-red-600 focus:outline-none focus:ring-0 focus:bg-red-600 active:bg-red-700 transition duration-150 ease-in-out"
+                          className="bg-red-500 text-white font-semibold px-3 py-1 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-0 focus:bg-red-600 active:bg-red-700 transition duration-150 ease-in-out"
                           onClick={() => {
                             handleReport(donacion.id);
                           }}
@@ -309,9 +309,9 @@ function Contribuciones() {
             </div>
           </div>
         ) : (
-          <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200 mt-4">
-            <header className="px-5 py-4 border-b border-slate-100">
-              <h2 className="font-semibold text-slate-800">Recibidas</h2>
+          <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-xl border border-slate-200 mt-4">
+            <header className="px-5 py-4 bg-[#03E19B] rounded-xl">
+              <h2 className="font-semibold text-white">Recibidas</h2>
             </header>
             <div className="p-3">
               <p className="text-center text-gray-500">No has recibido donaciones en esta red</p>
