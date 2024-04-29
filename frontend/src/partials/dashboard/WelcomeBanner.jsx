@@ -7,7 +7,7 @@ function WelcomeBanner() {
       {/* Content */}
       <div className="relative">
         <h1 className="text-2xl md:text-3xl text-slate-800 font-bold mb-1">Hola, {localStorage.getItem('name')}</h1>
-        <p>Te damos la bienvenida a tu plataforma ABANTU</p>
+        <p className="text-white text-xl font-medium">Te damos la bienvenida a tu plataforma ABANTU</p>
       </div>
 
     </div>

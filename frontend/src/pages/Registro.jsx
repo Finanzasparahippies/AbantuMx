@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import API from '../utils/API';
 import Toast from '../utils/Toast';
 import Login from '../pages/Login';
+import Images from '../images/images';
 import AnimatedPage from '../utils/AnimatedPage';
 
 const BANKS = [
@@ -223,32 +224,35 @@ function Registro() {
             <div className='px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto'>
                 
             </div>
-            <div className='px-4 sm:px-6 lg:px-8 w-full max-w-9xl mx-auto bg-[#029d85] rounded-3xl shadow p-8'>
-            <h1 className='text-2xl font-semibold text-white'>Registro de Nuevo Usuario</h1>
+            <div className='px-4 sm:px-6 lg:px-8 w-full max-w-9xl mx-auto bg-[#03E19B] rounded-3xl shadow p-8'>
+            <div className='flex justify-center items-center flex-col mb-8'>
+              <img src={Images.logo} alt='logo' className='w-[300px] mx-auto mb-4' />
+              <h1 className='text-3xl font-semibold text-white'>Registro de Nuevo Usuario</h1>
+            </div>
               <form className='space-y-8 divide-y divide-gray-200' onSubmit={handleSubmit}>
                 <div className='space-y-8 divide-y divide-gray-200 sm:space-y-5'>
                   <div>
                     <div className='mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6'>
                       <div className='sm:col-span-3'>
                         <label htmlFor='first_name' className='block text-sm font-medium text-white'>{'Nombre(s)'}</label>
-                        <input placeholder='Nombre(s)' type='text' name='first_name' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white' value={form.first_name} onChange={handleChange} />
+                        <input placeholder='Nombre(s)' type='text' name='first_name' className='text-[#029d85] mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white' value={form.first_name} onChange={handleChange} />
                       </div>
                       <div className='sm:col-span-3'>
                         <label htmlFor='last_name' className='block text-sm font-medium text-white'>{'Apellidos'}</label>
-                        <input placeholder='Apellidos' type='text' name='last_name' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white' value={form.last_name}onChange={handleChange} />
+                        <input placeholder='Apellidos' type='text' name='last_name' className='text-[#029d85] mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white' value={form.last_name}onChange={handleChange} />
                       </div>
                       <div className='sm:col-span-3'>
                         <label htmlFor='email' className='block text-sm font-medium text-white'>Correo Electrónico</label>
-                        <input placeholder='Correo Electrónico' type='text' name='email' className={emailError === false ? 'mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white' : 'mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.email} onChange={handleEmail} />
+                        <input placeholder='Correo Electrónico' type='text' name='email' className={emailError === false ? 'text-[#029d85] mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white' : 'text-[#029d85] mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.email} onChange={handleEmail} />
                         {emailError === true ? <p className='mt-2 text-sm text-red-600' id='email-error'>Correo electrónico inválido</p> : null}
                       </div>
                       <div className='sm:col-span-3'>
                         <label htmlFor='phone' className='block text-sm font-medium text-white'>Teléfono</label>
-                        <input placeholder='Teléfono a 10 dígitos' type='text' name='phone' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white' value={form.phone} onChange={handleChange} maxLength='10' />
+                        <input placeholder='Teléfono a 10 dígitos' type='text' name='phone' className='text-[#029d85] mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white' value={form.phone} onChange={handleChange} maxLength='10' />
                       </div>
                       <div className='sm:col-span-3'>
                         <label htmlFor='bank' className='block text-sm font-medium text-white'>Banco</label>
-                        <select name='bank' className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white' onChange={handleChange} > 
+                        <select name='bank' className='text-[#029d85] mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white' onChange={handleChange} > 
                             <option value=''>Selecciona un banco</option>
                             {BANKS.map((bank, index) => (
                                 <option key={index} value={bank}>{bank}</option> 
@@ -257,27 +261,27 @@ function Registro() {
                       </div>
                       <div className='sm:col-span-3'>
                         <label htmlFor='bank_card' className='block text-sm font-medium text-white'>Tarjeta de Banco</label>
-                        <input placeholder='Sólo para recibir depósitos o transferencias' type='text' name='bank_card' className={tarjetaError === false ? 'mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white' : 'mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.bank_card} onChange={handleTarjeta} maxLength='16' />
+                        <input placeholder='Sólo para recibir depósitos o transferencias' type='text' name='bank_card' className={tarjetaError === false ? 'text-[#029d85] mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white' : 'text-[#029d85] mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.bank_card} onChange={handleTarjeta} maxLength='16' />
                         {tarjetaError === true ? <p className='mt-2 text-sm text-white bg-red-500 w-1/6 p-2' id='tarjetaError'>Tarjeta inválida</p> : null}
                       </div>
                       <div className='sm:col-span-3'>
                         <label htmlFor='bank_account' className='block text-sm font-medium text-white'>Cuenta Bancaria</label>
-                        <input placeholder='Sólo para recibir depósitos o transferencias' type='text' name='bank_account' className={bankAccountError === false ? 'mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white' : 'mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.bank_account} onChange={handleBankAccount} maxLength='10' />
+                        <input placeholder='Sólo para recibir depósitos o transferencias' type='text' name='bank_account' className={bankAccountError === false ? 'text-[#029d85] mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white' : 'text-[#029d85] mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.bank_account} onChange={handleBankAccount} maxLength='10' />
                         {bankAccountError === true ? <p className='mt-2 text-sm text-white bg-red-500 w-1/6 p-2' id='cuentaError'>Cuenta inválida</p> : null}
                       </div>
                       <div className='sm:col-span-3'>
                         <label htmlFor='bank_clabe' className='block text-sm font-medium text-white'>CLABE Interbancaria</label>
-                        <input placeholder='Sólo para recibir depósitos o transferencias' type='text' name='bank_clabe' className={clabeError === false ? 'mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white' : 'mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.bank_clabe} onChange={handleCLABE} maxLength='18' />
+                        <input placeholder='Sólo para recibir depósitos o transferencias' type='text' name='bank_clabe' className={clabeError === false ? 'text-[#029d85] mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white' : 'text-[#029d85] mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.bank_clabe} onChange={handleCLABE} maxLength='18' />
                         {clabeError === true ? <p className='mt-2 text-sm text-white bg-red-500 w-1/6 p-2' id='clabeError'>CLABE inválida</p> : null}
                       </div>
                       <div className='sm:col-span-3 flex flex-row items-center justify-between relative'>
                         <label htmlFor='password' className='block text-sm font-medium text-white mr-2'>Contraseña</label>
-                        <span onClick={() => setViewPass(!viewPass)} className={viewPass ? 'fas fa-eye-slash flex items-center cursor-pointer absolute right-2' : 'fas fa-eye flex items-center cursor-pointer absolute right-2'}></span>
+                        <span onClick={() => setViewPass(!viewPass)} className={viewPass ? 'fas fa-eye-slash flex items-center cursor-pointer absolute right-2 text-[#029d85]' : 'fas fa-eye flex items-center cursor-pointer absolute right-2 text-[#029d85]'}></span>
                         <input placeholder='Ingresa tu contraseña' type={viewPass ? 'text':'password'} name='password' className={passError === false ? 'mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white' : 'mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.password} onChange={handleChange} />
                       </div>
                       <div className='sm:col-span-3 flex flex-row items-center justify-between relative'>
                         <label htmlFor='password2' className='block text-sm font-medium text-white'>Confirmar Contraseña</label>
-                        <span onClick={() => setViewPass2(!viewPass2)} className={viewPass2 ? 'fas fa-eye-slash flex items-center cursor-pointer absolute right-2' : 'fas fa-eye flex items-center cursor-pointer absolute right-2'}></span>
+                        <span onClick={() => setViewPass2(!viewPass2)} className={viewPass2 ? 'fas fa-eye-slash flex items-center cursor-pointer absolute right-2 text-[#029d85]' : 'fas fa-eye flex items-center cursor-pointer absolute right-2 text-[#029d85]'}></span>
                         <input placeholder='Confirma tu contraseña' type={viewPass2 ? 'text':'password'} name='password2' className={passError === false ? 'mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white' : 'mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.password2} onChange={handlePassword} />
                       </div>
                       <div className='sm:col-span-2'>
@@ -291,7 +295,7 @@ function Registro() {
                   <div className='flex justify-center'>
                     <button 
                       type='submit' 
-                      className={form.terms ? 'inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-black bg-[#c0fff5] hover:bg-[#03E19B] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500' : 'inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-black bg-[#c0fff5] hover:bg-[#03E19B] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 opacity-50 cursor-not-allowed'} 
+                      className={form.terms ? 'inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white hover:text-black bg-[#029d85] hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white' : 'inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md hover:text-black text-white bg-[#029d85] hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white opacity-50 cursor-not-allowed'} 
                       disabled={!form.terms}
                     >
                       Registrar Usuario
@@ -302,7 +306,7 @@ function Registro() {
             </div>
             <div className='px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto'>
                 <div className='flex justify-center'>
-                    <Link onClick={() => setSignup(false)} className='inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-black bg-[#03E19B] hover:bg-[#029d85] hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500'>
+                    <Link onClick={() => setSignup(false)} className='inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white hover:bg-[#029d85] bg-[#03E19B] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#029d85]'>
                       ¿Ya tienes una cuenta? Inicia Sesión
                     </Link>
                 </div>

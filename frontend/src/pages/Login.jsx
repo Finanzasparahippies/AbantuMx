@@ -62,15 +62,15 @@ function Login() {
 
 
   return (
-    <section className="h-screen bg-[#029d85]">
-      <div className="px-6 h-full text-gray-800">
+    <section className="h-screen bg-[#03E19B]">
+      <div className="px-6 h-full">
         <div
           className="flex xl:justify-center lg:justify-center justify-center items-center flex-wrap h-full g-6"
         >
           <div
-            className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0"
+            className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-0"
           >
-            <img src={Images.logo} alt="login" className="w-half" />
+            <img src={Images.logo} alt="login" className="w-full mx-auto" />
           </div>
           <div className="w-12/12 sm:w-4/12 mb-12 md:mb-0">
             <form onSubmit={handleSubmit}>
@@ -81,7 +81,7 @@ function Login() {
               <div className="mb-6">
                 <input
                   type="email"
-                  className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  className="form-control block w-full px-4 py-2 text-3xl font-normal text-[#029d85] bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-[#029d85] focus:bg-white focus:border-white focus:outline-none"
                   name = "id_empleado"
                   placeholder="Usuario"
                   onChange={e => setEmail(e.target.value.toLowerCase())}
@@ -90,13 +90,13 @@ function Login() {
               </div>
               <div className="mb-6 flex flex-row items-center justify-between relative">
                 {visible ? (
-                    <span onClick={() => setVisible(false)} className="fas fa-eye-slash flex items-center cursor-pointer absolute right-2"></span>
+                    <span onClick={() => setVisible(false)} className="fas fa-eye-slash flex items-center cursor-pointer absolute right-2 text-[#029d85] w-6"></span>
                   ) : (
-                    <span onClick={() => setVisible(true)} className="fas fa-eye flex items-center cursor-pointer absolute right-2"></span>
+                    <span onClick={() => setVisible(true)} className="fas fa-eye flex items-center cursor-pointer absolute right-2 text-[#029d85] w-6"></span>
                   )}
                 <input
                   type={visible ? "text" : "password"}
-                  className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  className="form-control block w-full px-4 py-2 text-3xl font-normal text-[#029d85] bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-[#029d85] focus:bg-white focus:border-white focus:outline-none"
                   name = "password"
                   placeholder="Contraseña"
                   onChange={e => setPassword(e.target.value)}
@@ -107,14 +107,14 @@ function Login() {
               <div className="text-center">
                 <button
                   type="submit"
-                  className="inline-block px-7 py-3 bg-[#03E19B] text-black font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-[#c0fff5] hover:shadow-lg focus:bg-[#c0fff5] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#c0fff5] active:shadow-lg transition duration-150 ease-in-out"
+                  className="inline-block px-7 py-3 bg-[#029d85] text-white hover:text-black font-medium text-xl leading-snug uppercase rounded shadow-md hover:bg-white hover:shadow-lg focus:bg-white focus:shadow-lg focus:outline-none focus:ring-0 active:bg-white active:shadow-lg transition duration-150 ease-in-out"
                 >
                   Iniciar sesión
                 </button>
               </div>
             </form>
-            <div className="w-full text-center text-white mt-5 font-bold">
-              <Link className="text-lg underline" onClick={() => setSignup(true)}>
+            <div className="w-full text-center text-white mt-5 font-bold hover:text-[#029d85]">
+              <Link className="text-2xl underline" onClick={() => setSignup(true)}>
                 ¿No tienes cuenta? Regístrate
               </Link>
             </div>

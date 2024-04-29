@@ -281,6 +281,7 @@ class GetDonadores100(APIView):
                 'fecha': donacion.fecha,
                 'profile_img': request.build_absolute_uri(donacion.donador.profile_img.url) if donacion.donador.profile_img else None,
                 'tipo': donacion.tipo,
+                'codigo': donacion.donador.codigo,
                 'donadores': listA,
                 'count': count
             })
@@ -295,6 +296,7 @@ class GetDonadores100(APIView):
                             'fecha': donador.fecha,
                             'profile_img': request.build_absolute_uri(donador.donador.profile_img.url) if donador.donador.profile_img else None,
                             'tipo': donador.tipo,
+                            'codigo': donador.donador.codigo,
                             'donadores': listB
                         })
                         donadoresB = Suscripcion.objects.filter(propietario_id=donador.donador.id, beneficiario_id=usuario.id).order_by('fecha')
@@ -308,6 +310,7 @@ class GetDonadores100(APIView):
                                 'fecha': donador1.fecha,
                                 'profile_img': request.build_absolute_uri(donador1.donador.profile_img.url) if donador1.donador.profile_img else None,
                                 'tipo': donador1.tipo,
+                                'codigo': donador1.donador.codigo,
                                 'donadores': listC
                             })
                             donadoresC = Suscripcion.objects.filter(propietario_id=donador1.donador.id, beneficiario_id=usuario.id).order_by('fecha')
@@ -320,6 +323,7 @@ class GetDonadores100(APIView):
                                     'fecha': donador2.fecha,
                                     'profile_img': request.build_absolute_uri(donador2.donador.profile_img.url) if donador2.donador.profile_img else None,
                                     'tipo': donador2.tipo,
+                                    'codigo': donador2.donador.codigo,
                                 })
 
         return Response(list, status=status.HTTP_200_OK)
@@ -342,6 +346,7 @@ class GetDonadores500(APIView):
                 'fecha': donacion.fecha,
                 'profile_img': request.build_absolute_uri(donacion.donador.profile_img.url) if donacion.donador.profile_img else None,
                 'tipo': donacion.tipo,
+                'codigo': donacion.donador.codigo,
                 'donadores': listA,
                 'count': count
             })
@@ -356,6 +361,7 @@ class GetDonadores500(APIView):
                             'fecha': donador.fecha,
                             'profile_img': request.build_absolute_uri(donador.donador.profile_img.url) if donador.donador.profile_img else None,
                             'tipo': donador.tipo,
+                            'codigo': donador.donador.codigo,
                             'donadores': listB
                         })
                         donadoresB = Suscripcion.objects.filter(propietario_id=donador.donador.id, beneficiario_id=usuario.id).order_by('fecha')
@@ -369,6 +375,7 @@ class GetDonadores500(APIView):
                                 'fecha': donador1.fecha,
                                 'profile_img': request.build_absolute_uri(donador1.donador.profile_img.url) if donador1.donador.profile_img else None,
                                 'tipo': donador1.tipo,
+                                'codigo': donador1.donador.codigo,
                                 'donadores': listC
                             })
                             donadoresC = Suscripcion.objects.filter(propietario_id=donador1.donador.id, beneficiario_id=usuario.id).order_by('fecha')
@@ -381,6 +388,7 @@ class GetDonadores500(APIView):
                                     'fecha': donador2.fecha,
                                     'profile_img': request.build_absolute_uri(donador2.donador.profile_img.url) if donador2.donador.profile_img else None,
                                     'tipo': donador2.tipo,
+                                    'codigo': donador2.donador.codigo,
                                 })
 
         return Response(list, status=status.HTTP_200_OK)
@@ -403,6 +411,7 @@ class GetDonadores1000(APIView):
                 'fecha': donacion.fecha,
                 'profile_img': request.build_absolute_uri(donacion.donador.profile_img.url) if donacion.donador.profile_img else None,
                 'tipo': donacion.tipo,
+                'codigo': donacion.donador.codigo,
                 'donadores': listA,
                 'count': count
             })
@@ -417,6 +426,7 @@ class GetDonadores1000(APIView):
                             'fecha': donador.fecha,
                             'profile_img': request.build_absolute_uri(donador.donador.profile_img.url) if donador.donador.profile_img else None,
                             'tipo': donador.tipo,
+                            'codigo': donador.donador.codigo,
                             'donadores': listB
                         })
                         donadoresB = Suscripcion.objects.filter(propietario_id=donador.donador.id, beneficiario_id=usuario.id).order_by('fecha')
@@ -430,6 +440,7 @@ class GetDonadores1000(APIView):
                                 'fecha': donador1.fecha,
                                 'profile_img': request.build_absolute_uri(donador1.donador.profile_img.url) if donador1.donador.profile_img else None,
                                 'tipo': donador1.tipo,
+                                'codigo': donador1.donador.codigo,
                                 'donadores': listC
                             })
                             donadoresC = Suscripcion.objects.filter(propietario_id=donador1.donador.id, beneficiario_id=usuario.id).order_by('fecha')
@@ -442,6 +453,7 @@ class GetDonadores1000(APIView):
                                     'fecha': donador2.fecha,
                                     'profile_img': request.build_absolute_uri(donador2.donador.profile_img.url) if donador2.donador.profile_img else None,
                                     'tipo': donador2.tipo,
+                                    'codigo': donador2.donador.codigo,
                                 })
 
         return Response(list, status=status.HTTP_200_OK)
