@@ -145,6 +145,9 @@ function Contribucion() {
           {red && Object.keys(red).length > 0 ? (
             <div className="p-3">
               <div className="mt-4">
+                <h1 className="text-2xl font-bold text-[#029d85]">¡Recuerda que tu fecha de contribución es el {red.fecha.toString().split('T')[0][8] + red.fecha.toString().split('T')[0][9]} de cada mes!</h1>
+              </div>
+              <div className="mt-8">
                 <h3 className="text-xl text-[#029d85] font-bold">Información Bancaria</h3>
                 <div className="mt-4">
                   <div className="flex items-center">
@@ -169,9 +172,7 @@ function Contribucion() {
                   </div>
                 </div>
               </div>
-              <div className="mt-4">
-                <h1 className="text-xl font-bold text-[#029d85]">¡Recuerda que tu fecha de contribución es el {red.fecha.toString().split('T')[0][8] + red.fecha.toString().split('T')[0][9]} de cada mes!</h1>
-              </div>
+              
               {red.donacion_mes ? ( 
               <div className="mt-4">
                 <div className="flex flex-col mt-4 md:flex-row items-center">

@@ -17,8 +17,8 @@ function DonacionesRecibidas() {
 
   return (
     <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-2xl border border-slate-200">
-      <header className="px-5 py-4 border-b border-slate-100">
-        <h2 className="font-semibold text-slate-800">Recibidas</h2>
+      <header className="px-5 py-4 bg-[#03E19B] rounded-xl ">
+        <h2 className="font-semibold text-white">Recibidas</h2>
       </header>
       <div className="p-3">
 
@@ -26,7 +26,7 @@ function DonacionesRecibidas() {
         <div className="overflow-x-auto">
           <table className="table-auto w-full">
             {/* Table header */}
-            <thead className="text-xs uppercase text-slate-400 bg-slate-50 rounded-sm">
+            <thead className="text-xs uppercase text-slate-400 bg-slate-50 rounded-xl">
               <tr>
                 <th className="p-2">
                   <div className="font-semibold text-left">Donador</div>
@@ -65,7 +65,7 @@ function DonacionesRecibidas() {
                   { donacion.evidencia === null ? 
                   <div className="text-center">Sin evidencia</div>
                   :
-                  <div className="text-center"><ModalImage small={donacion.evidencia} large={donacion.evidencia} alt="evidencia" className="w-10 h-10" hideDownload hideZoom /></div>
+                  <div className="text-center"><ModalImage small={donacion.evidencia} large={donacion.evidencia} alt="evidencia" className="w-10 h-10 rounded-lg" hideDownload hideZoom /></div>
                   }
                 </td>
                 

@@ -124,9 +124,9 @@ function Dashboard() {
           <section className="dashboard-section">
             <div className="container">
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                <div className="bg-[#03E19B] rounded-lg shadow-md p-6">
-                  <h3 className="text-2xl font-semibold mb-2 text-white">Personas en mi red</h3>
-                  <p className="text-3xl font-bold text-white">{donadores[0]?.count ? donadores[0].count : 0}</p>
+                <div className="bg-[#03E19B] rounded-lg shadow-md py-4 border-4 border-[#029d85] px-4">
+                  <h3 className="text-2xl font-semibold mb-2 text-white flex items-center justify-center">Personas en mi red</h3>
+                  <p className="text-3xl font-bold text-white flex items-center justify-center">{donadores[0]?.count ? donadores[0].count : 0}</p>
                 </div>
               </div>
             </div>
@@ -160,7 +160,7 @@ function Dashboard() {
         </div>
       </Tabs.Root>
       <div className="dashboard-container h-screen overflow-y-auto p-8">
-        <h2 className="section-title mb-4 text-2xl">Contribuciones Recientes</h2>
+        <h2 className="section-title mb-4 font-bold text-2xl text-[#029d85]">Contribuciones Recientes</h2>
         <section className="dashboard-section mb-8">
           <div className="container">
             <DonacionesRecibidas />

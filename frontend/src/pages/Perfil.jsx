@@ -384,20 +384,20 @@ const handleSubmitPassword = () => {
                 {clabeError === true ? <p className='mt-2 text-sm text-red-600' id='email-error'>CLABE inválida</p> : null}
               </div>
               <button
-                className="w-full px-4 py-2 text-white hover:text-[#029d85] font-medium bg-[#029d85] hover:bg-white active:bg-white rounded-lg duration-150"
+                className="w-full px-4 py-2 text-[#029d85] hover:text-white font-medium bg-white hover:bg-[#029d85] active:bg-[#029d85] rounded-lg duration-150"
                 onClick={handleSubmit}
               >
                 Guardar Cambios
               </button>
               <button
-                className="w-full px-4 py-2 text-white font-medium bg-gray-600 hover:bg-gray-500 active:bg-white rounded-lg duration-150"
+                className="w-full px-4 py-2 hover:text-[#029d85] text-white font-medium bg-[#029d85] hover:bg-white active:bg-white rounded-lg duration-150"
                 onClick={() => setModal(true)}
               >
                 Cambiar Contraseña
               </button>
             </div>
           </section>
-          <div className={ modal ? "fixed inset-0 bg-white bg-opacity-50 overflow-y-auto h-full w-full display-block" : "hidden"}>
+          <div className={ modal ? "fixed inset-0 bg-gray-200 bg-opacity-50 overflow-y-auto h-full w-full display-block" : "hidden"}>
             <div className="relative py-4 text-left px-6 bg-[#03E19B] rounded-lg shadow-xl w-11/12 md:w-1/2 mx-auto align-center justify-center my-24">
 
               <div className="flex justify-between items-center pb-3">
@@ -442,8 +442,8 @@ const handleSubmitPassword = () => {
               </div>
               {passwordError === true ? <p className='mt-2 text-sm text-red-600' id='email-error'>Las contraseñas no coinciden</p> : null}
               <div className="flex justify-end pt-2">
-                <button className="px-4 p-3 rounded-lg text-white hover:text-[#029d85] font-medium bg-[#029d85] hover:bg-white active:bg-white mr-2" onClick={handleSubmitPassword}>Cambiar Contraseña</button>
-                <button className="modal-close px-4 text-white font-medium bg-gray-600 hover:bg-gray-500 active:bg-white p-3 rounded-lg" onClick={handleCancel}>Cancelar</button>
+                <button className="px-4 p-3 rounded-lg text-[#029d85] hover:text-white font-medium bg-white hover:bg-[#029d85] active:bg-[#029d85] mr-2" onClick={handleSubmitPassword}>Cambiar Contraseña</button>
+                <button className="modal-close px-4 text-white hover:text-[#029d85] font-medium bg-[#029d85] hover:bg-white active:bg-white p-3 rounded-lg" onClick={handleCancel}>Cancelar</button>
               </div>
             </div>
           </div>

@@ -100,15 +100,15 @@ const handleCancel = () => {
                                   <div className="flex items-start justify-between p-4">
                                       <div className="space-y-2">
                                           <img src={Images.redes} alt="Redes" className="w-20 h-20 object-cover rounded-full" />
-                                          <h4 className="text-white font-semibold">{item.nombre}</h4>
-                                          <p className="text-white text-sm">En esta red contribuyes con ${item.descripcion} pesos al mes.</p>
+                                          <h4 className="text-white font-semibold text-2xl">{item.nombre}</h4>
+                                          <p className="text-white text-lg">En esta red contribuyes con ${item.descripcion} pesos al mes.</p>
                                       </div>
                                       {item.activa ?
-                                      <div className="flex items-center justify-center bg-white text-[#029d85] rounded-lg px-3 py-2">
-                                          <p className="text-lg font-medium">Ya estas en esta red</p>
+                                      <div className="flex items-center justify-center bg-[#029d85] text-white rounded-lg px-2 py-1">
+                                          <p className="text-lg font-bold">Ya estás en esta red</p>
                                       </div>
                                       :
-                                      <button className="text-lg rounded-lg px-3 py-2 duration-150 hover:bg-white bg-[#029d85] hover:text-[#029d85] text-white" onClick={() => handleModal(item.nombre)}>Unirse</button>
+                                      <button className="font-bold text-lg rounded-lg px-6 py-2 duration-150 hover:bg-[#029d85] bg-white hover:text-white text-[#029d85]" onClick={() => handleModal(item.nombre)}>Unirse</button>
                                       }
                                   </div>
                               </li>
@@ -117,13 +117,13 @@ const handleCancel = () => {
                   </ul>
               </div>
           </section>
-          <div className={ modal ? "fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full display-block" : "hidden"}>
+          <div className={ modal ? "fixed inset-0 bg-gray-300 bg-opacity-50 overflow-y-auto h-full w-full display-block" : "hidden"}>
             <div className="relative py-4 text-left px-6 bg-[#03E19B] rounded-lg shadow-xl w-11/12 md:w-1/2 mx-auto align-center justify-center my-24">
 
               <div className="flex justify-between items-center pb-3">
                 <p className="text-2xl font-bold text-white">{form.red}</p>
                 <div className="modal-close cursor-pointer z-50" onClick={handleCancel}>
-                  <svg className="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                  <svg className="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
                     <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
                   </svg>
                 </div>
@@ -143,8 +143,8 @@ const handleCancel = () => {
               />
   
               <div className="flex justify-end pt-2">
-                <button className="px-4 p-3 rounded-lg hover:bg-white bg-[#029d85] hover:text-[#029d85] text-white mr-2" onClick={handleSubmit}>Unirse</button>
-                <button className="modal-close px-4 bg-gray-600 hover:bg-gray-500 active:bg-white text-white p-3 rounded-lg" onClick={handleCancel}>Cancelar</button>
+                <button className="px-4 p-3 rounded-lg text-[#029d85] hover:text-white font-medium bg-white hover:bg-[#029d85] active:bg-[#029d85] mr-2" onClick={handleSubmit}>Unirse</button>
+                <button className="modal-close px-4 bg-[#029d85] hover:bg-white active:bg-white text-white hover:text-[#029d85] p-3 rounded-lg" onClick={handleCancel}>Cancelar</button>
               </div>
             </div>
           </div>
