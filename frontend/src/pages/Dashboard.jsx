@@ -125,7 +125,7 @@ function Dashboard() {
             <div className="container">
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 <div className="bg-[#03E19B] rounded-lg shadow-md py-4 border-4 border-[#029d85] px-4">
-                  <h3 className="text-2xl font-semibold mb-2 text-white flex items-center justify-center">Personas en mi red</h3>
+                  <h3 className="text-2xl font-semibold mb-2 text-white flex items-center justify-center">Personas en mi {selectedTab}</h3>
                   <p className="text-3xl font-bold text-white flex items-center justify-center">{donadores[0]?.count ? donadores[0].count : 0}</p>
                 </div>
               </div>
@@ -140,12 +140,12 @@ function Dashboard() {
                 {donadores.map((donador) => (
                   <TreeNode label={<StyledNode style={donador.tipo === 'B1' || donador.tipo === 'B2' ? { backgroundColor:'#fff', borderColor: '#029d85', borderWidth:'4px' } : { backgroundColor:'#03E19B', borderColor: '#029d85', borderWidth:'4px', color:'#fff' } }>{donador.donador}<img src={donador.imagen ? donador.imagen : 'https://ui-avatars.com/api/?name=' + donador.donador.charAt(0) + '&background=random'} alt="donador" className="w-10 h-10 rounded-full" /><p>Código: {donador.codigo}</p>{donador.tipo === 'B1' || donador.tipo === 'B2' ? <p className='text-[#029d85]' >Este usuario forma parte de otra red</p> : <p></p>}</StyledNode>}>
                     {donador?.donadores.map((hijo) => (
-                      <TreeNode label={<StyledNode style={{ backgroundColor:'#03E19B', borderColor: '#029d85', borderWidth:'4px', color:'#fff' }}>{hijo.donador}<img src={hijo.imagen ? hijo.imagen : 'https://ui-avatars.com/api/?name=' + hijo.donador.charAt(0) + '&background=random'} alt="donador" className="w-10 h-10 rounded-full" /></StyledNode>}>
+                      <TreeNode label={<StyledNode style={{ backgroundColor:'#03E19B', borderColor: '#029d85', borderWidth:'4px', color:'#fff' }}>{hijo.donador}<img src={hijo.imagen ? hijo.imagen : 'https://ui-avatars.com/api/?name=' + hijo.donador.charAt(0) + '&background=random'} alt="donador" className="w-10 h-10 rounded-full" /><p>Código: {hijo.donador.codigo}</p></StyledNode>}>
                         {hijo?.donadores.map((nieto) => (
-                          <TreeNode label={<StyledNode style={{ backgroundColor:'#03E19B', borderColor: '#029d85', borderWidth:'4px', color:'#fff' }}>{nieto.donador}<img src={nieto.imagen ? nieto.imagen : 'https://ui-avatars.com/api/?name=' + nieto.donador.charAt(0) + '&background=random'} alt="donador" className="w-10 h-10 rounded-full" /></StyledNode>}>
+                          <TreeNode label={<StyledNode style={{ backgroundColor:'#03E19B', borderColor: '#029d85', borderWidth:'4px', color:'#fff' }}>{nieto.donador}<img src={nieto.imagen ? nieto.imagen : 'https://ui-avatars.com/api/?name=' + nieto.donador.charAt(0) + '&background=random'} alt="donador" className="w-10 h-10 rounded-full" /><p>Código: {nieto.donador.codigo}</p></StyledNode>}>
                             {nieto?.donadores.map((bisnieto) => (
                               <TreeNode 
-                                label={<StyledNode style={{ backgroundColor:'#03E19B', borderColor: '#029d85', borderWidth:'4px', color:'#fff' }}>{bisnieto.donador}<img src={bisnieto.imagen ? bisnieto.imagen : 'https://ui-avatars.com/api/?name=' + bisnieto.donador.charAt(0) + '&background=random'} alt="donador" className="w-10 h-10 rounded-full" /></StyledNode>}>
+                                label={<StyledNode style={{ backgroundColor:'#03E19B', borderColor: '#029d85', borderWidth:'4px', color:'#fff' }}>{bisnieto.donador}<img src={bisnieto.imagen ? bisnieto.imagen : 'https://ui-avatars.com/api/?name=' + bisnieto.donador.charAt(0) + '&background=random'} alt="donador" className="w-10 h-10 rounded-full" /><p>Código: {bisnieto.donador.codigo}</p></StyledNode>}>
                               </TreeNode>
                             ))}
                           </TreeNode>

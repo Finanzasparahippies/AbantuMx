@@ -34,8 +34,8 @@ function Contribucion() {
   
   const handleSubmit = (e) => {
     Swal.fire({
-      title: '¿Estas seguro?',
-      text: "Estas a punto de enviar tu comprobante de contribución.",
+      title: '¿Estás seguro?',
+      text: "Estás a punto de enviar tu comprobante de contribución.",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#03E19B',
@@ -141,11 +141,11 @@ function Contribucion() {
             ))}
           </select>
         </div>
-        <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200 mt-4">
+        <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200 mt-4 max-w-screen-xl mx-auto">
           {red && Object.keys(red).length > 0 ? (
             <div className="p-3">
               <div className="mt-4">
-                <h1 className="text-2xl font-bold text-[#029d85]">¡Recuerda que tu fecha de contribución es el {red.fecha.toString().split('T')[0][8] + red.fecha.toString().split('T')[0][9]} de cada mes!</h1>
+                <h1 className="text-2xl font-bold text-[#029d85]">¡Recuerda que tu fecha de contribución en esta red es el {red.fecha.toString().split('T')[0][8] + red.fecha.toString().split('T')[0][9]} de cada mes!</h1>
               </div>
               <div className="mt-8">
                 <h3 className="text-xl text-[#029d85] font-bold">Información Bancaria</h3>
@@ -178,7 +178,7 @@ function Contribucion() {
                 <div className="flex flex-col mt-4 md:flex-row items-center">
                   
                   <div className="max-w-md h-40 rounded-lg border-2 border-dashed flex items-center justify-center">
-                      <label htmlFor="file" className="cursor-pointer text-center p-4 md:p-8">
+                      <label htmlFor="file" className="cursor-pointer text-center p-4 md:p-8" hidden={preview}>
                           <svg className="w-10 h-10 mx-auto" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M12.1667 26.6667C8.48477 26.6667 5.5 23.6819 5.5 20C5.5 16.8216 7.72428 14.1627 10.7012 13.4949C10.5695 12.9066 10.5 12.2947 10.5 11.6667C10.5 7.0643 14.231 3.33334 18.8333 3.33334C22.8655 3.33334 26.2288 6.19709 27.0003 10.0016C27.0556 10.0006 27.1111 10 27.1667 10C31.769 10 35.5 13.731 35.5 18.3333C35.5 22.3649 32.6371 25.7279 28.8333 26.5M25.5 21.6667L20.5 16.6667M20.5 16.6667L15.5 21.6667M20.5 16.6667L20.5 36.6667" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                           </svg>
@@ -200,6 +200,7 @@ function Contribucion() {
                     <button className="px-4 py-2 bg-[#03E19B] text-white rounded-lg font-semibold hover:bg-[#029d85] duration-150 disabled:opacity-50 disabled:cursor-not-allowed" onClick={handleSubmit} disabled={image ? false : true}>Enviar Comprobante</button>
                     <p className="text-sm text-gray-600">Sube tu comprobante de contribución</p>
                     <p className="text-xs text-gray-400">Formatos permitidos: .jpg, .png, .bmp</p>
+                    <button className="mt-4 px-4 py-2 bg-[#03E19B] text-white rounded-lg font-semibold hover:bg-[#029d85] duration-150" hidden={image ? false : true } onClick={() => {setImage(null) ; setPreview(null)}}>Volver a subir imagen</button>
                   </div>
                 </div>
               </div>

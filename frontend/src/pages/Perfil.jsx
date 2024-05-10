@@ -85,14 +85,14 @@ const copyClipboard = () => {
 
 const handleSubmit = () => {
   Swal.fire({
-    title: '¿Estas seguro?',
-    text: "Estas a punto de actualizar tu perfil, ¿estas seguro de querer continuar?",
+    title: '¿Estás seguro?',
+    text: "Estás a punto de actualizar tu perfil, ¿estás seguro de querer continuar?",
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#03E19B',
     cancelButtonColor: '#9c9c9c',
     cancelButtonText: 'Cancelar',
-    confirmButtonText: 'Si, actualizar',
+    confirmButtonText: 'Sí, actualizar',
   }).then((result) => {
     if (result.isConfirmed) {
       API.put(`/api/users/update/${localStorage.getItem('id')}/`, perfil).then(res => {
@@ -212,14 +212,14 @@ const handlePassword = (e) => {
 
 const handleSubmitPassword = () => {
   Swal.fire({
-    title: '¿Estas seguro?',
-    text: "Estas a punto de cambiar tu contraseña, ¿estas seguro de querer continuar?",
+    title: '¿Estás seguro?',
+    text: "Estás a punto de cambiar tu contraseña, ¿estás seguro de querer continuar?",
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#03E19B',
     cancelButtonColor: '#9c9c9c',
     cancelButtonText: 'Cancelar',
-    confirmButtonText: 'Si, cambiar',
+    confirmButtonText: 'Sí, cambiar',
   }).then((result) => {
     if (result.isConfirmed) {
       API.put(`/api/users/update-password/${localStorage.getItem('id')}/`, { password: password }).then(res => {

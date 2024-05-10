@@ -36,13 +36,14 @@ const handleModal = (title) => {
 
 const handleSubmit = () => {
   Swal.fire({
-    title: '¿Estas seguro?',
-    text: "Estas a punto de unirte a esta red.",
+    title: '¿Estás seguro?',
+    text: "Estás a punto de unirte a esta red.",
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#03E19B',
     cancelButtonColor: '#9c9c9c',
-    confirmButtonText: 'Si, unirme'
+    confirmButtonText: 'Sí, unirme',
+    cancelButtonText: 'Cancelar'
   }).then((result) => {
     if (result.isConfirmed) {
       handleCancel();
@@ -131,11 +132,11 @@ const handleCancel = () => {
 
       
             
-              <p className="text-white">¿Tienes un codigo de invitacion? <a href="#" onClick={() => setInput1(!input1)}>Click aqui</a></p>
+              <p className="text-white">¿Tienes un código de invitación? <a href="#" onClick={() => setInput1(!input1)}>Click aquí</a></p>
 
               <input 
                 type="text" 
-                placeholder="Codigo de invitacion" 
+                placeholder="Código de invitación" 
                 className={ input1 ? "w-full border rounded-lg p-2 mt-2" : "hidden"}
                 name="codigo"
                 onChange={(e) => setForm({...form, codigo: e.target.value})}
