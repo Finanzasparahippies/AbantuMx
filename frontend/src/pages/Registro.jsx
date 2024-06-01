@@ -285,7 +285,7 @@ function Registro() {
                         <input placeholder='Confirma tu contraseña' type={viewPass2 ? 'text':'password'} name='password2' className={passError === false ? 'mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white' : 'mt-1 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-red-500 rounded-md' } value={form.password2} onChange={handlePassword} />
                       </div>
                       <div className='sm:col-span-2'>
-                        <label htmlFor='terms' className='block text-sm font-medium text-white'>He leído y acepto los Términos y Condiciones y Aviso de Privacidad.</label>
+                        <label htmlFor='terms' className='block text-sm font-medium text-white'>He leído y acepto los <a href="https://abantu.mx/terminos-y-condiciones" target='_blank'>Términos y Condiciones</a> y <a href="https://abantu.mx/aviso-de-privacidad" target='_blank'>Aviso de Privacidad</a>.</label>
                         <input type='checkbox' name='terms' className='mt-1 focus:ring-green-500 focus:border-green-500 block shadow-sm sm:text-sm border-gray-300 rounded-md' value={form.terms} onChange={handleCheck} />
                       </div>
                     </div>

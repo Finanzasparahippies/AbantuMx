@@ -135,7 +135,7 @@ function Dashboard() {
                 lineWidth={'6px'}
                 lineColor={'#029d85'}
                 lineBorderRadius={'10px'}
-                label={<StyledNode style={{ backgroundColor:'#03E19B', borderColor: '#029d85', borderWidth:'4px', color:'#fff', fontSize:'20px' }}>Yo<img src={localStorage.getItem('foto') !== 'null' ? localStorage.getItem('foto') : 'https://ui-avatars.com/api/?name=' + localStorage.getItem('name').charAt(0) + '&background=random'} alt="donador" className="w-10 h-10 rounded-full" /></StyledNode>}
+                label={<StyledNode style={{ backgroundColor:'#03E19B', borderColor: '#029d85', borderWidth:'4px', color:'#fff', fontSize:'20px', justifyContent: 'center', alignItems: 'center' }}>Yo<img src={localStorage.getItem('foto') !== 'null' ? localStorage.getItem('foto') : 'https://ui-avatars.com/api/?name=' + localStorage.getItem('name').charAt(0) + '&background=random'} alt="donador" className="w-20 h-20 rounded-full ml-4" /><p>Código: {localStorage.getItem('codigo')}</p></StyledNode>}
               >
                 {donadores.map((donador) => (
                   <TreeNode label={<StyledNode style={donador.tipo === 'B1' || donador.tipo === 'B2' ? { backgroundColor:'#fff', borderColor: '#029d85', borderWidth:'4px' } : { backgroundColor:'#03E19B', borderColor: '#029d85', borderWidth:'4px', color:'#fff' } }>{donador.donador}<img src={donador.imagen ? donador.imagen : 'https://ui-avatars.com/api/?name=' + donador.donador.charAt(0) + '&background=random'} alt="donador" className="w-10 h-10 rounded-full" /><p>Código: {donador.codigo}</p>{donador.tipo === 'B1' || donador.tipo === 'B2' ? <p className='text-[#029d85]' >Este usuario forma parte de otra red</p> : <p></p>}</StyledNode>}>

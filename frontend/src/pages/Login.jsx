@@ -50,6 +50,7 @@ function Login() {
        localStorage.setItem('foto', token.foto);
        localStorage.setItem('email', token.email);
        localStorage.setItem('phone', token.phone);
+       localStorage.setItem('codigo', token.codigo);
        window.location.href = '/';
      } else {
          Swal.fire({
