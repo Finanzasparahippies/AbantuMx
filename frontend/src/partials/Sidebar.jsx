@@ -123,7 +123,6 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                               />
                             </svg>
                             <span className="text-md font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                              Mi Cuenta
                             </span>
                           </div>
                           <div className="flex shrink-0 ml-2">
@@ -143,21 +142,6 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                           <li className="mb-1 last:mb-0">
                             <NavLink
                               end
-                              to="/"
-                              className={({ isActive }) =>
-                                "block text-[#029d85] hover:text-black transition duration-150 truncate " +
-                                (isActive ? "text-black" : "")
-                              }
-                              onClick={() => setSidebarOpen(false)}
-                            >
-                              <span className="text-md font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                Inicio
-                              </span>
-                            </NavLink>
-                          </li>
-                          <li className="mb-1 last:mb-0">
-                            <NavLink
-                              end
                               to="/inicio/mi-perfil"
                               className={({ isActive }) =>
                                 "block text-[#029d85] hover:text-black transition duration-150 truncate " +
@@ -173,6 +157,21 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                           <li className="mb-1 last:mb-0">
                             <NavLink
                               end
+                              to="/"
+                              className={({ isActive }) =>
+                                "block text-[#029d85] hover:text-black transition duration-150 truncate " +
+                                (isActive ? "text-black" : "")
+                              }
+                              onClick={() => setSidebarOpen(false)}
+                            >
+                              <span className="text-md font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                Mis Redes
+                              </span>
+                            </NavLink>
+                          </li>
+                          <li className="mb-1 last:mb-0">
+                            <NavLink
+                              end
                               to="/inicio/redes"
                               className={({ isActive }) =>
                                 "block text-[#029d85] hover:text-black transition duration-150 truncate " +
@@ -181,7 +180,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                               onClick={() => setSidebarOpen(false)}
                             >
                               <span className="text-md font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                Redes
+                                Unirse a Redes
                               </span>
                             </NavLink>
                           </li>
