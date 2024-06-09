@@ -30,7 +30,7 @@ class Donaciones(models.Model):
     class Meta:
         verbose_name = 'Donacion'
         verbose_name_plural = 'Donaciones'
-        ordering = ['id']
+        ordering = ['-id']
 
     def __str__(self):
         return f'{self.red} - {self.donador} - {self.beneficiario}'
@@ -46,7 +46,7 @@ class DonacionRevision(models.Model):
     class Meta:
         verbose_name = 'DonacionRevision'
         verbose_name_plural = 'DonacionRevisiones'
-        ordering = ['id']
+        ordering = ['-id']
 
     def __str__(self):
         return f'{self.id}'
@@ -64,7 +64,7 @@ class Suscripcion(models.Model):
     class Meta:
         verbose_name = 'Suscripcion'
         verbose_name_plural = 'Suscripciones'
-        ordering = ['id']
+        ordering = ['-id']
 
     def __str__(self):
         return f'{self.red} - {self.donador} - {self.beneficiario}'
