@@ -145,6 +145,16 @@ function Registro() {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
+
+      if (form.password === '' || form.password2 === '') {
+        Toast.fire({
+            icon: 'error',
+            title: 'Error al registrar usuario',
+            text: 'Por favor, ingresa una contraseña'
+        });
+        return;
+      }
+
       if (emailError === true || clabeError === true || tarjetaError === true || bankAccountError === true) {
 
         Swal.fire({
