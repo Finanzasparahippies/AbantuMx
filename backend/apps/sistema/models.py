@@ -51,7 +51,7 @@ class DonacionRevision(models.Model):
 
     def __str__(self):
 
-        return f'{self.id} - {self.donacion.donador} - {self.donacion.beneficiario} - {timezone.localtime(self.fecha, timezone.get_fixed_timezone(-420))}'
+        return f'{self.id} - {self.donacion.donador} - {self.donacion.beneficiario} - {self.fecha}'
     
     
 class Suscripcion(models.Model):
