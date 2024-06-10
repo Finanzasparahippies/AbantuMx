@@ -9,19 +9,9 @@ class DonacionAdmin(admin.ModelAdmin):
         model = Donaciones
         fields = 'red', 'donador', 'beneficiario', 'fecha', 'evidencia'
 
-class DonacionRevisionAdmin(admin.ModelAdmin):
-    list_display = ['id', 'donacion', 'fecha', 'aprobado', 'revisor', 'resolucion', 'donacion__donador__email', 'donacion__beneficiario__email']
-    
-    list_filter = ['aprobado']
-    
-    search_fields = ['donacion__donador__email', 'donacion__beneficiario__email']
-
-    class Meta:
-        model = DonacionRevision
-        fields = 'donacion', 'fecha', 'comentarios', 'aprobado', 'revisor', 'resolucion',
 
 admin.site.register(Redes)
 admin.site.register(Donaciones, DonacionAdmin)
-admin.site.register(DonacionRevision, DonacionRevisionAdmin)
+admin.site.register(DonacionRevision)
 admin.site.register(Suscripcion)
 

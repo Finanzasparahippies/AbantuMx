@@ -1,4 +1,11 @@
 from django.db import models
+import pytz
+
+old_timezone = pytz.timezone('UTC')
+new_timezone = pytz.timezone('America/Hermosillo')
+
+
+
 
 TIPOS = [
     ('A1', 'A1'),
@@ -49,7 +56,10 @@ class DonacionRevision(models.Model):
         ordering = ['-id']
 
     def __str__(self):
-        return f'{self.id} - {self.donacion.donador} - {self.donacion.beneficiario} - {self.donacion.fecha}'
+        localized_timestamp = old_timezone.localize(self.donacion.fecha)
+        new_timezone_timestamp = localized_timestamp.astimezone(new_timezone)
+        return f'{self.id} - {self.donacion.donador} - {self.donacion.beneficiario} - {new_timezone_timestamp}'
+    
     
 class Suscripcion(models.Model):
     red = models.ForeignKey(Redes, on_delete=models.CASCADE, to_field='id')
