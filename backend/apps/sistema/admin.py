@@ -4,8 +4,7 @@ from .models import *
 class DonacionAdmin(admin.ModelAdmin):
     list_display = ['id', 'red', 'donador', 'beneficiario', 'fecha']
     list_filter = ['red']
-    search_fields = ['donador__first_name', 'beneficiario__first_name', 'beneficiario__last_name', 'donador__last_name']
-
+    search_fields = ['donador__email', 'beneficiario__email']
     class Meta:
         model = Donaciones
         fields = 'red', 'donador', 'beneficiario', 'fecha', 'evidencia'
