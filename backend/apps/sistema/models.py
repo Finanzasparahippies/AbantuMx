@@ -49,7 +49,7 @@ class DonacionRevision(models.Model):
         ordering = ['-id']
 
     def __str__(self):
-        return f'{self.id}'
+        return f'{self.id} - {self.donacion.donador} - {self.donacion.beneficiario} - {self.donacion.fecha}'
     
 class Suscripcion(models.Model):
     red = models.ForeignKey(Redes, on_delete=models.CASCADE, to_field='id')
