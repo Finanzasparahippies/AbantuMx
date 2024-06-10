@@ -22,6 +22,6 @@ class DonacionRevisionAdmin(admin.ModelAdmin):
 
 admin.site.register(Redes)
 admin.site.register(Donaciones, DonacionAdmin)
-admin.site.register(DonacionRevision)
+admin.site.register(DonacionRevision, DonacionRevisionAdmin)
 admin.site.register(Suscripcion)
 
