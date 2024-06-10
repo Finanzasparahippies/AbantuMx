@@ -14,5 +14,4 @@ admin.site.register(Redes)
 admin.site.register(Donaciones, DonacionAdmin)
 admin.site.register(DonacionRevision)
 admin.site.register(Suscripcion)
-admin.site.register(DonacionRevision)
 
