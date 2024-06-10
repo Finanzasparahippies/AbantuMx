@@ -10,7 +10,7 @@ class DonacionAdmin(admin.ModelAdmin):
         fields = 'red', 'donador', 'beneficiario', 'fecha', 'evidencia'
 
 class DonacionRevisionAdmin(admin.ModelAdmin):
-    list_display = ['id', 'donacion', 'fecha', 'aprobado', 'revisor', 'resolucion', 'donacion__fecha', 'donacion__donador', 'donacion__beneficiario']
+    list_display = ['id', 'donacion', 'fecha', 'aprobado', 'revisor', 'resolucion', 'donacion__donador', 'donacion__beneficiario']
     
     list_filter = ['aprobado']
     
