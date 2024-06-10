@@ -4,19 +4,11 @@ from .models import *
 class DonacionAdmin(admin.ModelAdmin):
     list_display = ['id', 'red', 'donador', 'beneficiario', 'fecha']
     list_filter = ['red']
-    search_fields = ['red']
+    search_fields = ['donador', 'beneficiario']
 
     class Meta:
         model = Donaciones
         fields = 'red', 'donador', 'beneficiario', 'fecha', 'evidencia'
-
-
-
-
-
-
-
-
 
 
 admin.site.register(Redes)
