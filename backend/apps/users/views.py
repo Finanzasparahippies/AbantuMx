@@ -326,3 +326,17 @@ class ChangeUsersCodes(APIView):
             user.save()
         return Response({'message': 'Códigos cambiados correctamente'}, status=status.HTTP_200_OK)
     
+class GetUsers(APIView):
+        def get(self, request, format=None):
+            users = User.objects.all()
+            users_list = []
+            for user in users:
+                users_list.append({
+                    'id': user.id,
+                    'email': user.email,
+                    'first_name': user.first_name,
+                    'last_name': user.last_name,
+                    'profile_img': request.build_absolute_uri(user.profile_img.url) if user.profile_img else None,
+                })
+            return Response(users_list, status=status.HTTP_200_OK)
+    

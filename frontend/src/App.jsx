@@ -7,6 +7,7 @@ import Contribuciones from './pages/Contribuciones';
 import Contribucion from './pages/Contribucion';
 import Reportes from './pages/Reportes';
 import ReportesAdmin from './pages/ReportesAdmin';
+import RedesAdmin from './pages/RedesAdmin';
 import Login from './pages/Login';
 import { AnimatePresence } from "framer-motion";
 import Sidebar from "./partials/Sidebar";
@@ -61,6 +62,7 @@ function App() {
                   <Route exact path="/inicio/enviar-contribucion" element={<Contribucion />} />
                   <Route exact path="/inicio/reportes" element={<Reportes />} />
                   <Route exact path="/admin/reportes" element={<ReportesAdmin />} />
+                  <Route exact path="/admin/redes" element={<RedesAdmin />} />
                 </Routes>
               </AnimatePresence>
               <FloatingWhatsApp

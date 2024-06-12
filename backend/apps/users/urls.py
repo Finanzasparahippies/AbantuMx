@@ -12,4 +12,5 @@ urlpatterns = [
     path('update/<int:id>/', UpdateUser.as_view(), name='updateUser'),
     path('update-password/<int:id>/', UpdatePassword.as_view(), name='updatePassword'),
     path('change-code/', ChangeUsersCodes.as_view(), name='changeUserCode'),
+    path('get/', GetUsers.as_view(), name='getUsers'),
 ]
