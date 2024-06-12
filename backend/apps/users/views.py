@@ -337,6 +337,7 @@ class GetUsers(APIView):
                     'first_name': user.first_name,
                     'last_name': user.last_name,
                     'profile_img': request.build_absolute_uri(user.profile_img.url) if user.profile_img else None,
+                    'codigo': user.codigo,
                 })
             return Response(users_list, status=status.HTTP_200_OK)
     

@@ -6,6 +6,7 @@ import * as Tabs from "@radix-ui/react-tabs";
 import { Tree, TreeNode } from 'react-organizational-chart';
 import styled from 'styled-components';
 import API from '../utils/API';
+import Swal from 'sweetalert2';
 
 
 const StyledNode = styled.div`
@@ -25,6 +26,8 @@ const StyledNode = styled.div`
 function Dashboard() {
 
   const [selectedTab, setSelectedTab] = useState("Red 100");;
+  const [users, setUsers] = useState([]);
+  const [id, setId] = useState('');
 
   const tabItems = [
     "Red 100",
@@ -35,11 +38,14 @@ function Dashboard() {
   const [donadores, setDonadores] = useState([]);
 
   useEffect(() => {
-    API.get(`/api/sistema/donadores-100/${localStorage.getItem('id')}/`)
+    Swal.showLoading();
+    API.get(`/api/users/get/`)
       .then((response) => {
-        setDonadores(response.data);
+        Swal.close();
+        setUsers(response.data);
       })
       .catch((error) => {
+        Swal.close();
         console.log(error);
       });
   }, []);
@@ -47,37 +53,73 @@ function Dashboard() {
   const handleTabChange = (val) => {
     setSelectedTab(val);
     if (val === "Red 100") {
-      API.get(`/api/sistema/donadores-100/${localStorage.getItem('id')}/`)
-        .then((response) => {
-          setDonadores(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      handle100();
     } else if (val === "Red 500") {
-      API.get(`/api/sistema/donadores-500/${localStorage.getItem('id')}/`)
-        .then((response) => {
-          setDonadores(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      handle500();
     } else if (val === "Red 1000") {
-      API.get(`/api/sistema/donadores-1000/${localStorage.getItem('id')}/`)
+      handle1000();
+    }
+  }
+
+    const handle100 = (id) => {
+      API.get(`/api/sistema/donadores-100/${id}/`)
         .then((response) => {
           setDonadores(response.data);
         })
         .catch((error) => {
           console.log(error);
         });
-    }}
+    }
+
+    const handle500 = (id) => {
+      API.get(`/api/sistema/donadores-500/${id}/`)
+      .then((response) => {
+        setDonadores(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
+
+    const handle1000 = (id) => {
+      API.get(`/api/sistema/donadores-1000/${id}/`)
+        .then((response) => {
+          setDonadores(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+
 
   return (
     console.log(donadores),
     <AnimatedPage>
         <div className="flex flex-col items-center mb-8 mt-8">
           <h2 className="text-gray-800 text-xl font-extrabold sm:text-2xl">Administrador de Redes</h2>
-        </div>  
+        </div>
+        <div className='mt-4 mb-4'>
+            <select 
+              name='bank' 
+              className='text-[#029d85] mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white' 
+              onChange={(e) => {
+                setId(e.target.value);
+                if (selectedTab === "Red 100") {
+                  handle100(e.target.value);
+                } else if (selectedTab === "Red 500") {
+                  handle500(e.target.value);
+                }
+                else if (selectedTab === "Red 1000") {
+                  handle1000(e.target.value);
+                }
+              }}
+            >
+              <option value=''>Selecciona usuario</option>
+                {users.map((user) => (
+                  <option key={user.id} value={user.id}>{user.first_name} {user.last_name}</option>
+                ))}
+            </select> 
+        </div>
       <Tabs.Root
         className="max-w-screen-xl mt-2 mx-auto px-4 md:px-8"
         value={selectedTab}
@@ -161,14 +203,6 @@ function Dashboard() {
           </section>
         </div>
       </Tabs.Root>
-      <div className="dashboard-container h-screen overflow-y-auto p-8">
-        <h2 className="section-title mb-4 font-bold text-2xl text-[#029d85]">Contribuciones Recientes</h2>
-        <section className="dashboard-section mb-8">
-          <div className="container">
-            <DonacionesRecibidas />
-          </div>
-        </section>
-      </div>
     </AnimatedPage>
   );
 }
