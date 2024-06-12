@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
-import WelcomeBanner from '../partials/dashboard/WelcomeBanner';
 import AnimatedPage from '../utils/AnimatedPage';
-import DonacionesRecibidas from '../partials/dashboard/DonacionesRecibidas';
 import * as Tabs from "@radix-ui/react-tabs";
 import { Tree, TreeNode } from 'react-organizational-chart';
 import styled from 'styled-components';
@@ -26,8 +24,8 @@ const StyledNode = styled.div`
 function Dashboard() {
 
   const [selectedTab, setSelectedTab] = useState("Red 100");;
+  const [user, setUser] = useState(null);
   const [users, setUsers] = useState([]);
-  const [id, setId] = useState('');
 
   const tabItems = [
     "Red 100",
@@ -52,6 +50,8 @@ function Dashboard() {
 
   const handleTabChange = (val) => {
     setSelectedTab(val);
+    setUser(null);
+    setDonadores([]);
     if (val === "Red 100") {
       handle100();
     } else if (val === "Red 500") {
@@ -98,12 +98,13 @@ function Dashboard() {
         <div className="flex flex-col items-center mb-8 mt-8">
           <h2 className="text-gray-800 text-xl font-extrabold sm:text-2xl">Administrador de Redes</h2>
         </div>
-        <div className='mt-4 mb-4'>
+        <div className='mt-4 mb-4 flex justify-center items-center w-1/4 mx-auto'>
             <select 
-              name='bank' 
-              className='text-[#029d85] mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white' 
+              name='user'
+              className='text-[#029d85] mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white'
+              value={user?.id}
               onChange={(e) => {
-                setId(e.target.value);
+                setUser(users.find(user => user.id === parseInt(e.target.value)));
                 if (selectedTab === "Red 100") {
                   handle100(e.target.value);
                 } else if (selectedTab === "Red 500") {
@@ -114,7 +115,7 @@ function Dashboard() {
                 }
               }}
             >
-              <option value=''>Selecciona usuario</option>
+              <option value={null}>Selecciona usuario</option>
                 {users.map((user) => (
                   <option key={user.id} value={user.id}>{user.first_name} {user.last_name}</option>
                 ))}
@@ -124,6 +125,7 @@ function Dashboard() {
         className="max-w-screen-xl mt-2 mx-auto px-4 md:px-8"
         value={selectedTab}
         onValueChange={(val) => handleTabChange(val)}
+        style={{ overflow: "auto", scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         <Tabs.List
           className="hidden bg-gray-100 py-1.5 px-2.5 rounded-lg gap-x-3 overflow-x-auto text-sm sm:flex"
@@ -175,11 +177,12 @@ function Dashboard() {
               </div>
             </div>
             <div className="mt-8">
+            {user && (
               <Tree
                 lineWidth={'6px'}
                 lineColor={'#029d85'}
                 lineBorderRadius={'10px'}
-                label={<StyledNode style={{ backgroundColor:'#03E19B', borderColor: '#029d85', borderWidth:'4px', color:'#fff', fontSize:'20px', justifyContent: 'center', alignItems: 'center' }}>Yo<img src={localStorage.getItem('foto') !== 'null' ? localStorage.getItem('foto') : 'https://ui-avatars.com/api/?name=' + localStorage.getItem('name').charAt(0) + '&background=random'} alt="donador" className="w-10 h-10 rounded-full ml-[60px]" /><p>Código: {localStorage.getItem('codigo')}</p></StyledNode>}
+                label={<StyledNode style={{ backgroundColor:'#03E19B', borderColor: '#029d85', borderWidth:'4px', color:'#fff', fontSize:'20px', justifyContent: 'center', alignItems: 'center' }}>{user?.first_name}<img src={user?.profile_img !== null ? localStorage.getItem('foto') : 'https://ui-avatars.com/api/?name=' + user?.first_name +' '+ user?.last_name + '&background=random'} alt="donador" className="w-10 h-10 rounded-full ml-[60px]" /><p>Código: {user?.codigo}</p></StyledNode>}
               >
                 {donadores.map((donador) => (
                   <TreeNode label={<StyledNode style={donador.tipo === 'B1' || donador.tipo === 'B2' ? { backgroundColor:'#fff', borderColor: '#029d85', borderWidth:'4px' } : { backgroundColor:'#03E19B', borderColor: '#029d85', borderWidth:'4px', color:'#fff' } }>{donador.donador}<img src={donador.imagen ? donador.imagen : 'https://ui-avatars.com/api/?name=' + donador.donador.charAt(0) + '&background=random'} alt="donador" className="w-10 h-10 rounded-full" /><p>Código: {donador.codigo}</p>{donador.tipo === 'B1' || donador.tipo === 'B2' ? <p className='text-[#029d85]' >Este usuario forma parte de otra red</p> : <p></p>}</StyledNode>}>
@@ -198,7 +201,8 @@ function Dashboard() {
                     ))}
                   </TreeNode>
                 ))}
-              </Tree>      
+              </Tree>
+            )}   
               </div>
           </section>
         </div>

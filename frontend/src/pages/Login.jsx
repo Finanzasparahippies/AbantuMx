@@ -84,7 +84,7 @@ function Login() {
                   type="email"
                   className="form-control block w-full px-4 py-2 text-3xl font-normal text-[#029d85] bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-[#029d85] focus:bg-white focus:border-white focus:outline-none"
                   name = "id_empleado"
-                  placeholder="Usuario"
+                  placeholder="Correo electrónico"
                   onChange={e => setEmail(e.target.value.toLowerCase())}
                   value={email}
                 />

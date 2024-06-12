@@ -148,7 +148,7 @@ function Contribucion() {
                 <h1 className="text-2xl font-bold text-[#029d85]">¡Recuerda que tu fecha de contribución en esta red es el {red.fecha.toString().split('T')[0][8] + red.fecha.toString().split('T')[0][9]} de cada mes!</h1>
               </div>
               <div className="mt-8">
-                <h3 className="text-xl text-[#029d85] font-bold">Información Bancaria</h3>
+                <h3 className="text-xl text-[#029d85] font-bold">Esta es la información bancaria para enviar tu contribución en tu red {selectedTab}.</h3>
                 <div className="mt-4">
                   <div className="flex items-center">
                     <p className="text-sm text-[#029d85] font-bold mr-2">Nombre:</p>
@@ -159,16 +159,16 @@ function Contribucion() {
                     <p className="text-sm font-semibold text-gray-800">{red.bank}</p>
                   </div>
                   <div className="flex items-center mt-2">
-                    <p className="text-sm text-[#029d85] font-bold mr-2">Número de Cuenta:</p>
-                    <p className="text-sm font-semibold text-gray-800">{red.bank_account}</p>
+                    <p className="text-sm text-[#029d85] font-bold mr-2">Número de Tarjeta:</p>
+                    <p className="text-sm font-semibold text-gray-800">{red.bank_card}</p>
                   </div>
                   <div className="flex items-center mt-2">
                     <p className="text-sm text-[#029d85] font-bold mr-2">CLABE Interbancaria:</p>
                     <p className="text-sm font-semibold text-gray-800">{red.bank_clabe}</p>
                   </div>
                   <div className="flex items-center mt-2">
-                    <p className="text-sm text-[#029d85] font-bold mr-2">Número de Tarjeta:</p>
-                    <p className="text-sm font-semibold text-gray-800">{red.bank_card}</p>
+                    <p className="text-sm text-[#029d85] font-bold mr-2">Número de Cuenta:</p>
+                    <p className="text-sm font-semibold text-gray-800">{red.bank_account}</p>
                   </div>
                 </div>
               </div>

@@ -80,6 +80,7 @@ function Dashboard() {
         className="max-w-screen-xl mt-2 mx-auto px-4 md:px-8"
         value={selectedTab}
         onValueChange={(val) => handleTabChange(val)}
+        style={{ overflow: "auto", scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         <Tabs.List
           className="hidden bg-gray-100 py-1.5 px-2.5 rounded-lg gap-x-3 overflow-x-auto text-sm sm:flex"
@@ -122,6 +123,11 @@ function Dashboard() {
         </div>
         <div className="p-8">
           <section className="dashboard-section">
+          {donadores.length === 0 ?
+            <div className="mt-8">
+              <h2 className="section-title mb-4 font-bold text-2xl text-[#029d85]">No te has unido a esta red.</h2>
+            </div>
+            : null}
             <div className="container">
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 <div className="bg-[#03E19B] rounded-lg shadow-md py-4 border-4 border-[#029d85] px-4">

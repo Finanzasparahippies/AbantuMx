@@ -7,7 +7,6 @@ import Images from '../images/Images';
 function Redes() {
 
   const [modal, setModal] = useState(false);
-  const [input1, setInput1] = useState(false);
   const [redes, setRedes] = useState([]);
   const [restart, setRestart] = useState(false);
   const [form, setForm] = useState({
@@ -74,7 +73,6 @@ const handleSubmit = () => {
 
 const handleCancel = () => {
   setModal(!modal);
-  setInput1(false);
   setForm({
     red: "",
     codigo: "",
@@ -132,12 +130,12 @@ const handleCancel = () => {
 
       
             
-              <p className="text-white">¿Tienes un código de invitación? <a href="#" onClick={() => setInput1(!input1)}>Click aquí</a></p>
+              <p className="text-white">¿Tienes un código de invitación? Ingresalo aquí.</p>
 
               <input 
                 type="text" 
-                placeholder="Código de invitación" 
-                className={ input1 ? "w-full border rounded-lg p-2 mt-2" : "hidden"}
+                placeholder="Código de invitación (Opcional)" 
+                className="w-full border rounded-lg p-2 mt-2"
                 name="codigo"
                 onChange={(e) => setForm({...form, codigo: e.target.value})}
                 value={form.codigo}
