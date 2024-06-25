@@ -33,6 +33,7 @@ function Dashboard() {
   ];
 
   const [donadores, setDonadores] = useState([]);
+  const [redes, setRedes] = useState([]);
 
   useEffect(() => {
     API.get(`/api/sistema/donadores-100/${localStorage.getItem('id')}/`)
@@ -42,6 +43,14 @@ function Dashboard() {
       .catch((error) => {
         console.log(error);
       });
+    API.get(`/api/sistema/redes/${localStorage.getItem('id')}/`)
+      .then((response) => {
+        setRedes(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
   }, []);
 
   const handleTabChange = (val) => {
@@ -74,6 +83,7 @@ function Dashboard() {
 
   return (
     console.log(donadores),
+    console.log(redes),
     <AnimatedPage>
       <WelcomeBanner />
       <Tabs.Root
@@ -123,7 +133,7 @@ function Dashboard() {
         </div>
         <div className="p-8">
           <section className="dashboard-section">
-          {donadores.length === 0 ?
+          {redes[tabItems.indexOf(selectedTab)]?.activa === false ?
             <div className="mt-8">
               <h2 className="section-title mb-4 font-bold text-2xl text-[#029d85]">No te has unido a esta red.</h2>
             </div>
