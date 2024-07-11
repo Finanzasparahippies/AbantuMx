@@ -175,14 +175,6 @@ function Dashboard() {
           </section>
         </div>
       </Tabs.Root>
-      <div className="dashboard-container h-screen overflow-y-auto p-8">
-        <h2 className="section-title mb-4 font-bold text-2xl text-[#029d85]">Contribuciones Recientes</h2>
-        <section className="dashboard-section mb-8">
-          <div className="container">
-            <DonacionesRecibidas />
-          </div>
-        </section>
-      </div>
     </AnimatedPage>
   );
 }
